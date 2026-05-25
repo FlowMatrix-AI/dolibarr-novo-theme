@@ -1,0 +1,42 @@
+services:
+  web:
+    image: dolibarr/dolibarr:21
+    ports:
+      - "8080:80"
+    environment:
+      DOLI_DB_HOST: db
+      DOLI_DB_NAME: ${DOLI_DB_NAME:-dolibarr}
+      DOLI_DB_USER: ${DOLI_DB_USER:-dolibarr}
+      DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolibarr}
+      DOLI_ADMIN_LOGIN: ${DOLI_ADMIN_LOGIN:-admin}
+      DOLI_ADMIN_PASSWORD: ${DOLI_ADMIN_PASSWORD:-admin123}
+      DOLI_URL_ROOT: ${DOLI_URL_ROOT:-http://localhost:8080}
+      DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-1}
+    volumes:
+      - ./dolibarr/theme/novo:/var/www/html/theme/novo:ro
+      - ./dolibarr/custom/novoux:/var/www/html/custom/novoux:ro
+      - dolibarr-docs:/var/documents
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mariadb:11
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DOLI_DB_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${DOLI_DB_NAME:-dolibarr}
+      MYSQL_USER: ${DOLI_DB_USER:-dolibarr}
+      MYSQL_PASSWORD: ${DOLI_DB_PASSWORD:-dolibarr}
+    volumes:
+      - dolibarr-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  dolibarr-db:
+  dolibarr-docs:
