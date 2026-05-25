@@ -1,0 +1,14 @@
+NovouzDescription=Companion module for the Novo theme — palette selection and brand overrides
+NovouzDescriptionLong=Provides an admin interface to configure the Novo theme: select color palettes, override the primary brand color, and set a custom logo.
+ModuleNovouzName=Novo UX
+ModuleNovouzDesc=Companion module for the Novo theme
+NovouzSetup=Novo UX Settings
+NovouzAbout=About Novo UX
+NovouzPalette=Color Palette
+NovouzPrimaryColor=Primary Color Override
+NovouzLogoUrl=Client Logo URL
+NovouzPaletteHelp=Select the color palette for the Novo theme. Changes apply to all users immediately.
+NovouzPrimaryColorHelp=Override the primary brand color (hex format, e.g. #3b82f6). Leave empty to use palette default.
+NovouzLogoUrlHelp=URL to a client logo image. Leave empty to use the Dolibarr default logo.
+ErrorBadColor=Invalid color format. Use hex format like #3b82f6
+ErrorBadUrl=Invalid URL format

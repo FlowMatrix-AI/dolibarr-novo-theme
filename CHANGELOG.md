@@ -9,6 +9,11 @@
 - Sanitised palette loading with path traversal protection
 - CI workflow checks generated CSS stays in sync with tokens
 - `package.json` with `build:palettes` script
+- Companion module `novoux` (htdocs/custom/novoux/):
+  - Admin setup page for palette selection, primary color override, logo URL
+  - CSS injection via `module_parts['css']` for runtime overrides
+  - CSRF-protected form with input validation
+  - English translations
 
 ## v0.2.0 — Visual Restyle
 

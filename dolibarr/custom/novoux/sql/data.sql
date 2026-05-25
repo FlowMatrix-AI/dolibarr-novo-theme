@@ -1,0 +1,2 @@
+-- Default constants for novoux module
+-- No tables needed; module uses llx_const only
