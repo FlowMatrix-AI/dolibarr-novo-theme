@@ -190,7 +190,7 @@ if (getDolGlobalString('MAIN_OVERWRITE_THEME_RES')) {
 //$fontlist='helvetica, verdana, arial, sans-serif';
 //$fontlist='"open sans", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
-$fontlist = 'arial,tahoma,verdana,helvetica';
+$fontlist = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 if (getDolGlobalString('THEME_FONT_FAMILY')) {
 	$fontlist = getDolGlobalString('THEME_FONT_FAMILY').', '.$fontlist;
 }

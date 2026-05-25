@@ -32,8 +32,8 @@
  */
 
 global $theme_bordercolor, $theme_datacolor, $theme_bgcolor, $theme_bgcoloronglet;
-$theme_bordercolor = array(235, 235, 224);
-$theme_datacolor = array(array(137, 86, 161), array(60, 147, 183), array(250, 190, 80), array(80, 166, 90), array(190, 190, 100), array(91, 115, 247), array(140, 140, 220), array(190, 120, 120), array(115, 125, 150), array(100, 170, 20), array(150, 135, 125), array(85, 135, 150), array(150, 135, 80), array(150, 80, 150));
+$theme_bordercolor = array(226, 232, 240); // slate-200
+$theme_datacolor = array(array(59, 130, 246), array(139, 92, 246), array(245, 158, 11), array(16, 185, 129), array(236, 72, 153), array(99, 102, 241), array(14, 165, 233), array(244, 63, 94), array(100, 116, 139), array(34, 197, 94), array(168, 85, 247), array(6, 182, 212), array(249, 115, 22), array(132, 204, 22));
 if (!defined('ISLOADEDBYSTEELSHEET')) {	// File is run after an include of a php page, not by the style sheet, if the constant is not defined.
 	if (getDolGlobalString('MAIN_OPTIMIZEFORCOLORBLIND')) { // user is loaded by dolgraph.class.php
 		if (getDolGlobalString('MAIN_OPTIMIZEFORCOLORBLIND') == 'flashy') {
@@ -48,53 +48,52 @@ if (!defined('ISLOADEDBYSTEELSHEET')) {	// File is run after an include of a php
 $theme_bgcolor = array(hexdec('F4'), hexdec('F4'), hexdec('F4'));
 $theme_bgcoloronglet = array(hexdec('DE'), hexdec('E7'), hexdec('EC'));
 
-// Colors
-$colorbackbody = '255,255,255';
-$colorbackhmenu1 = '38,60,92'; // topmenu
-//$colorbackvmenu1 = '250,250,250'; // vmenu
-$colorbackvmenu1 = '248,248,248'; // vmenu
-$colortopbordertitle1 = '215,215,215'; // top border of title
-$colorbacktitle1 = '241,241,243'; // title of tables,list
-$colorbacktabcard1 = '255,255,255'; // card
-$colorbacktabactive = '234,234,234';
+// Colors — Novo palette
+$colorbackbody = '248,250,252'; // --novo-bg slate-50 #f8fafc
+$colorbackhmenu1 = '15,23,42'; // topmenu — slate-900
+$colorbackvmenu1 = '255,255,255'; // vmenu — white surface
+$colortopbordertitle1 = '226,232,240'; // --novo-border slate-200
+$colorbacktitle1 = '241,245,249'; // slate-100 #f1f5f9
+$colorbacktabcard1 = '255,255,255'; // card — white
+$colorbacktabactive = '241,245,249'; // slate-100
 $colorbacklineimpair1 = '255,255,255'; // line impair
 $colorbacklineimpair2 = '255,255,255'; // line impair
-$colorbacklinepair1 = '255,255,255'; // line pair
-$colorbacklinepair2 = '255,255,255'; // line pair
-$colorbacklinepairhover = '240,242,249'; // line hover
-$colorbacklinepairchecked = '240,242,249'; // line checked
-$colorbacklinebreak = '248,247,244'; // line break
-$colortexttitlenotab = '0,135,160'; // 150,90,121 140,80,10 or 10,140,80  #875a7b  green=0,123,140, violet: 0,50,120
-$colortexttitlenotab2 = '100,0,100'; // 150,90,121 140,80,10 or 10,140,80  #875a7b  green=0,123,140, violet: 0,50,120
-$colortexttitle = '40, 40, 60';
-$colortexttitlelink = '10, 20, 100';
-$colortext = '0,0,0';
-$colortextlink = '10, 20, 100';
-$fontsize = '0.94em';
+$colorbacklinepair1 = '248,250,252'; // line pair — slate-50
+$colorbacklinepair2 = '248,250,252'; // line pair — slate-50
+$colorbacklinepairhover = '241,245,249'; // line hover — slate-100
+$colorbacklinepairchecked = '219,234,254'; // line checked — blue-100
+$colorbacklinebreak = '241,245,249'; // line break — slate-100
+$colortexttitlenotab = '59,130,246'; // --novo-primary blue-500 #3b82f6
+$colortexttitlenotab2 = '139,92,246'; // --novo-accent violet-500
+$colortexttitle = '30,41,59'; // slate-800
+$colortexttitlelink = '59,130,246'; // blue-500
+$colortext = '15,23,42'; // --novo-text slate-900
+$colortextlink = '59,130,246'; // blue-500
+$fontsize = '0.875em'; // 14px base
 $fontsizesmaller = '0.75em';
-$topMenuFontSize = '1.1em';
-$toolTipBgColor = 'rgba(255, 255, 255, 0.96)';
-$toolTipFontColor = '#333';
-$butactionbg = '116, 96, 170';
+$topMenuFontSize = '0.875em';
+$toolTipBgColor = 'rgba(15, 23, 42, 0.95)'; // dark tooltip
+$toolTipFontColor = '#f1f5f9'; // light text on dark tooltip
+$butactionbg = '59, 130, 246'; // --novo-primary blue-500
 $textbutaction = '255, 255, 255';
 
-// text color
-$textSuccess   = '#28a745';
+// text color — Novo status palette
+$textSuccess   = '#10b981'; // emerald-500
 $colorblind_deuteranopes_textSuccess = '#37de5d';
-$textWarning   = '#bc9526'; // See $badgeWarning
-$textDanger    = '#af4705'; // See $badgeDanger
-$colorblind_deuteranopes_textWarning = $textWarning; // currently not tested with a color blind people so use default color
+$textWarning   = '#f59e0b'; // amber-500
+$textDanger    = '#ef4444'; // red-500
+$colorblind_deuteranopes_textWarning = $textWarning;
 
 
-// Badges colors
-$badgePrimary   = '#007bff';
-$badgeSecondary = '#aaaabb';
-$badgeInfo      = '#aaaabb';
-$badgeSuccess   = '#55a580';
-$badgeWarning   = '#bc9526'; // See $textWarning bc9526
-$badgeDanger    = '#994013'; // See $textDanger
-$badgeDark      = '#343a40';
-$badgeLight     = '#f8f9fa';
+// Badges colors — Novo
+$badgePrimary   = '#3b82f6'; // blue-500
+$badgeSecondary = '#64748b'; // slate-500
+$badgeInfo      = '#6366f1'; // indigo-500
+$badgeSuccess   = '#10b981'; // emerald-500
+$badgeWarning   = '#f59e0b'; // amber-500
+$badgeDanger    = '#ef4444'; // red-500
+$badgeDark      = '#1e293b'; // slate-800
+$badgeLight     = '#f1f5f9'; // slate-100
 
 // badge color adjustment for color blind
 $colorblind_deuteranopes_badgeSuccess   = '#37de5d'; //! text color black

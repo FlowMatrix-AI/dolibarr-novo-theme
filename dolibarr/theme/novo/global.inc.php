@@ -156,7 +156,7 @@ $leftmenuwidth = 240;
 @phan-var-force array{h:int,l:int,s:int,a:int} $colortextlinkHsla
 ';
 
-$borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobalInt('THEME_ELDY_BORDER_RADIUS', 6) : 0;
+$borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobalInt('THEME_ELDY_BORDER_RADIUS', 6) : 6;
 
 ?>
 /* IDE Hack <style type="text/css"> */
@@ -220,81 +220,97 @@ $borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobal
 	--colorwhite: #fff;
 	--heightrow: <?php print $heightrow; ?>;
 
-	/* Novo abstraction layer — maps to Eldy values for now, replaced in M2 */
-	--novo-primary: rgb(<?php print $colorbackhmenu1; ?>);
-	--novo-primary-hover: rgb(<?php print $butactionbg; ?>);
-	--novo-bg: rgb(<?php print $colorbackbody; ?>);
-	--novo-surface: rgb(<?php print $colorbacktabcard1; ?>);
-	--novo-text: rgb(<?php print $colortext; ?>);
-	--novo-text-muted: rgb(<?php print $colortexttitlenotab; ?>);
-	--novo-border: rgb(<?php print $colortopbordertitle1; ?>);
-	--novo-accent: rgb(<?php print $butactionbg; ?>);
-	--novo-success: <?php print $textSuccess; ?>;
-	--novo-warning: <?php print $textWarning; ?>;
-	--novo-danger: <?php print $textDanger; ?>;
+	/* Novo design tokens */
+	--novo-primary: #3b82f6;
+	--novo-primary-hover: #2563eb;
+	--novo-bg: #f8fafc;
+	--novo-surface: #ffffff;
+	--novo-text: #0f172a;
+	--novo-text-muted: #64748b;
+	--novo-border: #e2e8f0;
+	--novo-accent: #8b5cf6;
+	--novo-success: #10b981;
+	--novo-warning: #f59e0b;
+	--novo-danger: #ef4444;
 	--novo-radius-sm: 4px;
 	--novo-radius-md: 6px;
 	--novo-radius-lg: 8px;
 	--novo-radius-xl: 12px;
+	--novo-shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+	--novo-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+	--novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+	--novo-font: <?php print $fontlist; ?>;
+	--novo-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 <?php
 if (getDolGlobalInt('THEME_DARKMODEENABLED')) {
-	print "/* For dark mode */\n";
+	print "/* Novo dark mode */\n";
 	if (getDolGlobalInt('THEME_DARKMODEENABLED') != 2) {
-		print "@media (prefers-color-scheme: dark) {";	// To test, click on the 3 dots menu, then Other options then Display then emulate prefer-color-schemes
+		print "@media (prefers-color-scheme: dark) {";
 	} else {
 		print "@media not print {";
 	}
 	print ":root {
-	            --colorbackhmenu1: #3d3e40;
-	            --colorbackvmenu1: #2b2c2e;
-	            --colorbacktitle1: #3b3c3e;
-	            --colorbacktabcard1: #1d1e20;				/* Must be same than colorbackbody */
-	            --colorbacktabactive: rgb(220,220,220);
-	            --colorbacklineimpair1: #38393d;
-	            --colorbacklineimpair2: #2b2d2f;
-	            --colorbacklinepair1: #38393d;
-	            --colorbacklinepair2: #2b2d2f;
-	            --colorbacklinepairhover: #2b2d2f;
-	            --colorbacklinepairchecked: #0e5ccd;
-	            --colorbackbody: #1d1e20;
-				--colorbackmobilemenu: #080808;
-				--colorbackgrey: #0f0f0f;
-	            --tooltipbgcolor: #2b2d2f;
-	            --colortexttitlenotab: rgb(220,220,220);
-	            --colortexttitlenotab2: rgb(220,220,220);
-	            --colortexttitle: rgb(220,220,220);
-	            --colortext: rgb(220,220,220);
-	            --colortextlink: #4390dc;
-	            --colortexttitlelink: #4390dc;
-	            --colortextbackhmenu: rgb(220,220,220);
-	            --colortextbackvmenu: rgb(220,220,220);
-				--tooltipfontcolor : rgb(220,220,220);
-	            --listetotal: rgb(245, 83, 158);
-	            --inputbackgroundcolor: rgb(70, 70, 70);
-				--inputbackgroundcolordisabled: rgb(60, 60, 60);
-				--inputcolordisabled: rgb(140, 140, 140);
-	            --inputbordercolor: rgb(220,220,220);
-	            --oddevencolor: rgb(220,220,220);
-	            --colorboxstatsborder: rgb(65,100,138);
-	            --dolgraphbg: #1d1e20;
-	            --fieldrequiredcolor: #fff;
-	            --colortextbacktab: rgb(220,220,220);
-	            --colorboxiconbg: rgb(36,38,39);
-	            --refidnocolor: rgb(220,220,220);
-	            --tableforfieldcolor:rgb(220,220,220);
-	            --amountremaintopaycolor:rgb(252,84,91);
-	            --amountpaymentcomplete:rgb(101,184,77);
-	            --amountremaintopaybackcolor:rbg(245,130,46);
-				--infoboxmoduleenabledbgcolor : linear-gradient(0.4turn, #000, #000, #000, #274231);
-				--tablevalidbgcolor: rgb(80, 64, 33);
-				--colorblack: #fff;
-				--colorwhite: #000;
+	            --colorbackhmenu1: #1e293b;
+	            --colorbackvmenu1: #0f172a;
+	            --colorbacktitle1: #1e293b;
+	            --colorbacktabcard1: #0f172a;
+	            --colorbacktabactive: #334155;
+	            --colorbacklineimpair1: #1e293b;
+	            --colorbacklineimpair2: #1e293b;
+	            --colorbacklinepair1: #0f172a;
+	            --colorbacklinepair2: #0f172a;
+	            --colorbacklinepairhover: #334155;
+	            --colorbacklinepairchecked: #1e3a5f;
+	            --colorbackbody: #0f172a;
+				--colorbackmobilemenu: #020617;
+				--colorbackgrey: #020617;
+	            --tooltipbgcolor: #1e293b;
+	            --colortexttitlenotab: #93c5fd;
+	            --colortexttitlenotab2: #c4b5fd;
+	            --colortexttitle: #e2e8f0;
+	            --colortext: #e2e8f0;
+	            --colortextlink: #60a5fa;
+	            --colortexttitlelink: #60a5fa;
+	            --colortextbackhmenu: #e2e8f0;
+	            --colortextbackvmenu: #e2e8f0;
+				--tooltipfontcolor: #e2e8f0;
+	            --listetotal: #f472b6;
+	            --inputbackgroundcolor: #1e293b;
+				--inputbackgroundcolordisabled: #334155;
+				--inputcolordisabled: #94a3b8;
+	            --inputbordercolor: #475569;
+	            --oddevencolor: #e2e8f0;
+	            --colorboxstatsborder: #475569;
+	            --dolgraphbg: #0f172a;
+	            --fieldrequiredcolor: #f1f5f9;
+	            --colortextbacktab: #e2e8f0;
+	            --colorboxiconbg: #1e293b;
+	            --refidnocolor: #e2e8f0;
+	            --tableforfieldcolor: #e2e8f0;
+	            --amountremaintopaycolor: #fca5a5;
+	            --amountpaymentcomplete: #6ee7b7;
+	            --amountremaintopaybackcolor: none;
+				--infoboxmoduleenabledbgcolor: linear-gradient(0.4turn, #0f172a, #0f172a, #0f172a, #064e3b);
+				--tablevalidbgcolor: #422006;
+				--colorblack: #f1f5f9;
+				--colorwhite: #0f172a;
+				--novo-primary: #60a5fa;
+				--novo-primary-hover: #3b82f6;
+				--novo-bg: #0f172a;
+				--novo-surface: #1e293b;
+				--novo-text: #f1f5f9;
+				--novo-text-muted: #94a3b8;
+				--novo-border: #334155;
+				--novo-accent: #a78bfa;
+				--novo-shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
+				--novo-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+				--novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.4);
 	      }
 
 		body, button {
-			color: #bbb;
+			color: #e2e8f0;
 		}\n
 	}\n";
 }
@@ -305,7 +321,7 @@ body {
 	background-color: #FFFFFF;
 <?php } ?>
 	font-size: <?php print is_numeric($fontsize) ? $fontsize.'px' : $fontsize; ?>;
-	line-height: 1.4;
+	line-height: 1.5;
 	font-family: <?php print $fontlist ?>;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -313,13 +329,10 @@ body {
 	margin-left: 0;
 	font-weight: 400;
 	background-color: var(--colorbackbody);
+	color: var(--novo-text);
 	<?php print 'direction: '.$langs->trans("DIRECTION").";\n"; ?>
-	/*transform: scale(1.2);
-	transform-origin: 0 0;*/
-	<?php
-	//print getDolUserInt('MAIN_OPTIMIZEFORTEXTBROWSER') ? (getDolUserInt('MAIN_OPTIMIZEFORTEXTBROWSER') > 100 ? 'zoom: '.getDolUserInt('MAIN_OPTIMIZEFORTEXTBROWSER').'%;' : 'zoom: 150%;') : '';
-	?>
-	/* zoom: 105%; */	/* not supported by all browsers. pb for popup position with select2. */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 /* Style used to protect html content in output to avoid attack by replacing full page with js content */
@@ -386,16 +399,13 @@ input, input.flat, form.flat select, select, select.flat, .dataTables_length lab
 }
 input, input.flat, textarea, textarea.flat, form.flat select, select, select.flat, .dataTables_length label select {
 	color: var(--colortext);
-	<?php if (getDolGlobalString('THEME_SHOW_BORDER_ON_INPUT')) { ?>
-	border-radius: 5px;
-	<?php } ?>
+	border-radius: var(--novo-radius-md);
 	font-family: <?php print $fontlist ?>;
 	outline: none;
 	margin: 0px 0px 0px 0px;
 	background-color: var(--inputbackgroundcolor);
-	<?php if (!getDolGlobalString('THEME_ADD_BACKGROUND_ON_INPUT')) { ?>
-		border<?php echo getDolGlobalString('THEME_SHOW_BORDER_ON_INPUT') ? '' : '-bottom'; ?>: solid 1px var(--inputbordercolor);
-	<?php } ?>
+	border: 1px solid var(--novo-border);
+	transition: border-color var(--novo-transition), box-shadow var(--novo-transition);
 }
 
 /* this cases always use an input with only a background border */
@@ -544,18 +554,15 @@ section.setupsection:hover {
 
 /* Focus definitions must be after standard definition */
 div.tabBar textarea:focus:not(.textarea-ai_feature):not(.cke_source) {
-	border: 1px solid #aaa !important;
+	border: 1px solid var(--novo-primary) !important;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 input:focus:not(.noborderfocus):not(.inputsearch_dropdownselectedfields):not(.button):not(.buttonwebsite):not(.buttonreset):not(.select2-search__field):not(#top-bookmark-search-input):not(.search_component_input):not(.input-nobottom),
  select:focus, .select2-container--open [aria-expanded="false"].select2-selection--single,
  .select2-container--focus span.selection span.select2-selection:not(.noborderfocus):not(.massactionselect) {
-<?php if (getDolGlobalString('THEME_SHOW_BORDER_ON_INPUT')) { ?>
-	border: 1px solid #666 !important;
-<?php } else { ?>
-	border-bottom: 1px solid #666 !important;
-	border-bottom-left-radius: 0 !important;
-	border-bottom-right-radius: 0 !important;
-<?php } ?>
+	border: 1px solid var(--novo-primary) !important;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+	border-radius: var(--novo-radius-md) !important;
 }
 textarea.cke_source:focus
 {
@@ -962,21 +969,20 @@ table.tableforfield .buttonDelete:not(.bordertransp):not(.buttonpayment) {
 	margin-right: 5px;
 	font-family: <?php print $fontlist ?>;
 	display: inline-block;
-	padding: 8px 15px;
+	padding: 8px 16px;
 	min-width: 90px;
 	text-align: center;
 	cursor: pointer;
 	text-decoration: none !important;
-	background-color: #f5f5f5;
-	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
-	background-repeat: repeat-x;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	border: 1px solid #aaa;
-	border-radius: 4px;
+	background-color: var(--novo-surface);
+	background-image: none;
+	border: 1px solid var(--novo-border);
+	border-radius: var(--novo-radius-md);
 
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #444;
+	font-weight: 500;
+	text-transform: none;
+	color: var(--novo-text);
+	transition: background-color var(--novo-transition), border-color var(--novo-transition), box-shadow var(--novo-transition);
 }
 .valuefield .button, .valuefieldcreate .button, .refidno .button:not(.smallpaddingimp) {
 	margin-top: 0 !important;
@@ -985,11 +991,13 @@ table.tableforfield .buttonDelete:not(.bordertransp):not(.buttonpayment) {
 	padding: 5px !important;
 }
 .button:focus, .buttonDelete:focus  {
-	box-shadow: 0px 0px 5px 1px rgba(0, 0, 60, 0.2), 0px 0px 0px rgba(60,60,60,0.1);
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+	border-color: var(--novo-primary);
 }
 .button:hover:not(.nohover), .buttonDelete:hover:not(.nohover)   {
-	/* warning: having a larger shadow has side effect when button is completely on left of a table */
-	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2), 0px 0px 0px rgba(60,60,60,0.1);
+	background-color: var(--novo-bg);
+	border-color: var(--novo-primary);
+	box-shadow: var(--novo-shadow-sm);
 }
 .button:disabled, .buttonDelete:disabled, .button.disabled, .buttonDelete.disabled {
 	opacity: 0.4;
@@ -2698,11 +2706,11 @@ td.showDragHandle {
 <?php } else { ?>
 	display: table-cell;
 <?php } ?>
-	border-<?php echo $right; ?>: 1px solid #ECECEC;
-	border-bottom: 1px solid #ECECEC;
-	box-shadow: 3px 0 6px -2px #eee;
+	border-<?php echo $right; ?>: 1px solid var(--novo-border);
+	border-bottom: 1px solid var(--novo-border);
+	box-shadow: none;
 	background: var(--colorbackvmenu1);
-	transition: left 0.5s ease;
+	transition: left 0.3s ease;
 }
 
 .side-nav, .login_block {
@@ -2752,7 +2760,7 @@ div.blockvmenupair, div.blockvmenuimpair {
 	border-top: none !important;
 	border-left: none !important;
 	border-right: none !important;
-	border-bottom: 1px solid #eaeaea;
+	border-bottom: 1px solid var(--novo-border);
 	padding-left: 0 !important;
 }
 div.blockvmenuend, div.blockvmenubookmarks {
@@ -3224,9 +3232,9 @@ img.photorefnoborder {
 	display:none;
 <?php } else { ?>
 	background: var(--colorbackhmenu1);
+	box-shadow: var(--novo-shadow-sm);
 	<?php if ($colorbackhmenu1 == $colorbackbody) { ?>
-	border-bottom: 1px solid var(--colorbackgrey);
-	box-shadow: 0 0 3px var(--colorbackgrey);
+	border-bottom: 1px solid var(--novo-border);
 	<?php } else { ?>
 	<?php }
 } ?>
@@ -4255,9 +4263,8 @@ div.tabBar {
 	padding-top: 20px;
 	padding-left: 0px; padding-right: 0px;
 	padding-bottom: 2px;
-	margin: 0px 0px 30px 0px;
-	border-top: 1px solid #BBB;
-	/* border-bottom: 1px solid #AAA; */
+	margin: 0px 0px 24px 0px;
+	border-top: 1px solid var(--novo-border);
 	width: auto;
 	background: var(--colorbackbody);
 }
@@ -4283,7 +4290,7 @@ div.tabBar.tabBarNoTop {
 /* tabBar used for creation/update/send forms */
 div.tabBarWithBottom {
 	padding-bottom: 18px;
-	border-bottom: 1px solid #bbb;
+	border-bottom: 1px solid var(--novo-border);
 }
 div.tabBarWithBottom tr {
 	background: unset !important;

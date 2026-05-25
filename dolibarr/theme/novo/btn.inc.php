@@ -117,12 +117,11 @@ span.butAction, span.butActionDelete {
 	font-size: 0.9em;
 }
 .butAction {
-	background: var(--butactionbg);
-	color: var(--textbutaction) !important;
-	/* background: rgb(230, 232, 239); */
+	background: var(--novo-primary);
+	color: #fff !important;
 }
 .butActionRefused, .butAction, .butActionDelete {
-	border-radius: 3px;
+	border-radius: var(--novo-radius-md);
 }
 :not(.center) > .butActionRefused:last-child, :not(.center) > .butAction:last-child, :not(.center) > .butActionDelete:last-child {
 	margin-<?php echo $right; ?>: 0px !important;
@@ -131,24 +130,17 @@ span.butAction, span.butActionDelete {
 .divButAction
  {
 	text-decoration: none;
-	text-transform: uppercase;
-	font-weight: bold;
+	text-transform: none;
+	font-weight: 500;
 
-	margin: 0em <?php echo($dol_optimize_smallscreen ? '0.6' : '1'); ?>em;
-	padding: 0.6em <?php echo($dol_optimize_smallscreen ? '0.6' : '0.7'); ?>em;
+	margin: 0em <?php echo($dol_optimize_smallscreen ? '0.6' : '0.7'); ?>em;
+	padding: 0.5em <?php echo($dol_optimize_smallscreen ? '0.8' : '1.2'); ?>em;
 	display: inline-block;
 	text-align: center;
 	cursor: pointer;
 	color: #444;
-	border: 1px solid transparent;	/* So for buttonRefused with a border, it will not have any flash effect */
-
-	/* border: 1px solid #aaa; */
-	/* border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25); */
-
-	/*border-top-right-radius: 0 !important;
-	border-bottom-right-radius: 0 !important;
-	border-top-left-radius: 0 !important;
-	border-bottom-left-radius: 0 !important;*/
+	border: 1px solid transparent;
+	transition: background-color var(--novo-transition), box-shadow var(--novo-transition);
 }
 .butActionNew, .butActionNewRefused, .butActionNew:link, .butActionNew:visited, .butActionNew:hover, .butActionNew:active {
 	text-decoration: none;
@@ -190,8 +182,8 @@ span.butActionNewRefused>span.fa, span.butActionNewRefused>span.fa:hover
 }
 
 .butAction:hover, .dropdown-holder.open > .butAction   {
-	/** TODO use css var with hsl from --colortextlink to allow create darken or lighten color */
-	box-shadow: 0px 0px 6px rgba(50,50,50,0.4), inset 0px 0px 200px rgba(0,0,0,0.3); /* fix hover feedback : use "inset" background to easily darken background */
+	background: var(--novo-primary-hover);
+	box-shadow: var(--novo-shadow-md);
 }
 .butActionNew:hover   {
 	text-decoration: underline;
@@ -199,13 +191,13 @@ span.butActionNewRefused>span.fa, span.butActionNewRefused>span.fa:hover
 }
 
 .butActionDelete, .butActionDelete:link, .butActionDelete:visited, .butActionDelete:hover, .butActionDelete:active, .buttonDelete {
-	background: var(--butactiondeletebg) !important;
-	/* border: 1px solid #633; */
-	color: #633 !important;
+	background: var(--novo-danger) !important;
+	color: #fff !important;
 }
 
 .butActionDelete:hover {
-	box-shadow: 0px 0px 6px 1px rgba(50, 50, 50, 0.4), 0px 0px 0px rgba(60,60,60,0.1);
+	background: #dc2626 !important;
+	box-shadow: var(--novo-shadow-md);
 }
 
 /*

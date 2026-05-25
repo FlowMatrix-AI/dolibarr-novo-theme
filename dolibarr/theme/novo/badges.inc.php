@@ -37,18 +37,18 @@ if (!defined('ISLOADEDBYSTEELSHEET')) {
 
 .badge {
 	display: inline-block;
-	padding: .1em .35em;
+	padding: .2em .5em;
 	font-size: 80%;
-	font-weight: 700 !important;
+	font-weight: 500 !important;
 	line-height: 1;
 	text-align: center;
 	white-space: nowrap;
 	vertical-align: baseline;
-	border-radius: .25rem;
-	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-	border-width: 2px;
+	border-radius: var(--novo-radius-sm);
+	transition: color var(--novo-transition), background-color var(--novo-transition);
+	border-width: 0;
 	border-style: solid;
-	border-color: rgba(255,255,255,0);
+	border-color: transparent;
 	box-sizing: border-box;
 }
 

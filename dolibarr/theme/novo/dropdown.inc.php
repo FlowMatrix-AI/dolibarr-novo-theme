@@ -25,7 +25,7 @@ include_once DOL_DOCUMENT_ROOT."/core/lib/functions2.lib.php";
 @phan-var-force string $right
 ';
 
-$borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobalInt('THEME_ELDY_BORDER_RADIUS', 6) : 0;
+$borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobalInt('THEME_ELDY_BORDER_RADIUS', 6) : 6;
 $WIDTHMENUDROPDOWN = 370;
 ?>
 

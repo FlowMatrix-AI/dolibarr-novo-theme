@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.2.0 — Visual Restyle
+
+- Replace Eldy colour palette with novo design tokens (slate/blue primary)
+- Add `--novo-*` CSS custom properties: primary, bg, surface, text, border, accent, success, warning, danger, radii, shadows
+- System-ui font stack replaces arial/tahoma
+- Buttons: flat design, no gradients, novo radius/shadow, proper hover/focus states
+- Inputs/textareas: full border always, blue focus ring with `box-shadow`
+- Info-boxes: surface bg, subtle border, hover shadow elevation
+- Badges: smaller radius, font-weight 500, no border
+- Dropdowns: default border-radius 6px
+- Tab bars & sidebar: novo border colour
+- Top menu: shadow instead of border-bottom
+- Body: antialiased rendering, line-height 1.5
+- Dark mode: full slate-based dark palette with `--novo-*` overrides
+- Default border-radius changed from 0 to 6px
+- theme_vars.inc.php: all PHP colour variables updated to novo palette
+
 ## v0.1.0 — Foundation
 
 - Scaffold novo theme from Eldy v21 (Dolibarr develop branch)

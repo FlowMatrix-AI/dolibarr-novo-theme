@@ -42,13 +42,16 @@ if (isModEnabled("bank") && isModEnabled("prelevement") && isModEnabled("payment
 	display: block;
 	position: relative;
 	min-height: <?php echo $heightbox; ?>px;	/* must be same height than info-box-icon */
-	background: var(--colorbacklineimpair2);
+	background: var(--novo-surface);
 	width: 100%;
-	box-shadow: 1px 1px 12px rgba(192, 192, 192, 0.2);
-	border-radius: 5px;
-	border: 1px solid #e9e9e9;
-	/* border: 1px solid var(--colorbacktitle1); */
+	box-shadow: var(--novo-shadow-sm);
+	border-radius: var(--novo-radius-lg);
+	border: 1px solid var(--novo-border);
 	margin-bottom: 15px;
+	transition: box-shadow var(--novo-transition);
+}
+.info-box:hover {
+	box-shadow: var(--novo-shadow-md);
 }
 .info-box.info-box-sm {
 	min-height: 80px;
