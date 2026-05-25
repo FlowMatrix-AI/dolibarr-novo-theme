@@ -1,0 +1,260 @@
+/* Novo preview site — mirrors real theme CSS custom properties */
+:root {
+  --novo-primary: #3b82f6;
+  --novo-primary-hover: #2563eb;
+  --novo-bg: #f8fafc;
+  --novo-surface: #ffffff;
+  --novo-text: #0f172a;
+  --novo-text-muted: #64748b;
+  --novo-border: #e2e8f0;
+  --novo-accent: #8b5cf6;
+  --novo-success: #10b981;
+  --novo-warning: #f59e0b;
+  --novo-danger: #ef4444;
+  --novo-radius-sm: 4px;
+  --novo-radius-md: 6px;
+  --novo-radius-lg: 8px;
+  --novo-radius-xl: 12px;
+  --novo-shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --novo-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+  --novo-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --novo-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --novo-primary: #60a5fa;
+  --novo-primary-hover: #3b82f6;
+  --novo-bg: #0f172a;
+  --novo-surface: #1e293b;
+  --novo-text: #f1f5f9;
+  --novo-text-muted: #94a3b8;
+  --novo-border: #334155;
+  --novo-accent: #a78bfa;
+  --novo-shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
+  --novo-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+  --novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--novo-font);
+  background: var(--novo-bg);
+  color: var(--novo-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Header */
+.preview-header {
+  background: var(--novo-surface);
+  border-bottom: 1px solid var(--novo-border);
+  padding: 2rem;
+  text-align: center;
+}
+.preview-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--novo-primary);
+}
+.preview-header .subtitle {
+  color: var(--novo-text-muted);
+  margin: 0.25rem 0 1.5rem;
+}
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--novo-text-muted);
+}
+.controls select, .controls input[type="color"] {
+  border: 1px solid var(--novo-border);
+  border-radius: var(--novo-radius-md);
+  padding: 0.25rem 0.5rem;
+  background: var(--novo-surface);
+  color: var(--novo-text);
+}
+
+/* Grid */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.preview-panel {
+  background: var(--novo-surface);
+  border: 1px solid var(--novo-border);
+  border-radius: var(--novo-radius-lg);
+  box-shadow: var(--novo-shadow-sm);
+  padding: 1.5rem;
+  transition: box-shadow var(--novo-transition);
+}
+.preview-panel:hover {
+  box-shadow: var(--novo-shadow-md);
+}
+.preview-panel h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--novo-text-muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--novo-border);
+}
+
+/* Mock components */
+.mock-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--novo-border);
+  border-radius: var(--novo-radius-md);
+  background: var(--novo-surface);
+  color: var(--novo-text);
+  font-size: 0.875rem;
+  transition: border-color var(--novo-transition), box-shadow var(--novo-transition);
+  margin-bottom: 0.75rem;
+}
+.mock-input:focus {
+  outline: none;
+  border-color: var(--novo-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.mock-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--novo-radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background var(--novo-transition), box-shadow var(--novo-transition);
+}
+.mock-btn-primary {
+  background: var(--novo-primary);
+  color: #fff;
+}
+.mock-btn-primary:hover {
+  background: var(--novo-primary-hover);
+  box-shadow: var(--novo-shadow-md);
+}
+.mock-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--novo-border);
+  color: var(--novo-text);
+}
+.mock-btn-danger {
+  background: var(--novo-danger);
+  color: #fff;
+}
+
+.mock-badge {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: var(--novo-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.mock-badge-success { background: var(--novo-success); color: #fff; }
+.mock-badge-warning { background: var(--novo-warning); color: #fff; }
+.mock-badge-danger { background: var(--novo-danger); color: #fff; }
+.mock-badge-primary { background: var(--novo-primary); color: #fff; }
+
+.mock-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.mock-table th {
+  background: var(--novo-bg);
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--novo-border);
+}
+.mock-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--novo-border);
+}
+.mock-table tr:hover td {
+  background: var(--novo-bg);
+}
+
+.mock-card {
+  background: var(--novo-surface);
+  border: 1px solid var(--novo-border);
+  border-radius: var(--novo-radius-lg);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--novo-shadow-sm);
+}
+
+.mock-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--novo-border);
+  margin-bottom: 1rem;
+}
+.mock-tab {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--novo-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+}
+.mock-tab.active {
+  color: var(--novo-primary);
+  border-bottom-color: var(--novo-primary);
+}
+
+.mock-info-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--novo-surface);
+  border: 1px solid var(--novo-border);
+  border-radius: var(--novo-radius-lg);
+  box-shadow: var(--novo-shadow-sm);
+  margin-bottom: 0.75rem;
+}
+.mock-info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--novo-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.mock-info-content .label { font-size: 0.75rem; color: var(--novo-text-muted); }
+.mock-info-content .value { font-size: 1.25rem; font-weight: 600; }
+
+/* Footer */
+.preview-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--novo-text-muted);
+  font-size: 0.8125rem;
+}
+.preview-footer a {
+  color: var(--novo-primary);
+  text-decoration: none;
+}

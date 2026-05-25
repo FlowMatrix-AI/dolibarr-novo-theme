@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo Theme Preview</title>
+  <link rel="stylesheet" href="/styles/novo-preview.css">
+</head>
+<body>
+  <header class="preview-header">
+    <h1>Novo Theme</h1>
+    <p class="subtitle">A modern, configurable Dolibarr theme</p>
+    <div class="controls">
+      <label>
+        Palette
+        <select id="palette-select"></select>
+      </label>
+      <label>
+        <input type="checkbox" id="dark-toggle"> Dark mode
+      </label>
+      <label>
+        Primary
+        <input type="color" id="color-picker" value="#3b82f6">
+      </label>
+    </div>
+  </header>
+
+  <main class="preview-grid">
+    <section class="preview-panel" id="panel-login"></section>
+    <section class="preview-panel" id="panel-dashboard"></section>
+    <section class="preview-panel" id="panel-list"></section>
+    <section class="preview-panel" id="panel-card"></section>
+  </main>
+
+  <footer class="preview-footer">
+    <p>Novo v1.0 &mdash; <a href="https://github.com/FlowMatrix-AI/dolibarr-ui-skin">GitHub</a></p>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

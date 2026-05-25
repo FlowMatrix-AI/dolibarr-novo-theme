@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.0 — Release
+
+- Preview site: Vite static demo with palette switcher, dark mode toggle, live color picker
+- GitHub Pages deployment workflow
+- Packaging: `scripts/package.sh` produces install zip, `scripts/install-local.sh` for dev
+- Docker integration documentation (`docs/docker.md`)
+- README: full install/usage/branding documentation
+
 ## v0.3.0 — Palette System
 
 - Token-driven palette architecture: `tokens/*.json` → `scripts/build-palettes.js` → `palettes/*.css`

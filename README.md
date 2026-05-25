@@ -1,22 +1,85 @@
-# dolibarr-ui-skin
+# Novo — Modern Dolibarr Theme
 
-> **🚧 Work in Progress — not yet usable.** This theme is under active development and cannot be installed yet.
+A clean, configurable Dolibarr theme for v21+. CSS variable-based, dark mode ready, palette switchable.
 
-**Novo** — a modern, generic Dolibarr theme for v21+. Not branded to any company.
+[Live Preview](https://flowmatrix-ai.github.io/dolibarr-ui-skin/) · [Changelog](CHANGELOG.md)
 
-## What is this?
+## Features
 
-A clean, opinionated Dolibarr theme that replaces the default look with modern typography (Inter), better spacing, and a CSS custom property system — without touching core Dolibarr files.
+- Modern flat design with system-ui font stack
+- 5 built-in color palettes (blue, slate, deep blue, green, warm)
+- Dark mode support (auto via `prefers-color-scheme` or forced)
+- All styling uses `--novo-*` CSS custom properties — rebrand with one file
+- Companion module `novoux` for admin-level palette/color/logo configuration
+- Zero changes to Dolibarr core — pure theme + external module
 
-Designed so operators (hosting providers, consultancies, etc.) can deploy it as-is and override colors/branding per client with a single CSS file at deploy time.
+## Install
 
-- **Theme:** `htdocs/theme/novo/` — full visual reskin, responsive, dark mode
-- **Module:** `htdocs/custom/novoux/` — optional admin config for palette/logo (coming later)
-- **Override model:** All styling uses `--novo-*` CSS variables. Drop a client override CSS file to rebrand without forking.
+### From zip
 
-## Status
+```bash
+# Download the latest release zip
+unzip novo-1.0.0.zip -d /path/to/dolibarr/htdocs/
+```
 
-See [docs/PLAN.md](docs/PLAN.md) for the full project plan and decision log.
+### From source
+
+```bash
+git clone https://github.com/FlowMatrix-AI/dolibarr-ui-skin.git
+cd dolibarr-ui-skin
+./scripts/install-local.sh /path/to/dolibarr/htdocs
+```
+
+### Docker
+
+```dockerfile
+FROM dolibarr/dolibarr:21
+COPY dolibarr/theme/novo/ /var/www/html/theme/novo/
+COPY dolibarr/custom/novoux/ /var/www/html/custom/novoux/
+```
+
+See [docs/docker.md](docs/docker.md) for full Docker integration docs.
+
+## Activate
+
+1. Go to **Setup > Display** and select `novo` as the skin
+2. (Optional) Enable the `novoux` module under **Setup > Modules** for admin GUI
+3. (Optional) Set palette via the novoux admin page or env var `NOVOUX_PALETTE=green`
+
+## Palettes
+
+| Name | Primary | Character |
+|------|---------|-----------|
+| `default` | `#3b82f6` | Clean, neutral, professional |
+| `slate` | `#475569` | Subdued, corporate |
+| `blue` | `#1d4ed8` | Deeper blue, high contrast |
+| `green` | `#059669` | Fresh, eco/finance feel |
+| `warm` | `#d97706` | Warm, creative/agency feel |
+
+## Per-Client Branding
+
+Override `--novo-*` variables with a single CSS file:
+
+```css
+:root {
+  --novo-primary: #e11d48;
+  --novo-primary-hover: #be123c;
+}
+```
+
+Load via volume mount, module CSS injection, or baked into image.
+
+## Development
+
+```bash
+cp .env.dev.example .env.dev
+docker compose -f docker-compose.dev.yml --env-file .env.dev up -d
+# http://localhost:8080 (admin / admin123)
+```
+
+```bash
+node scripts/build-palettes.js  # Regenerate palette CSS from tokens
+```
 
 ## License
 
