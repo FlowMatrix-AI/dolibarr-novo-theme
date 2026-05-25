@@ -22,6 +22,20 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  init-lang:
+    image: mariadb:11
+    depends_on:
+      - web
+    environment:
+      DOLI_DB_HOST: db
+      DOLI_DB_NAME: ${DOLI_DB_NAME:-dolibarr}
+      DOLI_DB_USER: ${DOLI_DB_USER:-dolibarr}
+      DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolibarr}
+    volumes:
+      - ./scripts:/scripts:ro
+    entrypoint: ["/bin/bash", "/scripts/init-dev-lang.sh"]
+    restart: "no"
+
   db:
     image: mariadb:11
     environment:
