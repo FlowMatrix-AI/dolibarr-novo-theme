@@ -33,7 +33,6 @@ services:
 ## Dev Environment
 
 ```bash
-cp .env.dev.example .env.dev
 docker compose -f docker-compose.dev.yml --env-file .env.dev up -d
 # Access at http://localhost:8080 (admin / admin123)
 ```

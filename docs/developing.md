@@ -9,7 +9,6 @@
 ## Dev Environment
 
 ```bash
-cp .env.dev.example .env.dev   # DB creds, admin login
 docker compose -f docker-compose.dev.yml --env-file .env.dev up -d
 ```
 
