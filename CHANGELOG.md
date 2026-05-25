@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.3.0 — Palette System
+
+- Token-driven palette architecture: `tokens/*.json` → `scripts/build-palettes.js` → `palettes/*.css`
+- 5 built-in palettes: default (blue), slate, deep-blue, green (emerald), warm (amber)
+- Each palette includes light and dark mode overrides
+- Palette selection via `NOVOUX_PALETTE` env var or `llx_const` DB setting
+- Sanitised palette loading with path traversal protection
+- CI workflow checks generated CSS stays in sync with tokens
+- `package.json` with `build:palettes` script
+
 ## v0.2.0 — Visual Restyle
 
 - Replace Eldy colour palette with novo design tokens (slate/blue primary)

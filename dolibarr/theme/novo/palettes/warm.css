@@ -1,0 +1,27 @@
+/* Generated from tokens/warm.json — do not edit */
+:root {
+  --novo-primary: #d97706;
+  --novo-primary-hover: #b45309;
+  --novo-bg: #fffbeb;
+  --novo-surface: #ffffff;
+  --novo-text: #1c1917;
+  --novo-text-muted: #78716c;
+  --novo-border: #e7e5e4;
+  --novo-accent: #e11d48;
+  --novo-success: #16a34a;
+  --novo-warning: #d97706;
+  --novo-danger: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --novo-primary: #fbbf24;
+    --novo-primary-hover: #fcd34d;
+    --novo-bg: #1c1917;
+    --novo-surface: #292524;
+    --novo-text: #fafaf9;
+    --novo-text-muted: #a8a29e;
+    --novo-border: #44403c;
+    --novo-accent: #fb7185;
+  }
+}

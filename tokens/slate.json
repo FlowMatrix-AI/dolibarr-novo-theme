@@ -1,0 +1,27 @@
+{
+  "name": "slate",
+  "label": "Slate Corporate",
+  "colors": {
+    "primary": "#475569",
+    "primary-hover": "#334155",
+    "bg": "#f8fafc",
+    "surface": "#ffffff",
+    "text": "#0f172a",
+    "text-muted": "#64748b",
+    "border": "#e2e8f0",
+    "accent": "#6366f1",
+    "success": "#10b981",
+    "warning": "#f59e0b",
+    "danger": "#ef4444"
+  },
+  "dark": {
+    "primary": "#94a3b8",
+    "primary-hover": "#cbd5e1",
+    "bg": "#0f172a",
+    "surface": "#1e293b",
+    "text": "#f1f5f9",
+    "text-muted": "#94a3b8",
+    "border": "#334155",
+    "accent": "#818cf8"
+  }
+}

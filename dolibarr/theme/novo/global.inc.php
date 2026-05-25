@@ -244,6 +244,20 @@ $borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobal
 }
 
 <?php
+// Load active palette override (non-default palettes override --novo-* vars)
+$novopalette = getDolGlobalString('NOVOUX_PALETTE', 'default');
+if (!empty($_SERVER['NOVOUX_PALETTE'])) {
+	$novopalette = preg_replace('/[^a-z0-9_-]/', '', $_SERVER['NOVOUX_PALETTE']);
+}
+if ($novopalette !== 'default') {
+	$palettefile = __DIR__.'/palettes/'.basename($novopalette).'.css';
+	if (file_exists($palettefile)) {
+		include $palettefile;
+	}
+}
+?>
+
+<?php
 if (getDolGlobalInt('THEME_DARKMODEENABLED')) {
 	print "/* Novo dark mode */\n";
 	if (getDolGlobalInt('THEME_DARKMODEENABLED') != 2) {

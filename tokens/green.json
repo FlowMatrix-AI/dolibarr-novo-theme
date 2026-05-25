@@ -1,0 +1,27 @@
+{
+  "name": "green",
+  "label": "Emerald Fresh",
+  "colors": {
+    "primary": "#059669",
+    "primary-hover": "#047857",
+    "bg": "#f8fafc",
+    "surface": "#ffffff",
+    "text": "#0f172a",
+    "text-muted": "#64748b",
+    "border": "#e2e8f0",
+    "accent": "#0891b2",
+    "success": "#059669",
+    "warning": "#d97706",
+    "danger": "#dc2626"
+  },
+  "dark": {
+    "primary": "#34d399",
+    "primary-hover": "#6ee7b7",
+    "bg": "#022c22",
+    "surface": "#064e3b",
+    "text": "#f0fdf4",
+    "text-muted": "#86efac",
+    "border": "#065f46",
+    "accent": "#22d3ee"
+  }
+}

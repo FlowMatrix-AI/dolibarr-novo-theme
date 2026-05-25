@@ -1,0 +1,27 @@
+{
+  "name": "default",
+  "label": "Default Blue",
+  "colors": {
+    "primary": "#3b82f6",
+    "primary-hover": "#2563eb",
+    "bg": "#f8fafc",
+    "surface": "#ffffff",
+    "text": "#0f172a",
+    "text-muted": "#64748b",
+    "border": "#e2e8f0",
+    "accent": "#8b5cf6",
+    "success": "#10b981",
+    "warning": "#f59e0b",
+    "danger": "#ef4444"
+  },
+  "dark": {
+    "primary": "#60a5fa",
+    "primary-hover": "#3b82f6",
+    "bg": "#0f172a",
+    "surface": "#1e293b",
+    "text": "#f1f5f9",
+    "text-muted": "#94a3b8",
+    "border": "#334155",
+    "accent": "#a78bfa"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "dolibarr-ui-skin",
+  "version": "0.3.0",
+  "private": true,
+  "scripts": {
+    "build:palettes": "node scripts/build-palettes.js"
+  }
+}
