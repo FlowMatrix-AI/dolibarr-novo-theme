@@ -24,8 +24,8 @@
  */
 
 /**
- *		\file       htdocs/theme/eldy/style.css.php
- *		\brief      File for CSS style sheet Eldy
+ *		\file       htdocs/theme/novo/style.css.php
+ *		\brief      File for CSS style sheet Novo
  */
 
 //if (! defined('NOREQUIREUSER')) define('NOREQUIREUSER','1');	// Not disabled because need to load personalized language
@@ -179,7 +179,7 @@ $right = ($langs->trans("DIRECTION") == 'rtl' ? 'left' : 'right');
 $left = ($langs->trans("DIRECTION") == 'rtl' ? 'right' : 'left');
 
 $path = ''; // This value may be used in future for external module to overwrite theme
-$theme = 'eldy'; // Value of theme
+$theme = 'novo'; // Value of theme
 if (getDolGlobalString('MAIN_OVERWRITE_THEME_RES')) {
 	$path = '/' . getDolGlobalString('MAIN_OVERWRITE_THEME_RES');
 	$theme = getDolGlobalString('MAIN_OVERWRITE_THEME_RES');

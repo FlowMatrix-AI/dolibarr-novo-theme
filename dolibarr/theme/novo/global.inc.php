@@ -19,8 +19,8 @@
  */
 
 /**
- *		\file       htdocs/theme/eldy/global.inc.php
- *		\brief      File for CSS style sheet Eldy. Called by styles.css.php.
+ *		\file       htdocs/theme/novo/global.inc.php
+ *		\brief      File for CSS style sheet Novo. Called by style.css.php.
  */
 if (!defined('ISLOADEDBYSTEELSHEET')) {
 	die('Must be called by steelsheet');
@@ -219,6 +219,23 @@ $borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobal
 	--colorblack: #000;
 	--colorwhite: #fff;
 	--heightrow: <?php print $heightrow; ?>;
+
+	/* Novo abstraction layer — maps to Eldy values for now, replaced in M2 */
+	--novo-primary: rgb(<?php print $colorbackhmenu1; ?>);
+	--novo-primary-hover: rgb(<?php print $butactionbg; ?>);
+	--novo-bg: rgb(<?php print $colorbackbody; ?>);
+	--novo-surface: rgb(<?php print $colorbacktabcard1; ?>);
+	--novo-text: rgb(<?php print $colortext; ?>);
+	--novo-text-muted: rgb(<?php print $colortexttitlenotab; ?>);
+	--novo-border: rgb(<?php print $colortopbordertitle1; ?>);
+	--novo-accent: rgb(<?php print $butactionbg; ?>);
+	--novo-success: <?php print $textSuccess; ?>;
+	--novo-warning: <?php print $textWarning; ?>;
+	--novo-danger: <?php print $textDanger; ?>;
+	--novo-radius-sm: 4px;
+	--novo-radius-md: 6px;
+	--novo-radius-lg: 8px;
+	--novo-radius-xl: 12px;
 }
 
 <?php

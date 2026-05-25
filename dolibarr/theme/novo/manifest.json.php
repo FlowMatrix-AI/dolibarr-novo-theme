@@ -22,7 +22,7 @@
  */
 
 /**
- *		\file       htdocs/theme/eldy/manifest.json.php
+ *		\file       htdocs/theme/novo/manifest.json.php
  *		\brief      File for The Web App (PWA)
  */
 

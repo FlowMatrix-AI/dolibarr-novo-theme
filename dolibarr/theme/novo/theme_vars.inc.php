@@ -22,7 +22,7 @@
  */
 
 /**
- *	\file       htdocs/theme/eldy/theme_vars.inc.php
+ *	\file       htdocs/theme/novo/theme_vars.inc.php
  *	\brief      File to declare variables of CSS style sheet
  *  \ingroup    core
  *
