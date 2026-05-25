@@ -12,6 +12,7 @@ services:
       DOLI_ADMIN_PASSWORD: ${DOLI_ADMIN_PASSWORD:-admin123}
       DOLI_URL_ROOT: ${DOLI_URL_ROOT:-http://localhost:8080}
       DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-1}
+      DOLI_LANG: ${DOLI_LANG:-en_US}
     volumes:
       - ./dolibarr/theme/novo:/var/www/html/theme/novo:ro
       - ./dolibarr/custom/novoux:/var/www/html/custom/novoux:ro
