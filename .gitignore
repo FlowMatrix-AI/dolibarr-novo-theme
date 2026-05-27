@@ -1,0 +1,4 @@
+node_modules/
+tests/visual/test-results/
+tests/visual/snapshots/
+*.zip
