@@ -9,8 +9,7 @@ if [[ ! -d "$TARGET" ]]; then
   exit 1
 fi
 
-rsync -av --delete dolibarr/theme/novo/ "$TARGET/theme/novo/"
 rsync -av --delete dolibarr/custom/novoux/ "$TARGET/custom/novoux/"
 
 echo ""
-echo "Installed. Select 'novo' in Setup > Display."
+echo "Installed. Enable NovouX module, then select 'novo' in Setup > Display."

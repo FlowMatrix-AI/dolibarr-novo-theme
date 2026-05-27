@@ -5,7 +5,7 @@
 Two artifacts, zero core edits:
 
 ```
-dolibarr/theme/novo/     ← visual system (CSS via PHP + JS)
+dolibarr/custom/novoux/theme/novo/     ← visual system (CSS via PHP + JS)
 dolibarr/custom/novoux/  ← config module (admin GUI + CSS injection)
 ```
 
@@ -47,8 +47,8 @@ tokens/variants/*.json          (density overrides: compact, spacious)
        ▼
 scripts/build-palettes.js
        │
-       ├──▶ dolibarr/theme/novo/palettes/*.css   (color palette overrides)
-       └──▶ dolibarr/theme/novo/variants/*.css   (density variant overrides)
+       ├──▶ dolibarr/custom/novoux/theme/novo/palettes/*.css   (color palette overrides)
+       └──▶ dolibarr/custom/novoux/theme/novo/variants/*.css   (density variant overrides)
 ```
 
 ## CSS Custom Properties
@@ -223,14 +223,14 @@ Rules applied by `novo.js` when `ALLOW_THEME_JS` is enabled:
 
 Runs on push/PR to `main`:
 1. PHP lint — all `.php` files under `dolibarr/`
-2. JS syntax — `node --check dolibarr/theme/novo/novo.js`
+2. JS syntax — `node --check dolibarr/custom/novoux/theme/novo/novo.js`
 3. Palette/variant freshness — rebuild and `git diff --exit-code`
 
 ### Release (`release.yml`)
 
 Triggered by tags matching `v*`:
 1. Rebuilds palettes (ensures zip contains fresh output)
-2. Creates zip: `novo-X.Y.Z.zip` containing `dolibarr/theme/novo/` + `dolibarr/custom/novoux/`
+2. Creates zip: `module_novoux-X.Y.Z.zip` containing `novoux/` at root (DoliStore format)
 3. Creates GitHub Release with zip attached + auto-generated release notes
 
 ## Future Ideas

@@ -21,7 +21,7 @@ tokens/              ← palette + density source-of-truth (JSON)
 tokens/variants/     ← density override tokens (compact, spacious)
 scripts/             ← build-palettes.js, package.sh, install-local.sh, init-dev-lang.*
 dolibarr/
-  theme/novo/        ← the theme (PHP + CSS + JS)
+  theme/novo/        ← the theme (auto-discovered via module_parts['theme'])
     palettes/        ← generated palette CSS files
     variants/        ← generated density CSS files
     novo.js          ← theme JavaScript (dark toggle, sticky headers)
@@ -36,8 +36,8 @@ planning/            ← build plans (phases)
 | Task | Command |
 |------|---------|
 | Regenerate palettes + variants | `node scripts/build-palettes.js` |
-| Validate PHP syntax | `docker compose -f docker-compose.dev.yml exec web php -l /var/www/html/theme/novo/global.inc.php` |
-| Validate JS syntax | `node --check dolibarr/theme/novo/novo.js` |
+| Validate PHP syntax | `docker compose -f docker-compose.dev.yml exec web php -l /var/www/html/custom/novoux/theme/novo/global.inc.php` |
+| Validate JS syntax | `node --check dolibarr/custom/novoux/theme/novo/novo.js` |
 | Build preview site | `cd preview && npm ci && npm run build` |
 | Package release zip | `./scripts/package.sh` |
 | Install to local Dolibarr | `./scripts/install-local.sh /path/to/htdocs` |
@@ -97,7 +97,7 @@ Login, Dashboard, Third-Party List, Invoice List, Project List, HRM Leave List, 
 
 ## Modifying Theme CSS
 
-All visual changes go in the `.inc.php` files under `dolibarr/theme/novo/`. Key rules:
+All visual changes go in the `.inc.php` files under `dolibarr/custom/novoux/theme/novo/`. Key rules:
 
 - Use `var(--novo-*)` for all colours, radii, shadows, spacing
 - Don't rename Dolibarr's existing CSS classes (pages reference them)
@@ -107,14 +107,14 @@ All visual changes go in the `.inc.php` files under `dolibarr/theme/novo/`. Key 
 
 ## Modifying Theme JavaScript
 
-`dolibarr/theme/novo/novo.js` is loaded when `ALLOW_THEME_JS = 1` (set via NovouX admin or directly in `llx_const`).
+`dolibarr/custom/novoux/theme/novo/novo.js` is loaded when `ALLOW_THEME_JS = 1` (set via NovouX admin or directly in `llx_const`).
 
 Rules:
 - Vanilla ES2020 only — no jQuery, no external libs
 - IIFE pattern (no global scope pollution)
 - Target < 5 KB to keep page weight minimal
 - Must degrade gracefully (all features CSS-fallback safe)
-- Test: `node --check dolibarr/theme/novo/novo.js`
+- Test: `node --check dolibarr/custom/novoux/theme/novo/novo.js`
 - To test in browser: enable `ALLOW_THEME_JS` in Setup > Home > Other or via NovouX admin checkbox
 
 ## Dark Mode Testing
@@ -143,7 +143,7 @@ When cutting a release, update the version string in **all** of these files:
 | File | Field/Line | Purpose |
 |------|-----------|---------|
 | `package.json` | `"version"` | npm/scripts, used by `scripts/package.sh` for zip filename |
-| `dolibarr/theme/novo/theme_descriptor.php` | `$theme_version` | Dolibarr theme metadata |
+| `dolibarr/custom/novoux/theme/novo/theme_descriptor.php` | `$theme_version` | Dolibarr theme metadata |
 | `dolibarr/custom/novoux/core/modules/modNovoux.class.php` | `$this->version` | Module version shown in Dolibarr admin |
 | `CHANGELOG.md` | `## [X.Y.Z]` section header + footer links | Release notes |
 | `README.md` | zip filename in install example | User-facing docs |

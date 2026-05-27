@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
- * build-palettes.js — Reads tokens/*.json and generates dolibarr/theme/novo/palettes/*.css
- * Also reads tokens/variants/*.json and generates dolibarr/theme/novo/variants/*.css
+ * build-palettes.js — Reads tokens/*.json and generates dolibarr/custom/novoux/theme/novo/palettes/*.css
+ * Also reads tokens/variants/*.json and generates dolibarr/custom/novoux/theme/novo/variants/*.css
  */
 const fs = require('fs');
 const path = require('path');
 
 const TOKENS_DIR = path.join(__dirname, '..', 'tokens');
 const VARIANTS_DIR = path.join(TOKENS_DIR, 'variants');
-const OUTPUT_DIR = path.join(__dirname, '..', 'dolibarr', 'theme', 'novo', 'palettes');
-const VARIANTS_OUTPUT_DIR = path.join(__dirname, '..', 'dolibarr', 'theme', 'novo', 'variants');
+const OUTPUT_DIR = path.join(__dirname, '..', 'dolibarr', 'custom', 'novoux', 'theme', 'novo', 'palettes');
+const VARIANTS_OUTPUT_DIR = path.join(__dirname, '..', 'dolibarr', 'custom', 'novoux', 'theme', 'novo', 'variants');
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 fs.mkdirSync(VARIANTS_OUTPUT_DIR, { recursive: true });

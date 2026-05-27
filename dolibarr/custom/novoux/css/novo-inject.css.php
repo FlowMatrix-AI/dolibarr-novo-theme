@@ -28,6 +28,23 @@ if (!defined('ISLOADEDBYSTEELSHEET')) {
 	}
 
 	$res = 0;
+	if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
+		$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
+	}
+	$tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME'];
+	$tmp2 = realpath(__FILE__);
+	$i = strlen($tmp) - 1;
+	$j = strlen($tmp2) - 1;
+	while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) {
+		$i--;
+		$j--;
+	}
+	if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) {
+		$res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
+	}
+	if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) {
+		$res = @include dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
+	}
 	if (!$res && file_exists("../../main.inc.php")) {
 		$res = @include "../../main.inc.php";
 	}
@@ -51,7 +68,7 @@ if (empty($palette)) {
 }
 // Sanitize to prevent path traversal
 $palette = preg_replace('/[^a-z0-9_-]/', '', $palette);
-$paletteFile = DOL_DOCUMENT_ROOT.'/theme/novo/palettes/'.$palette.'.css';
+$paletteFile = dol_buildpath('/novoux/theme/novo/palettes/'.$palette.'.css', 0);
 if (file_exists($paletteFile)) {
 	readfile($paletteFile);
 }
@@ -66,7 +83,7 @@ if (empty($density)) {
 }
 $density = preg_replace('/[^a-z0-9_-]/', '', $density);
 if ($density !== 'default') {
-	$variantFile = DOL_DOCUMENT_ROOT.'/theme/novo/variants/density-'.$density.'.css';
+	$variantFile = dol_buildpath('/novoux/theme/novo/variants/density-'.$density.'.css', 0);
 	if (file_exists($variantFile)) {
 		readfile($variantFile);
 	}

@@ -21,15 +21,15 @@ jobs:
 
       # JS syntax check
       - name: JS check
-        run: node --check dolibarr/theme/novo/novo.js
+        run: node --check dolibarr/custom/novoux/theme/novo/novo.js
 
       # Palette & variant freshness
       - name: Build palettes
         run: node scripts/build-palettes.js
       - name: Check generated files are up to date
         run: |
-          git diff --exit-code dolibarr/theme/novo/palettes/
-          git diff --exit-code dolibarr/theme/novo/variants/
+          git diff --exit-code dolibarr/custom/novoux/theme/novo/palettes/
+          git diff --exit-code dolibarr/custom/novoux/theme/novo/variants/
 
   phpunit:
     runs-on: ubuntu-latest
@@ -93,7 +93,6 @@ jobs:
       - name: Copy module and theme into Dolibarr
         run: |
           cp -r $GITHUB_WORKSPACE/dolibarr/custom/novoux /tmp/dolibarr/htdocs/custom/novoux
-          cp -r $GITHUB_WORKSPACE/dolibarr/theme/novo /tmp/dolibarr/htdocs/theme/novo
 
       - name: Run PHPUnit
         working-directory: /tmp/dolibarr/htdocs

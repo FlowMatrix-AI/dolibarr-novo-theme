@@ -23,11 +23,8 @@ jobs:
       - name: Package
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          zip -r "novo-${VERSION}.zip" \
-            dolibarr/theme/novo/ \
-            dolibarr/custom/novoux/ \
-            -x '*.DS_Store' -x '*/.git*' -x '__MACOSX*'
-          echo "ZIPFILE=novo-${VERSION}.zip" >> "$GITHUB_ENV"
+          bash scripts/package.sh
+          echo "ZIPFILE=module_novoux-${VERSION}.zip" >> "$GITHUB_ENV"
 
       # Create GitHub Release
       - name: Create Release

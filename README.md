@@ -18,11 +18,18 @@ A clean, configurable Dolibarr theme for v21+. Token-driven design system with p
 
 ## Install
 
-### From zip
+### From DoliStore (recommended)
+
+1. Go to **Setup > Modules > Deploy an external module**
+2. Upload `module_novoux-2.0.0.zip`
+3. Enable the module under **Setup > Modules**
+4. Go to **Setup > Display** and select `novo` as the skin
+
+### From zip (manual)
 
 ```bash
 # Download the latest release zip
-unzip novo-1.1.0.zip -d /path/to/dolibarr/htdocs/
+unzip module_novoux-2.0.0.zip -d /path/to/dolibarr/htdocs/custom/
 ```
 
 ### From source
@@ -30,14 +37,13 @@ unzip novo-1.1.0.zip -d /path/to/dolibarr/htdocs/
 ```bash
 git clone https://github.com/FlowMatrix-AI/dolibarr-novo-theme.git
 cd dolibarr-novo-theme
-./scripts/install-local.sh /path/to/dolibarr/htdocs
+cp -r dolibarr/custom/novoux /path/to/dolibarr/htdocs/custom/
 ```
 
 ### Docker
 
 ```dockerfile
 FROM dolibarr/dolibarr:21
-COPY dolibarr/theme/novo/ /var/www/html/theme/novo/
 COPY dolibarr/custom/novoux/ /var/www/html/custom/novoux/
 ```
 
@@ -45,8 +51,8 @@ See [docs/docker.md](docs/docker.md) for full Docker integration docs.
 
 ## Activate
 
-1. Go to **Setup > Display** and select `novo` as the skin
-2. (Optional) Enable the `novoux` module under **Setup > Modules** for admin GUI
+1. Enable the `novoux` module under **Setup > Modules** (category: Interface)
+2. Go to **Setup > Display** and select `novo` as the skin
 3. (Optional) Set palette, density, and colors via the novoux admin page
 4. (Optional) Set dark mode to "Toggle" in novoux settings for the instant dark/light switcher
 

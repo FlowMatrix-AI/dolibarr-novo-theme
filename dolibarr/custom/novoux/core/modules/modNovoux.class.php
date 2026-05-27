@@ -33,7 +33,7 @@ class modNovoux extends DolibarrModules
 
 		$this->db = $db;
 
-		$this->numero = 500200;
+		$this->numero = 500200; // TODO: Replace with reserved DoliStore ID (95000-99999) once wiki account is available
 		$this->rights_class = 'novoux';
 		$this->family = 'interface';
 		$this->module_position = '90';
@@ -56,7 +56,7 @@ class modNovoux extends DolibarrModules
 			'barcode' => 0,
 			'models' => 0,
 			'printing' => 0,
-			'theme' => 0,
+			'theme' => 1,
 			'css' => array(
 				'/novoux/css/novo-inject.css.php',
 			),

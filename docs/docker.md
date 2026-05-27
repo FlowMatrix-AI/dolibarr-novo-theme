@@ -5,7 +5,6 @@
 ```dockerfile
 FROM dolibarr/dolibarr:21
 
-COPY dolibarr/theme/novo/ /var/www/html/theme/novo/
 COPY dolibarr/custom/novoux/ /var/www/html/custom/novoux/
 ```
 
@@ -18,7 +17,7 @@ services:
   dolibarr:
     image: my-dolibarr:latest
     volumes:
-      - ./overrides/client.css:/var/www/html/theme/novo/client-override.css:ro
+      - ./overrides/client.css:/var/www/html/custom/novoux/theme/novo/client-override.css:ro
     environment:
       - NOVOUX_PALETTE=green
       - NOVOUX_PRIMARY_COLOR=#059669

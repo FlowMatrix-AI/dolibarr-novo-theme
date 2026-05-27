@@ -14,7 +14,6 @@ services:
       DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-1}
       DOLI_LANG: ${DOLI_LANG:-en_US}
     volumes:
-      - ./dolibarr/theme/novo:/var/www/html/theme/novo:ro
       - ./dolibarr/custom/novoux:/var/www/html/custom/novoux:ro
       - dolibarr-docs:/var/documents
     depends_on:
