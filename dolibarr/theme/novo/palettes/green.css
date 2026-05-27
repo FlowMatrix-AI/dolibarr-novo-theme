@@ -2,15 +2,41 @@
 :root {
   --novo-primary: #059669;
   --novo-primary-hover: #047857;
-  --novo-bg: #f8fafc;
+  --novo-bg: #f0fdf4;
   --novo-surface: #ffffff;
-  --novo-text: #0f172a;
-  --novo-text-muted: #64748b;
-  --novo-border: #e2e8f0;
+  --novo-text: #14532d;
+  --novo-text-muted: #4b5563;
+  --novo-border: #d1fae5;
   --novo-accent: #0891b2;
   --novo-success: #059669;
   --novo-warning: #d97706;
   --novo-danger: #dc2626;
+
+  /* Dolibarr UI variable overrides */
+  --colorbackhmenu1: #064e3b;
+  --colorbackvmenu1: #ecfdf5;
+  --colorbacktitle1: #ecfdf5;
+  --colorbacktabcard1: #ffffff;
+  --colorbacktabactive: #ffffff;
+  --colorbackbody: #f0fdf4;
+  --colorbacklineimpair1: #ffffff;
+  --colorbacklineimpair2: #ffffff;
+  --colorbacklinepair1: #f0fdf4;
+  --colorbacklinepair2: #f0fdf4;
+  --colorbacklinepairhover: #ecfdf5;
+  --colorbacklinepairchecked: #d1fae5;
+  --colorbackgrey: #ecfdf5;
+  --colortext: #14532d;
+  --colortextlink: #047857;
+  --colortexttitle: #064e3b;
+  --colortexttitlelink: #047857;
+  --colortextbackhmenu: #ecfdf5;
+  --colortextbackvmenu: #14532d;
+  --colortopbordertitle1: #a7f3d0;
+  --inputbordercolor: #a7f3d0;
+  --inputbackgroundcolor: #ffffff;
+  --butactionbg: #059669;
+  --textbutaction: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {

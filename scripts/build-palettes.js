@@ -16,10 +16,17 @@ for (const file of tokenFiles) {
   const token = JSON.parse(fs.readFileSync(path.join(TOKENS_DIR, file), 'utf8'));
   const lines = [`/* Generated from tokens/${file} — do not edit */`];
 
-  // Light mode
+  // Light mode: novo tokens + dolibarr variable overrides
   lines.push(':root {');
   for (const [key, value] of Object.entries(token.colors)) {
     lines.push(`  --novo-${key}: ${value};`);
+  }
+  if (token.dolibarr) {
+    lines.push('');
+    lines.push('  /* Dolibarr UI variable overrides */');
+    for (const [key, value] of Object.entries(token.dolibarr)) {
+      lines.push(`  --${key}: ${value};`);
+    }
   }
   lines.push('}');
 

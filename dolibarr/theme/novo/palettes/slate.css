@@ -4,13 +4,39 @@
   --novo-primary-hover: #334155;
   --novo-bg: #f8fafc;
   --novo-surface: #ffffff;
-  --novo-text: #0f172a;
+  --novo-text: #1e293b;
   --novo-text-muted: #64748b;
-  --novo-border: #e2e8f0;
+  --novo-border: #cbd5e1;
   --novo-accent: #6366f1;
   --novo-success: #10b981;
   --novo-warning: #f59e0b;
   --novo-danger: #ef4444;
+
+  /* Dolibarr UI variable overrides */
+  --colorbackhmenu1: #1e293b;
+  --colorbackvmenu1: #f1f5f9;
+  --colorbacktitle1: #f1f5f9;
+  --colorbacktabcard1: #ffffff;
+  --colorbacktabactive: #ffffff;
+  --colorbackbody: #f8fafc;
+  --colorbacklineimpair1: #ffffff;
+  --colorbacklineimpair2: #ffffff;
+  --colorbacklinepair1: #f8fafc;
+  --colorbacklinepair2: #f8fafc;
+  --colorbacklinepairhover: #f1f5f9;
+  --colorbacklinepairchecked: #e2e8f0;
+  --colorbackgrey: #f1f5f9;
+  --colortext: #1e293b;
+  --colortextlink: #475569;
+  --colortexttitle: #1e293b;
+  --colortexttitlelink: #475569;
+  --colortextbackhmenu: #f1f5f9;
+  --colortextbackvmenu: #334155;
+  --colortopbordertitle1: #cbd5e1;
+  --inputbordercolor: #cbd5e1;
+  --inputbackgroundcolor: #ffffff;
+  --butactionbg: #475569;
+  --textbutaction: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
