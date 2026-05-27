@@ -53,9 +53,10 @@ jobs:
         run: |
           git clone --depth=1 --branch=develop https://github.com/Dolibarr/dolibarr.git /tmp/dolibarr
           mkdir -p /tmp/dolibarr/documents
-          cat > /tmp/dolibarr/htdocs/conf/conf.php << 'CONF'
+
+          cat > /tmp/dolibarr/htdocs/conf/conf.php << 'EOF'
           <?php
-          $dolibarr_main_url_root='http://localhost';
+          $dolibarr_main_url_root='http://127.0.0.1';
           $dolibarr_main_document_root='/tmp/dolibarr/htdocs';
           $dolibarr_main_data_root='/tmp/dolibarr/documents';
           $dolibarr_main_db_host='127.0.0.1';
@@ -65,12 +66,29 @@ jobs:
           $dolibarr_main_db_user='root';
           $dolibarr_main_db_pass='dolibarr';
           $dolibarr_main_db_type='mysqli';
+          $dolibarr_main_db_character_set='utf8';
+          $dolibarr_main_db_collation='utf8_unicode_ci';
           $dolibarr_main_authentication='dolibarr';
-          CONF
+          $dolibarr_main_instance_unique_id='ci1234567890';
+          EOF
+
+          cat > /tmp/dolibarr/htdocs/install/install.forced.php << 'EOF'
+          <?php
+          $force_install_noedit=2;
+          $force_install_type='mysqli';
+          $force_install_port=3306;
+          $force_install_dbserver='127.0.0.1';
+          $force_install_database='dolibarr';
+          $force_install_databaselogin='root';
+          $force_install_databasepass='dolibarr';
+          $force_install_prefix='llx_';
+          $force_install_dolibarrlogin='admin';
+          $force_install_main_url='http://127.0.0.1';
+          EOF
+
           cd /tmp/dolibarr/htdocs/install
-          php step1.php set
           php step2.php set
-          php step5.php set admin admin123
+          php step5.php 0.0.0 0.0.0
 
       - name: Link module and theme
         run: |
