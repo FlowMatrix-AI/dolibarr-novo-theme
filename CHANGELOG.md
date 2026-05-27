@@ -7,6 +7,43 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-05-27
+
+### Added
+
+- **Phase G — Per-User Theme Preferences**
+  - Users can override admin palette, density, and primary color from their User card → Theme tab
+  - Preferences stored in `llx_user_param` via `dol_set_user_param()`
+  - Precedence: user param > admin constant > theme default
+  - "Reset to Default" button clears all personal overrides
+  - Tab registered on user card via module descriptor `$this->tabs`
+- **Phase H — Collapsible Sidebar**
+  - Left menu collapses to 48px icon rail via toggle button
+  - Hover flyout restores full 240px sidebar (fixed positioning, shadow)
+  - State persisted in localStorage, applied early to prevent layout shift
+  - Gated by `NOVOUX_SIDEBAR_COLLAPSE` admin constant
+  - Hook class (`ActionsNovoux`) injects `data-novo-sidebar-collapse` body attribute
+  - Hidden on mobile (<768px) where sidebar is off-canvas
+- **Phase D — Playwright Visual Validation**
+  - Visual regression test infrastructure with Chromium screenshots
+  - 1% pixel diff threshold, 1280×900 viewport
+  - Docker-based test environment
+- **Phase C — PHPUnit Tests & CI**
+  - Unit tests for NovouX module (enable/disable, admin page, CSS injection)
+  - GitHub Actions CI with MariaDB 10.6 service
+  - `install.forced.php` for headless Dolibarr setup
+- **Phase F — Packaging Metadata**
+  - `scripts/package.sh` builds distributable zip with checksums
+  - Install documentation in `docs/developing.md`
+
+### Fixed
+
+- **Phase A — Image Trim**: Removed ~200 dead/unused image files
+- **Phase B — Security Hardening**: Enhanced CSS sanitization in custom CSS textarea
+- **Phase E — Preview Banner**: Added development/preview banner to demo site
+- CI: PHPUnit path resolution with copied files (not symlinks)
+- CI: Headless install without step1.php
+
 ## [1.1.0] - 2026-05-27
 
 ### Added
@@ -122,7 +159,8 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `--novo-*` CSS custom property abstraction layer (initially mapped 1:1 to Eldy values)
 - Theme identity: `$theme = 'novo'`, updated AUTHOR, file path comments
 
-[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.2.0...v0.3.0
