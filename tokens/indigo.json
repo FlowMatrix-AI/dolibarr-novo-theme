@@ -1,0 +1,53 @@
+{
+  "name": "indigo",
+  "label": "Indigo",
+  "colors": {
+    "primary": "#4f46e5",
+    "primary-hover": "#4338ca",
+    "bg": "#eef2ff",
+    "surface": "#ffffff",
+    "text": "#1e293b",
+    "text-muted": "#64748b",
+    "border": "#c7d2fe",
+    "accent": "#ec4899",
+    "success": "#059669",
+    "warning": "#d97706",
+    "danger": "#dc2626"
+  },
+  "dolibarr": {
+    "colorbackhmenu1": "#312e81",
+    "colorbackvmenu1": "#eef2ff",
+    "colorbacktitle1": "#eef2ff",
+    "colorbacktabcard1": "#ffffff",
+    "colorbacktabactive": "#ffffff",
+    "colorbackbody": "#eef2ff",
+    "colorbacklineimpair1": "#ffffff",
+    "colorbacklineimpair2": "#ffffff",
+    "colorbacklinepair1": "#eef2ff",
+    "colorbacklinepair2": "#eef2ff",
+    "colorbacklinepairhover": "#e0e7ff",
+    "colorbacklinepairchecked": "#c7d2fe",
+    "colorbackgrey": "#e0e7ff",
+    "colortext": "#1e293b",
+    "colortexttitle": "#312e81",
+    "colortexttitlelink": "#4f46e5",
+    "inputbackgroundcolor": "#ffffff",
+    "butactionbg": "#4f46e5",
+    "textbutaction": "#ffffff",
+    "colortextbacktab": "#312e81",
+    "colortexttitlenotab": "#4f46e5",
+    "colortexttitlenotab2": "#ec4899",
+    "oddevencolor": "#1e293b",
+    "listetotal": "#4f46e5"
+  },
+  "dark": {
+    "primary": "#818cf8",
+    "primary-hover": "#a5b4fc",
+    "bg": "#020617",
+    "surface": "#0f172a",
+    "text": "#f1f5f9",
+    "text-muted": "#94a3b8",
+    "border": "#1e293b",
+    "accent": "#f472b6"
+  }
+}

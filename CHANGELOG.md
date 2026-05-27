@@ -7,6 +7,18 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-05-27
+
+### Added
+
+- **3 new colour palettes**: Rose, Indigo, Teal
+- **French translation** (`langs/fr_FR/novoux.lang`) — full coverage of all 38 keys
+
+### Fixed
+
+- Admin palette scanner now uses `dol_buildpath()` (was broken after DoliStore restructure)
+- Fallback palette list updated to include all 8 palettes
+
 ## [2.1.0] - 2026-05-27
 
 ### Changed

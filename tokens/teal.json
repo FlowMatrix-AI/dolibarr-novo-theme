@@ -1,0 +1,53 @@
+{
+  "name": "teal",
+  "label": "Teal",
+  "colors": {
+    "primary": "#0d9488",
+    "primary-hover": "#0f766e",
+    "bg": "#f0fdfa",
+    "surface": "#ffffff",
+    "text": "#1e293b",
+    "text-muted": "#64748b",
+    "border": "#99f6e4",
+    "accent": "#7c3aed",
+    "success": "#059669",
+    "warning": "#d97706",
+    "danger": "#dc2626"
+  },
+  "dolibarr": {
+    "colorbackhmenu1": "#134e4a",
+    "colorbackvmenu1": "#f0fdfa",
+    "colorbacktitle1": "#f0fdfa",
+    "colorbacktabcard1": "#ffffff",
+    "colorbacktabactive": "#ffffff",
+    "colorbackbody": "#f0fdfa",
+    "colorbacklineimpair1": "#ffffff",
+    "colorbacklineimpair2": "#ffffff",
+    "colorbacklinepair1": "#f0fdfa",
+    "colorbacklinepair2": "#f0fdfa",
+    "colorbacklinepairhover": "#ccfbf1",
+    "colorbacklinepairchecked": "#99f6e4",
+    "colorbackgrey": "#ccfbf1",
+    "colortext": "#1e293b",
+    "colortexttitle": "#134e4a",
+    "colortexttitlelink": "#0d9488",
+    "inputbackgroundcolor": "#ffffff",
+    "butactionbg": "#0d9488",
+    "textbutaction": "#ffffff",
+    "colortextbacktab": "#134e4a",
+    "colortexttitlenotab": "#0d9488",
+    "colortexttitlenotab2": "#7c3aed",
+    "oddevencolor": "#1e293b",
+    "listetotal": "#0d9488"
+  },
+  "dark": {
+    "primary": "#2dd4bf",
+    "primary-hover": "#5eead4",
+    "bg": "#020a09",
+    "surface": "#0a1514",
+    "text": "#f1f5f9",
+    "text-muted": "#94a3b8",
+    "border": "#1a2e2b",
+    "accent": "#a78bfa"
+  }
+}

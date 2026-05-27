@@ -55,7 +55,7 @@ if (!$user->admin) {
 
 // Available palettes (read from tokens directory)
 $availablePalettes = array();
-$tokensDir = DOL_DOCUMENT_ROOT.'/theme/novo/palettes';
+$tokensDir = dol_buildpath('/novoux/theme/novo/palettes', 0);
 if (is_dir($tokensDir)) {
 	$files = scandir($tokensDir);
 	foreach ($files as $file) {
@@ -65,7 +65,7 @@ if (is_dir($tokensDir)) {
 	}
 }
 if (empty($availablePalettes)) {
-	$availablePalettes = array('default', 'slate', 'blue', 'green', 'warm');
+	$availablePalettes = array('default', 'slate', 'blue', 'green', 'warm', 'rose', 'indigo', 'teal');
 }
 
 /*

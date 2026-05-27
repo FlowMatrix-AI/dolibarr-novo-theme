@@ -44,8 +44,6 @@ The Dolibarr wiki signup captcha is currently broken. Once resolved:
 
 ## Future Work
 
-- [ ] French translation (`langs/fr_FR/novoux.lang`)
-- [ ] Additional palettes (rose, indigo, teal)
 - [ ] RTL support
 - [ ] Dolibarr 22 compatibility testing
 - [ ] Store listing screenshots (login, dashboard, list view, dark mode)

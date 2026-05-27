@@ -1,0 +1,53 @@
+/* Generated from tokens/indigo.json — do not edit */
+:root {
+  --novo-primary: #4f46e5;
+  --novo-primary-hover: #4338ca;
+  --novo-bg: #eef2ff;
+  --novo-surface: #ffffff;
+  --novo-text: #1e293b;
+  --novo-text-muted: #64748b;
+  --novo-border: #c7d2fe;
+  --novo-accent: #ec4899;
+  --novo-success: #059669;
+  --novo-warning: #d97706;
+  --novo-danger: #dc2626;
+
+  /* Dolibarr UI variable overrides */
+  --colorbackhmenu1: #312e81;
+  --colorbackvmenu1: #eef2ff;
+  --colorbacktitle1: #eef2ff;
+  --colorbacktabcard1: #ffffff;
+  --colorbacktabactive: #ffffff;
+  --colorbackbody: #eef2ff;
+  --colorbacklineimpair1: #ffffff;
+  --colorbacklineimpair2: #ffffff;
+  --colorbacklinepair1: #eef2ff;
+  --colorbacklinepair2: #eef2ff;
+  --colorbacklinepairhover: #e0e7ff;
+  --colorbacklinepairchecked: #c7d2fe;
+  --colorbackgrey: #e0e7ff;
+  --colortext: #1e293b;
+  --colortexttitle: #312e81;
+  --colortexttitlelink: #4f46e5;
+  --inputbackgroundcolor: #ffffff;
+  --butactionbg: #4f46e5;
+  --textbutaction: #ffffff;
+  --colortextbacktab: #312e81;
+  --colortexttitlenotab: #4f46e5;
+  --colortexttitlenotab2: #ec4899;
+  --oddevencolor: #1e293b;
+  --listetotal: #4f46e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --novo-primary: #818cf8;
+    --novo-primary-hover: #a5b4fc;
+    --novo-bg: #020617;
+    --novo-surface: #0f172a;
+    --novo-text: #f1f5f9;
+    --novo-text-muted: #94a3b8;
+    --novo-border: #1e293b;
+    --novo-accent: #f472b6;
+  }
+}

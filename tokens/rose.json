@@ -1,0 +1,53 @@
+{
+  "name": "rose",
+  "label": "Rose",
+  "colors": {
+    "primary": "#e11d48",
+    "primary-hover": "#be123c",
+    "bg": "#fff1f2",
+    "surface": "#ffffff",
+    "text": "#1e293b",
+    "text-muted": "#64748b",
+    "border": "#fecdd3",
+    "accent": "#7c3aed",
+    "success": "#059669",
+    "warning": "#d97706",
+    "danger": "#b91c1c"
+  },
+  "dolibarr": {
+    "colorbackhmenu1": "#881337",
+    "colorbackvmenu1": "#fff1f2",
+    "colorbacktitle1": "#fff1f2",
+    "colorbacktabcard1": "#ffffff",
+    "colorbacktabactive": "#ffffff",
+    "colorbackbody": "#fff1f2",
+    "colorbacklineimpair1": "#ffffff",
+    "colorbacklineimpair2": "#ffffff",
+    "colorbacklinepair1": "#fff1f2",
+    "colorbacklinepair2": "#fff1f2",
+    "colorbacklinepairhover": "#ffe4e6",
+    "colorbacklinepairchecked": "#fecdd3",
+    "colorbackgrey": "#ffe4e6",
+    "colortext": "#1e293b",
+    "colortexttitle": "#881337",
+    "colortexttitlelink": "#e11d48",
+    "inputbackgroundcolor": "#ffffff",
+    "butactionbg": "#e11d48",
+    "textbutaction": "#ffffff",
+    "colortextbacktab": "#881337",
+    "colortexttitlenotab": "#e11d48",
+    "colortexttitlenotab2": "#7c3aed",
+    "oddevencolor": "#1e293b",
+    "listetotal": "#e11d48"
+  },
+  "dark": {
+    "primary": "#fb7185",
+    "primary-hover": "#fda4af",
+    "bg": "#0f0708",
+    "surface": "#1a0a0e",
+    "text": "#f1f5f9",
+    "text-muted": "#94a3b8",
+    "border": "#2d1219",
+    "accent": "#a78bfa"
+  }
+}
