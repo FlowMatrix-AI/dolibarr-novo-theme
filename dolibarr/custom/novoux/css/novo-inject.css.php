@@ -60,6 +60,23 @@ if ($density !== 'default') {
 	}
 }
 
+// Radius preset
+$radiusPreset = getDolGlobalString('NOVOUX_RADIUS', 'default');
+$radiusMap = array(
+	'sharp'   => array('2px', '3px', '4px', '6px'),
+	'rounded' => array('8px', '12px', '16px', '24px'),
+	'pill'    => array('50px', '50px', '50px', '50px'),
+);
+if (isset($radiusMap[$radiusPreset])) {
+	$r = $radiusMap[$radiusPreset];
+	print ":root {\n";
+	print "  --novo-radius-sm: ".$r[0].";\n";
+	print "  --novo-radius-md: ".$r[1].";\n";
+	print "  --novo-radius-lg: ".$r[2].";\n";
+	print "  --novo-radius-xl: ".$r[3].";\n";
+	print "}\n";
+}
+
 // Primary color override
 $primaryOverride = getDolGlobalString('NOVOUX_PRIMARY_COLOR', '');
 if (!empty($primaryOverride) && preg_match('/^#[0-9a-fA-F]{6}$/', $primaryOverride)) {
@@ -68,8 +85,27 @@ if (!empty($primaryOverride) && preg_match('/^#[0-9a-fA-F]{6}$/', $primaryOverri
 	print "}\n";
 }
 
+// Accent color override
+$accentOverride = getDolGlobalString('NOVOUX_ACCENT_COLOR', '');
+if (!empty($accentOverride) && preg_match('/^#[0-9a-fA-F]{6}$/', $accentOverride)) {
+	print ":root { --novo-accent: ".$accentOverride."; }\n";
+}
+
+// Danger color override
+$dangerOverride = getDolGlobalString('NOVOUX_DANGER_COLOR', '');
+if (!empty($dangerOverride) && preg_match('/^#[0-9a-fA-F]{6}$/', $dangerOverride)) {
+	print ":root { --novo-danger: ".$dangerOverride."; }\n";
+}
+
 // Logo URL override
 $logoUrl = getDolGlobalString('NOVOUX_LOGO_URL', '');
 if (!empty($logoUrl) && filter_var($logoUrl, FILTER_VALIDATE_URL)) {
 	print "#img_logo { content: url('".dol_escape_htmltag($logoUrl)."'); max-height: 40px; }\n";
+}
+
+// Custom CSS (admin-defined, sanitized on save)
+$customCss = getDolGlobalString('NOVOUX_CUSTOM_CSS', '');
+if (!empty($customCss)) {
+	print "/* Custom CSS */\n";
+	print $customCss."\n";
 }

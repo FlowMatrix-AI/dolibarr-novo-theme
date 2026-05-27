@@ -82,12 +82,64 @@ if ($action == 'update') {
 		dolibarr_set_const($db, 'NOVOUX_PRIMARY_COLOR', $primaryColor, 'chaine', 0, '', $conf->entity);
 	}
 
+	// Accent color override
+	$accentColor = GETPOST('NOVOUX_ACCENT_COLOR', 'alpha');
+	if (!empty($accentColor) && !preg_match('/^#[0-9a-fA-F]{6}$/', $accentColor)) {
+		setEventMessages($langs->trans("ErrorBadColor"), null, 'errors');
+		$error++;
+	}
+	if (!$error) {
+		dolibarr_set_const($db, 'NOVOUX_ACCENT_COLOR', $accentColor, 'chaine', 0, '', $conf->entity);
+	}
+
+	// Danger color override
+	$dangerColor = GETPOST('NOVOUX_DANGER_COLOR', 'alpha');
+	if (!empty($dangerColor) && !preg_match('/^#[0-9a-fA-F]{6}$/', $dangerColor)) {
+		setEventMessages($langs->trans("ErrorBadColor"), null, 'errors');
+		$error++;
+	}
+	if (!$error) {
+		dolibarr_set_const($db, 'NOVOUX_DANGER_COLOR', $dangerColor, 'chaine', 0, '', $conf->entity);
+	}
+
 	// Density
 	$density = GETPOST('NOVOUX_DENSITY', 'alpha');
 	if (!in_array($density, array('default', 'compact', 'spacious'))) {
 		$density = 'default';
 	}
 	dolibarr_set_const($db, 'NOVOUX_DENSITY', $density, 'chaine', 0, '', $conf->entity);
+
+	// Radius preset
+	$radius = GETPOST('NOVOUX_RADIUS', 'alpha');
+	if (!in_array($radius, array('sharp', 'default', 'rounded', 'pill'))) {
+		$radius = 'default';
+	}
+	dolibarr_set_const($db, 'NOVOUX_RADIUS', $radius, 'chaine', 0, '', $conf->entity);
+
+	// Dark mode behavior
+	$darkMode = GETPOST('NOVOUX_DARK_MODE', 'alpha');
+	if (!in_array($darkMode, array('disabled', 'auto', 'toggle', 'forced'))) {
+		$darkMode = 'disabled';
+	}
+	dolibarr_set_const($db, 'NOVOUX_DARK_MODE', $darkMode, 'chaine', 0, '', $conf->entity);
+	switch ($darkMode) {
+		case 'auto':
+			dolibarr_set_const($db, 'THEME_DARKMODEENABLED', '1', 'chaine', 0, '', $conf->entity);
+			dolibarr_set_const($db, 'ALLOW_THEME_JS', '0', 'chaine', 0, '', $conf->entity);
+			break;
+		case 'toggle':
+			dolibarr_set_const($db, 'THEME_DARKMODEENABLED', '1', 'chaine', 0, '', $conf->entity);
+			dolibarr_set_const($db, 'ALLOW_THEME_JS', '1', 'chaine', 0, '', $conf->entity);
+			break;
+		case 'forced':
+			dolibarr_set_const($db, 'THEME_DARKMODEENABLED', '2', 'chaine', 0, '', $conf->entity);
+			dolibarr_set_const($db, 'ALLOW_THEME_JS', '0', 'chaine', 0, '', $conf->entity);
+			break;
+		default: // disabled
+			dolibarr_set_const($db, 'THEME_DARKMODEENABLED', '0', 'chaine', 0, '', $conf->entity);
+			dolibarr_set_const($db, 'ALLOW_THEME_JS', '0', 'chaine', 0, '', $conf->entity);
+			break;
+	}
 
 	// Logo URL
 	$logoUrl = GETPOST('NOVOUX_LOGO_URL', 'alpha');
@@ -100,9 +152,16 @@ if ($action == 'update') {
 		dolibarr_set_const($db, 'NOVOUX_LOGO_URL', $logoUrl, 'chaine', 0, '', $conf->entity);
 	}
 
-	// Allow Theme JS
-	$allowThemeJs = GETPOST('ALLOW_THEME_JS', 'int') ? '1' : '0';
-	dolibarr_set_const($db, 'ALLOW_THEME_JS', $allowThemeJs, 'chaine', 0, '', $conf->entity);
+	// Custom CSS
+	$customCss = GETPOST('NOVOUX_CUSTOM_CSS', 'restricthtml');
+	$customCss = preg_replace('/<\/?script[^>]*>/i', '', $customCss);
+	$customCss = preg_replace('/expression\s*\(/i', '', $customCss);
+	$customCss = preg_replace('/url\s*\(\s*["\']?javascript:/i', 'url(blocked:', $customCss);
+	if (strlen($customCss) > 4096) {
+		$customCss = substr($customCss, 0, 4096);
+		setEventMessages($langs->trans("NovouzCustomCssTruncated"), null, 'warnings');
+	}
+	dolibarr_set_const($db, 'NOVOUX_CUSTOM_CSS', $customCss, 'chaine', 0, '', $conf->entity);
 
 	if (!$error) {
 		setEventMessages($langs->trans("SetupSaved"), null, 'mesgs');
@@ -161,6 +220,28 @@ print '<br><span class="opacitymedium small">'.$langs->trans("NovouzPrimaryColor
 print '</td>';
 print '</tr>';
 
+// Accent color override
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzAccentColor").'</td>';
+print '<td>';
+$currentAccent = getDolGlobalString('NOVOUX_ACCENT_COLOR', '');
+print '<input type="color" name="NOVOUX_ACCENT_COLOR" value="'.dol_escape_htmltag($currentAccent ? $currentAccent : '#8b5cf6').'" class="flat">';
+print ' <input type="text" name="NOVOUX_ACCENT_COLOR" value="'.dol_escape_htmltag($currentAccent).'" class="flat minwidth150" placeholder="#8b5cf6">';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzAccentColorHelp").'</span>';
+print '</td>';
+print '</tr>';
+
+// Danger color override
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzDangerColor").'</td>';
+print '<td>';
+$currentDanger = getDolGlobalString('NOVOUX_DANGER_COLOR', '');
+print '<input type="color" name="NOVOUX_DANGER_COLOR" value="'.dol_escape_htmltag($currentDanger ? $currentDanger : '#ef4444').'" class="flat">';
+print ' <input type="text" name="NOVOUX_DANGER_COLOR" value="'.dol_escape_htmltag($currentDanger).'" class="flat minwidth150" placeholder="#ef4444">';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDangerColorHelp").'</span>';
+print '</td>';
+print '</tr>';
+
 // Density
 print '<tr class="oddeven">';
 print '<td>'.$langs->trans("NovouzDensity").'</td>';
@@ -175,6 +256,43 @@ print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDensityHelp"
 print '</td>';
 print '</tr>';
 
+// Radius preset
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzRadius").'</td>';
+print '<td>';
+$currentRadius = getDolGlobalString('NOVOUX_RADIUS', 'default');
+print '<select name="NOVOUX_RADIUS" class="flat minwidth200">';
+$radiusOptions = array('sharp' => 'Sharp (2–6px)', 'default' => 'Default (4–12px)', 'rounded' => 'Rounded (8–24px)', 'pill' => 'Pill (50px)');
+foreach ($radiusOptions as $rval => $rlabel) {
+	$selected = ($rval == $currentRadius) ? ' selected' : '';
+	print '<option value="'.dol_escape_htmltag($rval).'"'.$selected.'>'.$rlabel.'</option>';
+}
+print '</select>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzRadiusHelp").'</span>';
+print '</td>';
+print '</tr>';
+
+// Dark mode behavior
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzDarkMode").'</td>';
+print '<td>';
+$currentDark = getDolGlobalString('NOVOUX_DARK_MODE', 'disabled');
+$darkOptions = array(
+	'disabled' => $langs->trans("NovouzDarkDisabled"),
+	'auto' => $langs->trans("NovouzDarkAuto"),
+	'toggle' => $langs->trans("NovouzDarkToggle"),
+	'forced' => $langs->trans("NovouzDarkForced"),
+);
+print '<select name="NOVOUX_DARK_MODE" class="flat minwidth200">';
+foreach ($darkOptions as $dval => $dlabel) {
+	$selected = ($dval == $currentDark) ? ' selected' : '';
+	print '<option value="'.dol_escape_htmltag($dval).'"'.$selected.'>'.dol_escape_htmltag($dlabel).'</option>';
+}
+print '</select>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDarkModeHelp").'</span>';
+print '</td>';
+print '</tr>';
+
 // Logo URL
 print '<tr class="oddeven">';
 print '<td>'.$langs->trans("NovouzLogoUrl").'</td>';
@@ -185,14 +303,13 @@ print '<br><span class="opacitymedium small">'.$langs->trans("NovouzLogoUrlHelp"
 print '</td>';
 print '</tr>';
 
-// Allow Theme JS (dark mode toggle, sticky headers)
+// Custom CSS
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzAllowThemeJs").'</td>';
+print '<td>'.$langs->trans("NovouzCustomCss").'</td>';
 print '<td>';
-$currentAllowJs = getDolGlobalString('ALLOW_THEME_JS', '0');
-$checked = ($currentAllowJs) ? ' checked' : '';
-print '<input type="checkbox" name="ALLOW_THEME_JS" value="1"'.$checked.'>';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzAllowThemeJsHelp").'</span>';
+$currentCss = getDolGlobalString('NOVOUX_CUSTOM_CSS', '');
+print '<textarea name="NOVOUX_CUSTOM_CSS" rows="8" class="flat" style="width:100%;max-width:600px;font-family:monospace;font-size:12px;">'.dol_escape_htmltag($currentCss).'</textarea>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzCustomCssHelp").'</span>';
 print '</td>';
 print '</tr>';
 
