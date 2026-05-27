@@ -240,7 +240,7 @@ $borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobal
 	--novo-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
 	--novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
 	--novo-font: <?php print $fontlist; ?>;
-	--novo-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	--novo-transition: 120ms ease-out;
 }
 
 <?php
@@ -3360,10 +3360,6 @@ li.tmenu, li.tmenusel {
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
 	font-weight: normal;
-	transition: opacity var(--novo-transition);
-}
-li.tmenu:hover {
-	opacity: 1 !important;
 }
 li.menuhider:hover {
 	background-image: none !important;
@@ -5092,8 +5088,7 @@ table.hidepaginationnext .paginationnext {
 
 /* Set the color for hover lines */
 .oddeven:hover:not(.nohover), .evenodd:hover:not(.nohover), .oddevenimport:hover:not(.nohover), .evenoddimport:hover:not(.nohover), .impair:hover:not(.nohover), .pair:hover:not(.nohover) {
-	background: var(--colorbacklinepairhover) !important;		/* Must be background to be stronger than background of odd or even */
-	transition: background-color var(--novo-transition);
+	background-color: var(--colorbacklinepairhover) !important;		/* Must be !important to be stronger than background of odd or even */
 }
 
 .tredited, .tredited td {
@@ -9742,3 +9737,20 @@ div.flot-text .flot-tick-label .tickLabel, .fa-color-unset {
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
+
+<?php
+// === Novo Palette Override ===
+// Load selected palette CSS at the end so it overrides all PHP-set :root variables.
+// This ensures the palette applies everywhere including the login page.
+$novoPalette = getDolGlobalString('NOVOUX_PALETTE', 'default');
+$novoPalette = preg_replace('/[^a-z0-9_-]/', '', $novoPalette);
+$novoPaletteFile = __DIR__.'/palettes/'.$novoPalette.'.css';
+if ($novoPalette !== 'default' && file_exists($novoPaletteFile)) {
+	readfile($novoPaletteFile);
+}
+// Primary color override (from companion module setting)
+$novoPrimaryColor = getDolGlobalString('NOVOUX_PRIMARY_COLOR', '');
+if (!empty($novoPrimaryColor) && preg_match('/^#[0-9a-fA-F]{6}$/', $novoPrimaryColor)) {
+	print ":root { --novo-primary: ".$novoPrimaryColor."; --colortextlink: ".$novoPrimaryColor."; }\n";
+}
+?>

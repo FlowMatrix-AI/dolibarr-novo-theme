@@ -37,6 +37,11 @@
   --inputbackgroundcolor: #ffffff;
   --butactionbg: #475569;
   --textbutaction: #ffffff;
+  --colortextbacktab: #334155;
+  --colortexttitlenotab: #334155;
+  --colortexttitlenotab2: #6366f1;
+  --oddevencolor: #1e293b;
+  --listetotal: #475569;
 }
 
 @media (prefers-color-scheme: dark) {

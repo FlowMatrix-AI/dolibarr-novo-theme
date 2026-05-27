@@ -38,7 +38,12 @@
     "inputbordercolor": "#d6d3d1",
     "inputbackgroundcolor": "#ffffff",
     "butactionbg": "#d97706",
-    "textbutaction": "#ffffff"
+    "textbutaction": "#ffffff",
+    "colortextbacktab": "#44403c",
+    "colortexttitlenotab": "#b45309",
+    "colortexttitlenotab2": "#e11d48",
+    "oddevencolor": "#1c1917",
+    "listetotal": "#b45309"
   },
   "dark": {
     "primary": "#fbbf24",
