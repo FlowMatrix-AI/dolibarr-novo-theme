@@ -41,7 +41,7 @@ class modNovoux extends DolibarrModules
 		$this->description = "NovouzDescription";
 		$this->descriptionlong = "NovouzDescriptionLong";
 		$this->editor_name = 'FlowMatrix-AI';
-		$this->editor_url = 'https://github.com/FlowMatrix-AI/dolibarr-ui-skin';
+		$this->editor_url = 'https://github.com/FlowMatrix-AI/dolibarr-novo-theme';
 		$this->editor_squarred_logo = 'novoux_512.png@novoux';
 		$this->version = '2.0.0';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);

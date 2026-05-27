@@ -159,10 +159,10 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `--novo-*` CSS custom property abstraction layer (initially mapped 1:1 to Eldy values)
 - Theme identity: `$theme = 'novo'`, updated AUTHOR, file path comments
 
-[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.1.0...v2.0.0
-[1.1.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.3.0...v1.0.0
-[0.3.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/releases/tag/v0.1.0
+[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v1.1.0...v2.0.0
+[1.1.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v0.3.0...v1.0.0
+[0.3.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/releases/tag/v0.1.0

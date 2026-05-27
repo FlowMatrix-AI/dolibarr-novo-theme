@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-1. Download the latest `novo-*.zip` from [Releases](https://github.com/FlowMatrix-AI/dolibarr-ui-skin/releases)
+1. Download the latest `novo-*.zip` from [Releases](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/releases)
 2. Extract into your Dolibarr `htdocs/` directory:
    ```bash
    unzip novo-*.zip -d /path/to/dolibarr/htdocs/

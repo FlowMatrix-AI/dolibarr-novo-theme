@@ -2,7 +2,7 @@
 
 A clean, configurable Dolibarr theme for v21+. Token-driven design system with palettes, density variants, dark mode toggle, and zero core edits.
 
-[Live Preview](https://flowmatrix-ai.github.io/dolibarr-ui-skin/) · [Changelog](CHANGELOG.md) · [Architecture](docs/architecture.md)
+[Live Preview](https://flowmatrix-ai.github.io/dolibarr-novo-theme/) · [Changelog](CHANGELOG.md) · [Architecture](docs/architecture.md)
 
 ## Features
 
@@ -28,8 +28,8 @@ unzip novo-1.1.0.zip -d /path/to/dolibarr/htdocs/
 ### From source
 
 ```bash
-git clone https://github.com/FlowMatrix-AI/dolibarr-ui-skin.git
-cd dolibarr-ui-skin
+git clone https://github.com/FlowMatrix-AI/dolibarr-novo-theme.git
+cd dolibarr-novo-theme
 ./scripts/install-local.sh /path/to/dolibarr/htdocs
 ```
 

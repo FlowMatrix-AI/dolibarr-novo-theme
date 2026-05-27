@@ -11,6 +11,6 @@ $theme_name = 'novo';
 $theme_desc = 'Modern, configurable Dolibarr theme with design tokens, dark mode, and density variants.';
 $theme_version = '1.1.0';
 $theme_author = 'FlowMatrix-AI';
-$theme_url = 'https://github.com/FlowMatrix-AI/dolibarr-ui-skin';
+$theme_url = 'https://github.com/FlowMatrix-AI/dolibarr-novo-theme';
 $theme_min_dolibarr = '21.0.0';
 $theme_min_php = '7.4';

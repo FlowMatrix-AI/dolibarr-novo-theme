@@ -248,7 +248,7 @@ The current `package.sh` produces a zip that extracts directly into `htdocs/`. T
 
 | Step | Action |
 |------|--------|
-| F1 | Set `$this->editor_url = 'https://github.com/FlowMatrix-AI/dolibarr-ui-skin'` in modNovoux |
+| F1 | Set `$this->editor_url = 'https://github.com/FlowMatrix-AI/dolibarr-novo-theme'` in modNovoux |
 | F2 | Add a 512×512 module logo PNG at `dolibarr/custom/novoux/img/novoux_512.png` |
 | F3 | Add `$this->editor_squarred_logo = 'novoux_512.png@novoux'` |
 | F4 | Add compatibility note to README: "Requires Dolibarr ≥ 21.0, PHP ≥ 7.4" |

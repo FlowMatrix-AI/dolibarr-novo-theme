@@ -56,7 +56,7 @@ npm install
 npx playwright install chromium          # downloads ~290 MB browser binary
 docker compose -f docker-compose.dev.yml up -d
 # Wait for Dolibarr to finish initializing (~30s on first boot)
-docker exec -i dolibarr-ui-skin-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+docker exec -i dolibarr-novo-theme-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
 ```
 
 > **Note:** The DB container does not expose port 3306 to the host. Use `docker exec` to run SQL, not `mysql -h127.0.0.1`.
