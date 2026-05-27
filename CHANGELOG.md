@@ -7,6 +7,20 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-05-27
+
+### Changed
+
+- **DoliStore packaging restructure**
+  - Theme files moved into module: `novoux/theme/novo/` (auto-discovered via `module_parts['theme']`)
+  - Single zip install: `module_novoux-VERSION.zip` with `novoux/` at root
+  - Deploy via Dolibarr admin "Deploy external module" or extract to `htdocs/custom/`
+- Full DoliStore-compatible `main.inc.php` include pattern on all PHP pages
+- `novo-inject.css.php` uses `dol_buildpath()` for palette/variant resolution
+- `package.sh` produces DoliStore-compliant zip (160 KB)
+- Docker Compose simplified to single module volume mount
+- Repo renamed: `dolibarr-ui-skin` → `dolibarr-novo-theme`
+
 ## [2.0.0] - 2026-05-27
 
 ### Added
@@ -159,7 +173,8 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `--novo-*` CSS custom property abstraction layer (initially mapped 1:1 to Eldy values)
 - Theme identity: `$theme = 'novo'`, updated AUTHOR, file path comments
 
-[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v0.3.0...v1.0.0
