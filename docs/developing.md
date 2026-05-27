@@ -42,6 +42,44 @@ planning/            ← build plans (phases)
 | Package release zip | `./scripts/package.sh` |
 | Install to local Dolibarr | `./scripts/install-local.sh /path/to/htdocs` |
 | Reset dev DB language to English | `./scripts/init-dev-lang.sh` |
+| Run visual tests | `npm run test:visual` |
+| Update visual baselines | `npm run test:visual:update` |
+
+## Visual Testing (Playwright)
+
+Automated screenshot comparison against 10 key Dolibarr pages in both light and dark modes (21 test cases total).
+
+### First-Time Setup
+
+```bash
+npm install
+npx playwright install chromium          # downloads ~290 MB browser binary
+docker compose -f docker-compose.dev.yml up -d
+# Wait for Dolibarr to finish initializing (~30s on first boot)
+docker exec -i dolibarr-ui-skin-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+```
+
+> **Note:** The DB container does not expose port 3306 to the host. Use `docker exec` to run SQL, not `mysql -h127.0.0.1`.
+
+### Generate Baselines
+
+```bash
+npm run test:visual:update
+```
+
+This creates PNG snapshots in `tests/visual/snapshots/` (gitignored). Run this once, and again whenever you intentionally change the theme's appearance.
+
+### Compare Against Baselines
+
+```bash
+npm run test:visual
+```
+
+Fails if any page differs by more than 1% of pixels from the baseline. Use `--update-snapshots` to accept new appearance.
+
+### Pages Tested
+
+Login, Dashboard, Third-Party List, Invoice List, Project List, HRM Leave List, User Card, Product List, Setup Display, NovouX Setup, Calendar — each in light and dark mode.
 
 ## Adding a Palette
 
