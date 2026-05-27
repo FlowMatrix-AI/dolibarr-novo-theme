@@ -103,9 +103,16 @@ if (!empty($logoUrl) && filter_var($logoUrl, FILTER_VALIDATE_URL)) {
 	print "#img_logo { content: url('".dol_escape_htmltag($logoUrl)."'); max-height: 40px; }\n";
 }
 
-// Custom CSS (admin-defined, sanitized on save)
+// Custom CSS (admin-defined, sanitized on save — re-sanitized here as defense-in-depth)
 $customCss = getDolGlobalString('NOVOUX_CUSTOM_CSS', '');
 if (!empty($customCss)) {
+	$customCss = preg_replace('/<\/?script[^>]*>/i', '', $customCss);
+	$customCss = preg_replace('/expression\s*\(/i', '', $customCss);
+	$customCss = preg_replace('/url\s*\(\s*["\']?javascript:/i', 'url(blocked:', $customCss);
+	$customCss = preg_replace('/@import\b/i', '', $customCss);
+	$customCss = preg_replace('/url\s*\(\s*["\']?data:/i', 'url(blocked:', $customCss);
+	$customCss = preg_replace('/-moz-binding\s*:/i', '-blocked:', $customCss);
+	$customCss = preg_replace('/behavior\s*:/i', 'blocked:', $customCss);
 	print "/* Custom CSS */\n";
 	print $customCss."\n";
 }

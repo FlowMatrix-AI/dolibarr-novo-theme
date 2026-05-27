@@ -157,6 +157,10 @@ if ($action == 'update') {
 	$customCss = preg_replace('/<\/?script[^>]*>/i', '', $customCss);
 	$customCss = preg_replace('/expression\s*\(/i', '', $customCss);
 	$customCss = preg_replace('/url\s*\(\s*["\']?javascript:/i', 'url(blocked:', $customCss);
+	$customCss = preg_replace('/@import\b/i', '', $customCss);
+	$customCss = preg_replace('/url\s*\(\s*["\']?data:/i', 'url(blocked:', $customCss);
+	$customCss = preg_replace('/-moz-binding\s*:/i', '-blocked:', $customCss);
+	$customCss = preg_replace('/behavior\s*:/i', 'blocked:', $customCss);
 	if (strlen($customCss) > 4096) {
 		$customCss = substr($customCss, 0, 4096);
 		setEventMessages($langs->trans("NovouzCustomCssTruncated"), null, 'warnings');
