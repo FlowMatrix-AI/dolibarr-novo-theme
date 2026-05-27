@@ -89,3 +89,11 @@ See [docs/developing.md](docs/developing.md) for full development guide.
 ## License
 
 GPL-3.0 — see [LICENSE](LICENSE)
+
+## Compatibility
+
+| Requirement | Minimum |
+|-------------|---------|
+| Dolibarr | ≥ 21.0 |
+| PHP | ≥ 7.4 |
+| Browser | Any modern (Chrome, Firefox, Safari, Edge) |
