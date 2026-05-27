@@ -356,7 +356,8 @@ body {
 
 .thumbstat { font-weight: bold !important; }
 th a { font-weight: <?php echo($useboldtitle ? 'bold' : 'normal'); ?> !important; }
-a.tab { font-weight: 500 !important; }
+a.tab { font-weight: 400 !important; }
+a.tab#active, .tabactive a.tab, a.tab.tabactive { font-weight: 500 !important; }
 
 a:link, a:visited, a:hover, a:active, .classlink { color: var(--colortextlink); text-decoration: none;  }
 a:hover { text-decoration: underline; color: var(--colortextlink); }
@@ -3368,14 +3369,15 @@ li.menuhider:hover {
 li.tmenusel::after, li.tmenu:hover::after{
 	content: "";
 	position:absolute;
-	bottom:0px;
+	bottom: 0px;
 	left: 50%;
-	left: calc(50% - 6px);
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 0px 6px 5px 6px;
-	border-color:  transparent transparent #ffffff transparent;
+	transform: translateX(-50%);
+	width: 24px;
+	height: 2px;
+	border-radius: 2px;
+	background-color: var(--colortextbackhmenu);
+	opacity: 0.9;
+	border: none;
 }
 
 .tmenuend .tmenuleft { width: 0px; }
@@ -3414,18 +3416,23 @@ div.tmenucenter
 	padding-bottom: 0;
 }
 div.menu_titre {
-	padding-top: 4px;
+	padding-top: 8px;
 	padding-bottom: 4px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: <?php echo $leftmenuwidth - 2; ?>px;				/* required to have overflow working. must be same than menu_contenu */
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--novo-text-muted);
+	font-weight: 600;
 }
 .mainmenuaspan
 {
 	padding-<?php print $left; ?>: 2px;
 	padding-<?php print $right; ?>: 2px;
 	font-family: Roboto,<?php echo $fontlist; ?>;
-	font-weight: 400;
+	font-weight: 500;
 	opacity: 0.9;
 }
 
@@ -3630,6 +3637,7 @@ li.tmenu:hover .tmenuimage:not(.menuhider), li.tmenu:hover .tmenuimage:not(.menu
 .login_center {
 	display: table-cell;
 	vertical-align: middle;
+	background: var(--novo-bg) !important; /* Override inline gradient from login.tpl.php */
 }
 .login_vertical_align {
 	padding: 10px;
@@ -3976,6 +3984,22 @@ form[name="addtime"] img.userphoto, form[name="addtime"] img.userphotosmall {
 /* Menu gauche                                                                    */
 /* ============================================================================== */
 
+/* Novo: thin scrollbar for sidebar */
+.vmenu {
+	scrollbar-width: thin;
+	scrollbar-color: color-mix(in srgb, var(--novo-text-muted) 30%, transparent) transparent;
+}
+.vmenu::-webkit-scrollbar {
+	width: 5px;
+}
+.vmenu::-webkit-scrollbar-track {
+	background: transparent;
+}
+.vmenu::-webkit-scrollbar-thumb {
+	background-color: color-mix(in srgb, var(--novo-text-muted) 30%, transparent);
+	border-radius: 3px;
+}
+
 div.vmenu, td.vmenu {
 	margin-<?php print $right; ?>: 2px;
 	position: relative;
@@ -4054,12 +4078,17 @@ a.vsmenu:link, a.vsmenu:visited {
 /* Novo sidebar hover and active states */
 a.vmenu:hover, a.vsmenu:hover {
 	color: var(--novo-primary);
-	transition: color var(--novo-transition);
+	transition: color var(--novo-transition), background-color var(--novo-transition);
 }
 .menu_contenu a.vsmenu.menu_selected,
 .menu_contenu span.vsmenu.menu_selected {
 	color: var(--novo-primary);
 	font-weight: 500;
+	padding-left: 10px;
+	border-left: 3px solid var(--novo-primary);
+	background-color: color-mix(in srgb, var(--novo-primary) 6%, transparent);
+	border-radius: 0 var(--novo-radius-sm) var(--novo-radius-sm) 0;
+	margin-left: -6px;
 }
 span.vsmenudisabledmargin, font.vsmenudisabledmargin { margin: 1px 1px 1px 6px; }
 li a.vsmenudisabled, li.vsmenudisabled { color: #aaa !important; cursor: default !important; }
@@ -4363,8 +4392,9 @@ div.popuptab {
 
 div.tabsAction {
 	margin: 20px 0em 40px 0em;
-	padding: 0em 0em;
+	padding: 12px 0em;
 	text-align: right;
+	border-top: 1px solid var(--novo-border);
 }
 div.tabsActionNoBottom {
 	margin-bottom: 0px;
