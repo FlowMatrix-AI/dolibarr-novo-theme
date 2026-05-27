@@ -586,11 +586,9 @@ div#cke_dp_desc {
 	margin-top: 5px;
 }
 textarea {
-	border-radius: 3px;
-	border-top: solid 1px var(--inputbordercolor);
-	border-left: solid 1px var(--inputbordercolor);
-	border-right: solid 1px var(--inputbordercolor);
-	border-bottom: solid 1px var(--inputbordercolor);
+	border-radius: var(--novo-radius-md);
+	border: 1px solid var(--novo-border);
+	transition: border-color var(--novo-transition), box-shadow var(--novo-transition);
 
 	padding:8px;
 	margin-left:0px;
@@ -888,9 +886,10 @@ select:invalid, select.--error {
 }
 input:disabled:not(.colorthumb):not(.colorgrey), textarea:disabled, select[disabled='disabled']
 {
-	/* background: var(--inputbackgroundcolordisabled); */
-	/* color: var(--inputcolordisabled); */
-	opacity: 0.5;
+	background: var(--inputbackgroundcolordisabled);
+	color: var(--inputcolordisabled);
+	cursor: not-allowed;
+	opacity: 0.7;
 }
 
 input.liste_titre {
@@ -1725,9 +1724,10 @@ div.div-for-modal {
 	left:calc(50% - 250px);
 	width:500px;  /* adjust as per your needs */
 	height:400px;   /* adjust as per your needs */
-	background: #fff;
-	border: 1px solid #bbb;
-	box-shadow: 2px 2px 20px #ddd;
+	background: var(--novo-surface);
+	border: 1px solid var(--novo-border);
+	box-shadow: var(--novo-shadow-lg);
+	border-radius: var(--novo-radius-xl);
 	z-index: 100;
 }
 
@@ -1744,9 +1744,10 @@ div.div-for-modal-topright {
 	right: 0;
 	width:50%;  /* adjust as per your needs */
 	height:320px;   /* adjust as per your needs */
-	background: #fff;
-	border: 1px solid #bbb;
-	box-shadow: 2px 2px 20px #ddd;
+	background: var(--novo-surface);
+	border: 1px solid var(--novo-border);
+	box-shadow: var(--novo-shadow-lg);
+	border-radius: 0 0 0 var(--novo-radius-xl);
 	z-index: 1100;
 }
 
@@ -3359,6 +3360,10 @@ li.tmenu, li.tmenusel {
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
 	font-weight: normal;
+	transition: opacity var(--novo-transition);
+}
+li.tmenu:hover {
+	opacity: 1 !important;
 }
 li.menuhider:hover {
 	background-image: none !important;
@@ -3619,7 +3624,7 @@ li.tmenu:hover .tmenuimage:not(.menuhider), li.tmenu:hover .tmenuimage:not(.menu
 
 .bodylogin
 {
-	background: #f0f0f0;
+	background: var(--novo-bg);
 	display: table;
 	position: absolute;
 	height: 100%;
@@ -3641,42 +3646,46 @@ form#login {
 }
 .login_table_title {
 	max-width: 530px;
-	color: #eee !important;
+	color: var(--novo-text-muted) !important;
 	padding-bottom: 20px;
-	text-shadow: 1px 1px #444;
+	text-shadow: none;
 }
 .login_table label {
-	text-shadow: 1px 1px 1px #FFF;
+	text-shadow: none;
+	color: var(--novo-text);
 }
 .login_table {
 	margin: 0px auto;  /* Center */
-	padding-left:6px;
-	padding-right:6px;
-	padding-top:16px;
-	padding-bottom:12px;
+	padding-left: 24px;
+	padding-right: 24px;
+	padding-top: 32px;
+	padding-bottom: 24px;
 	max-width: 560px;
 <?php
 if (getDolGlobalString('MAIN_LOGIN_BACKGROUND')) {
 	print '	background-color: rgba(255, 255, 255, 0.99);';
 } else {
-	print '	background-color: var(--colorbackbody);';
+	print '	background-color: var(--novo-surface);';
 }
 ?>
-	box-shadow: 0 2px 23px 2px rgba(0, 0, 0, <?php print getDolGlobalInt('THEME_DARKMODEENABLED') ? 0.4 : 0.2; ?>), 0 2px 6px rgba(60, 60, 60, 0.15);
-	border-radius: 5px;
+	box-shadow: var(--novo-shadow-lg);
+	border-radius: var(--novo-radius-xl);
+	border: 1px solid var(--novo-border);
 }
 .login_table input#username, .login_table input#password, .login_table input#securitycode {
-	/* border: none; */
-	border-bottom: solid 1px rgba(180,180,180,.4);
-	padding: 8px;
-	padding-left: 12px;
+	border: 1px solid var(--novo-border);
+	border-radius: var(--novo-radius-md);
+	padding: 10px 12px;
 	margin-left: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 	margin-right: 10px;
+	transition: border-color var(--novo-transition), box-shadow var(--novo-transition);
 }
 .login_table input#username:focus, .login_table input#password:focus, .login_table input#securitycode:focus {
 	outline: none !important;
+	border-color: var(--novo-primary) !important;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 .login_table .trinputlogin {
 	font-size: 1.2em;
@@ -3684,13 +3693,13 @@ if (getDolGlobalString('MAIN_LOGIN_BACKGROUND')) {
 }
 .login_table .tdinputlogin {
 	background-color: transparent;
-	/* border: 2px solid #ccc; */
 	min-width: 220px;
-	border-radius: 2px;
+	border-radius: var(--novo-radius-md);
 }
 .login_table .tdinputlogin .fa {
 	padding-left: 10px;
 	width: 14px;
+	color: var(--novo-text-muted);
 }
 .login_table .tdinputlogin input#username, .login_table .tdinputlogin input#password, .login_table .tdinputlogin input#securitycode {
 	font-size: 1.1em;
@@ -4022,10 +4031,9 @@ a.vmenu:link, a.vmenu:visited, a.vmenu:hover, a.vmenu:active, span.vmenu, span.v
 	white-space: nowrap; font-family: <?php print $fontlist ?>; text-align: <?php print $left; ?>;
 }
 a.vmenu:link, a.vmenu:visited, a.vmenu:hover, a.vmenu:active,
-span.vmenu, span.vmenu:link, span.vmenu:visited, span.vmenu:hover, span.vmenu:active { font-weight: bold;  }	/* bold = 600, 500 is ko with Edge on 1200x960 */
+span.vmenu, span.vmenu:link, span.vmenu:visited, span.vmenu:hover, span.vmenu:active { font-weight: 600;  }
 span.vmenudisabled {
-	/* bold = 600, 500 is ko with Edge on 1200x960 */
-	font-family: <?php print $fontlist ?>; text-align: <?php print $left; ?>; font-weight: bold; color: #aaa; margin-left: 4px; white-space: nowrap;
+	font-family: <?php print $fontlist ?>; text-align: <?php print $left; ?>; font-weight: 600; color: #aaa; margin-left: 4px; white-space: nowrap;
 }
 a.vmenu:link, a.vmenu:visited {
 	color: var(--colortextbackvmenu);
@@ -4046,6 +4054,16 @@ span.vsmenudisabled, font.vsmenudisabled {
 a.vsmenu:link, a.vsmenu:visited {
 	color: var(--colortextbackvmenu);
 	white-space: nowrap;
+}
+/* Novo sidebar hover and active states */
+a.vmenu:hover, a.vsmenu:hover {
+	color: var(--novo-primary);
+	transition: color var(--novo-transition);
+}
+.menu_contenu a.vsmenu.menu_selected,
+.menu_contenu span.vsmenu.menu_selected {
+	color: var(--novo-primary);
+	font-weight: 500;
 }
 span.vsmenudisabledmargin, font.vsmenudisabledmargin { margin: 1px 1px 1px 6px; }
 li a.vsmenudisabled, li.vsmenudisabled { color: #aaa !important; cursor: default !important; }
@@ -4072,7 +4090,7 @@ a.help:link, a.help:visited, a.help:hover, a.help:active, span.help {
 
 .vmenu div.blockvmenufirst, .vmenu div.blockvmenulogo, .vmenu div.blockvmenusearchphone, .vmenu div.blockvmenubookmarks
 {
-	border-top: 1px solid #BBB;
+	border-top: 1px solid var(--novo-border);
 }
 a.vsmenu.addbookmarkpicto {
 	padding-right: 10px;
@@ -4130,8 +4148,8 @@ div.blockvmenupair, div.blockvmenuimpair, div.blockvmenubookmarks, div.blockvmen
 	color: var(--colortext);
 	background: var(--colorbackvmenu1);
 
-	border-left: 1px solid #AAA;
-	border-right: 1px solid #BBB;
+	border-left: none;
+	border-right: none;
 }
 
 div.blockvmenusearch
@@ -4280,7 +4298,8 @@ div.tabBar {
 	margin: 0px 0px 24px 0px;
 	border-top: 1px solid var(--novo-border);
 	width: auto;
-	background: var(--colorbackbody);
+	background: var(--novo-surface);
+	border-radius: 0 0 var(--novo-radius-lg) var(--novo-radius-lg);
 }
 
 div.tabBar tr.titre td {
@@ -4330,8 +4349,10 @@ div.tabBar table.tableforservicepart2:last-child {
 
 div.popuptabset {
 	padding: 6px;
-	background: #fff;
-	border: 1px solid #888;
+	background: var(--novo-surface);
+	border: 1px solid var(--novo-border);
+	border-radius: var(--novo-radius-lg);
+	box-shadow: var(--novo-shadow-md);
 }
 div.popuptab {
 	padding-top: 8px;
@@ -4386,40 +4407,32 @@ a.tab:link, a.tab:visited, a.tab:hover, a.tab#active {
 	margin: 0em 0.2em;
 	text-decoration: none;
 	white-space: nowrap;
-
+	transition: color var(--novo-transition), border-color var(--novo-transition), background-color var(--novo-transition);
 	background-image: none !important;
 }
 
 .tabactive, a.tab#active {
-	color: var(--colortextbacktab) !important;
-	/* background: var(--colorbacktabcard1) !important; */
+	color: var(--novo-primary) !important;
+	font-weight: 500;
 	margin: 0 0.2em 0 0.2em !important;
 
 	border-right: 1px solid transparent;
 	border-left: 1px solid transparent;
 	border-top: 1px solid transparent;
-	/*border-right: 1px solid #CCC !important;
-	border-left: 1px solid #CCC !important; */
 
-	<?php if ($colorbackhmenu1 == '255,255,255') { ?>
-	border-bottom: 3px solid var(--colortextbackhmenu) !important;
-	<?php } else { ?>
-	border-bottom: 3px solid var(--colorbackhmenu1) !important;
-	<?php } ?>
+	border-bottom: 2px solid var(--novo-primary) !important;
 }
 .tabunactive, a.tab#unactive {
 	border-right: 1px solid transparent;
 	border-left: 1px solid transparent;
 	border-top: 1px solid transparent;
-	border-bottom: 0px !important;
+	border-bottom: 2px solid transparent !important;
 }
 a.tab:hover
 {
-	/*
-	background: var(--colorbacktabcard1), 0.5)  url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/nav-overlay3.png', 1); ?>) 50% 0 repeat-x;
-	color: var(--colortextbacktab);
-	*/
 	text-decoration: none;
+	background-color: var(--novo-bg);
+	border-radius: var(--novo-radius-sm) var(--novo-radius-sm) 0 0;
 }
 a.tabimage {
 	color: #434956;
@@ -4546,7 +4559,7 @@ table.border, table.bordernooddeven, table.dataTable, .table-border, .table-bord
 	padding: 1px 2px 1px 3px;			/* t r b l */
 }
 table.borderplus {
-	border: 1px solid #BBB;
+	border: 1px solid var(--novo-border);
 }
 .border tbody tr, .bordernooddeven tbody tr, .border tbody tr td, .bordernooddeven tbody tr td,
 div.tabBar table.border tr, div.tabBar table.border tr td, div.tabBar div.border .table-border-row, div.tabBar div.border .table-key-border-col, div.tabBar div.border .table-val-border-col,
@@ -4574,7 +4587,7 @@ div.tabBar .fichecenter table.border>tbody>tr>td,
 div.tabBar .fichecenter div.border div div.tagtd, div.tabBar div.border div div.tagtd
 {
 	padding-top: 2px;
-	border-bottom: 1px solid #E0E0E0;
+	border-bottom: 1px solid var(--novo-border);
 }
 
 td.border, div.tagtable div div.border {
@@ -4643,17 +4656,17 @@ td.border, div.tagtable div div.border {
 	border-bottom: none !important;
 }
 .bordertop {
-	border-top: 1px solid var(--colortopbordertitle1);
+	border-top: 1px solid var(--novo-border);
 }
 .borderbottom {
-	border-bottom: 1px solid var(--colortopbordertitle1);
+	border-bottom: 1px solid var(--novo-border);
 }
 .noborderall {
 	border: none !important;
 }
 
 table.noborder {
-	background: var(--colorbacktabcard1);
+	background: var(--novo-surface);
 }
 <?php if (getDolGlobalString('THEME_ELDY_SHADOW_ON_SMALL_BOXES')) { // TODO Disable on smartphone?>
 .firstcolumn .div-table-responsive-no-min, .secondcolumn .div-table-responsive-no-min {
@@ -4670,28 +4683,30 @@ table.noborder {
 table.liste, table.noborder:not(.paymenttable):not(.margintable):not(.tableforcontact), table.formdoc, div.noborder:not(.paymenttable):not(.margintable):not(.tableforcontact) {
 	<?php
 	if ($userborderontable) { ?>
-	border-left: 1px solid var(--colortopbordertitle1);
-	border-right: 1px solid var(--colortopbordertitle1);
+	border-left: 1px solid var(--novo-border);
+	border-right: 1px solid var(--novo-border);
 	<?php } ?>
 }
 table.liste, table.noborder, table.formdoc, div.noborder {
 	width: 100%;
 	border-collapse: separate !important;
 	border-spacing: 0px;
-	border-top-width: <?php echo $borderwidth ?>px;
-	border-top-color: var(--colortopbordertitle1);
+	border-top-width: 0px;
+	border-top-color: var(--novo-border);
 	border-top-style: solid;
+	border: 1px solid var(--novo-border);
 	margin: 0px 0px 20px 0px;
+	box-shadow: var(--novo-shadow-sm);
 }
 #tablelines, #tablelinesservice {
 	border-bottom-width: 1px;
-	border-bottom-color: var(--colortopbordertitle1);
+	border-bottom-color: var(--novo-border);
 	border-bottom-style: solid;
 }
 table.liste tr:last-of-type td, table.noborder:not(#tablelines):not(#tablelinesservice) tr:last-of-type td, table.formdoc tr:last-of-type td,
 table.liste tr.lastvisible td, div.noborder tr:last-of-type td {
 	border-bottom-width: 1px;
-	border-bottom-color: var(--colortopbordertitle1);
+	border-bottom-color: var(--novo-border);
 	border-bottom-style: solid;
 }
 /* CSS to remove the interline border */
@@ -4762,7 +4777,7 @@ div.liste_titre_bydiv_nothingafter {
 	border-bottom-left-radius: <?php echo $borderradius; ?>px;
 	border-bottom-right-radius: <?php echo $borderradius; ?>px;
 	border-bottom-width: 1px;
-	border-bottom-color: var(--colortopbordertitle1);
+	border-bottom-color: var(--novo-border);
 	border-bottom-style: solid;
 }
 table.liste tr:last-child td:first-child,
@@ -4789,7 +4804,7 @@ div.tabBar .lastrecordtable {
 }
 div.tabBar table:not(.nobottom).border>tbody>tr:last-of-type>td {
 	border-bottom-width: 1px;
-	border-bottom-color: var(--colortopbordertitle1);
+	border-bottom-color: var(--novo-border);
 	border-bottom-style: solid;
 }
 div.tabBar div.fichehalfright table.noborder {
@@ -4820,7 +4835,7 @@ tr.liste_titre_filter td.liste_titre {
 {
 	border-bottom-width: 0 !important;
 	border-top-width: 1px;
-	border-top-color: var(--colortopbordertitle1);
+	border-top-color: var(--novo-border);
 	border-top-style: solid;
 }
 tr.liste_titre_create td:not(.linecoldescription) {
@@ -4833,7 +4848,7 @@ tr#trlinefordates td {
 .liste_titre_add td, .liste_titre_add th, .liste_titre_add .tagtd
 {
 	border-top-width: 1px;
-	border-top-color: var(--colortopbordertitle1);
+	border-top-color: var(--novo-border);
 	border-top-style: solid;
 }
 table.liste tr, table.noborder tr, div.noborder form {
@@ -4975,7 +4990,9 @@ div.pagination li.pagination span {
   line-height: 1.42857143;
   text-decoration: none;
   background-repeat: repeat-x;
-  color: var(--color-black);
+  color: var(--novo-text);
+  border-radius: var(--novo-radius-sm);
+  transition: background-color var(--novo-transition);
 }
 div.pagination li.pagination span.inactive {
   cursor: default;
@@ -5021,8 +5038,9 @@ div.pagination li .active span:focus {
   z-index: 2;
   color: #fff;
   cursor: default;
-  background-color: var(--colorbackhmenu1);
-  border-color: #337ab7;
+  background-color: var(--novo-primary);
+  border-color: var(--novo-primary);
+  border-radius: var(--novo-radius-sm);
 }
 div.pagination .disabled span,
 div.pagination .disabled span:hover,
@@ -5075,11 +5093,13 @@ table.hidepaginationnext .paginationnext {
 /* Set the color for hover lines */
 .oddeven:hover:not(.nohover), .evenodd:hover:not(.nohover), .oddevenimport:hover:not(.nohover), .evenoddimport:hover:not(.nohover), .impair:hover:not(.nohover), .pair:hover:not(.nohover) {
 	background: var(--colorbacklinepairhover) !important;		/* Must be background to be stronger than background of odd or even */
+	transition: background-color var(--novo-transition);
 }
 
 .tredited, .tredited td {
 	background: var(--colorbacklinepairchecked) !important;   /* Must be background to be stronger than background of odd or even */
 	border-bottom: 0 !important;
+	border-left: 3px solid var(--novo-primary);
 }
 .treditedlinefordate {
 	background: var(--colorbacklinepairchecked) !important;   /* Must be background to be stronger than background of odd or even */
@@ -5144,7 +5164,7 @@ table.dataTable td {
 }
 tr.pair td, tr.impair td, form.impair div.tagtd, form.pair div.tagtd, div.impair div.tagtd, div.pair div.tagtd, div.liste_titre div.tagtd {
 	padding: 7px 8px 7px 8px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--novo-border);
 }
 form.tagtr:last-of-type div.tagtd, tr.pair:last-of-type td, tr.impair:last-of-type td {
 	border-bottom: 0px !important;
@@ -5178,11 +5198,11 @@ div.liste_titre {
 }
 div.liste_titre_bydiv {
 	border-top-width: <?php echo $borderwidth ?>px;
-	border-top-color: var(--colortopbordertitle1);
+	border-top-color: var(--novo-border);
 	border-top-style: solid;
 	<?php if ($userborderontable) { ?>
-	border-left: <?php echo $borderwidth ?>px solid var(--colortopbordertitle1);
-	border-right: <?php echo $borderwidth ?>px solid var(--colortopbordertitle1);
+	border-left: <?php echo $borderwidth ?>px solid var(--novo-border);
+	border-right: <?php echo $borderwidth ?>px solid var(--novo-border);
 	<?php } ?>
 
 	border-collapse: collapse;
@@ -5210,7 +5230,7 @@ div.colorback	/* for the form "assign user" on time spent view */
 div.liste_titre_bydiv, .liste_titre div.tagtr, tr.liste_titre, tr.liste_titre_sel, .tagtr.liste_titre, .tagtr.liste_titre_sel, form.liste_titre, form.liste_titre_sel, table.dataTable thead tr
 {
 	background: var(--colorbacktitle1);
-	font-weight: <?php echo $useboldtitle ? 'bold' : 'normal'; ?>;
+	font-weight: <?php echo $useboldtitle ? 'bold' : '600'; ?>;
 
 	color: var(--colortexttitle);
 	font-family: <?php print $fontlist ?>;
@@ -5218,7 +5238,7 @@ div.liste_titre_bydiv, .liste_titre div.tagtr, tr.liste_titre, tr.liste_titre_se
 }
 tr.liste_titre th, tr.liste_titre td, th.liste_titre
 {
-	border-bottom: 1px solid var(--colortopbordertitle1);
+	border-bottom: 1px solid var(--novo-border);
 }
 tr.liste_titre:first-child th, tr:first-child th.liste_titre {
 /*    border-bottom: 1px solid #ddd ! important; */
@@ -5237,7 +5257,7 @@ tr.liste_titre th a, th.liste_titre a, tr.liste_titre td a, td.liste_titre a, fo
 }
 tr.liste_titre_topborder td {
 	border-top-width: <?php echo $borderwidth; ?>px;
-	border-top-color: var(--colortopbordertitle1);
+	border-top-color: var(--novo-border);
 	border-top-style: solid;
 }
 .liste_titre td a:not(.button):not(.editfielda), .liste_titre td a:not(.button):not(.editfielda) span:not(.badge) {
@@ -5665,16 +5685,12 @@ a.valignmiddle.dashboardlineindicator {
 tr.box_titre {
 	height: 26px;
 
-	/* TO MATCH BOOTSTRAP */
-	/*background: #ddd;
-	color: #000 !important;*/
-
 	/* TO MATCH ELDY */
 	background: var(--colorbacktitle1);
 	color: var(--colortexttitle);
 	font-family: <?php print $fontlist ?>, sans-serif;
-	font-weight: <?php echo $useboldtitle ? 'bold' : 'normal'; ?>;
-	border-bottom: 1px solid #FDFFFF;
+	font-weight: <?php echo $useboldtitle ? 'bold' : '600'; ?>;
+	border-bottom: 1px solid var(--novo-border);
 	white-space: nowrap;
 }
 
@@ -6147,9 +6163,9 @@ button.ui-button-icon-only.ui-dialog-titlebar-close {
 	z-index:1006 !important; /* To always be over the dialog box */
 }
 .ui-dialog.ui-widget.ui-widget-content {
-	border: 1px solid #e0e0e0;
-	border-radius: 6px;
-	box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 15px;
+	border: 1px solid var(--novo-border);
+	border-radius: var(--novo-radius-xl);
+	box-shadow: var(--novo-shadow-lg);
 }
 .ui-dialog {
 	padding-left: 5px;
@@ -6163,11 +6179,12 @@ button.ui-button-icon-only.ui-dialog-titlebar-close {
 	padding: 8px !important;
 	background: unset;
 	border: unset;
-	border-bottom: 1px solid #AAA;
+	border-bottom: 1px solid var(--novo-border);
 	margin-bottom: 12px;
+	font-weight: 600;
 }
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dialog-buttons.ui-draggable {
-	box-shadow: 5px 5px 20px #AAA;
+	box-shadow: var(--novo-shadow-lg);
 }
 
 .ui-dialog .ui-dialog-buttonpane {
@@ -6188,9 +6205,14 @@ button.ui-button-icon-only.ui-dialog-titlebar-close {
 
 /* JQuery dialog */
 
+.ui-widget-overlay {
+	background: rgba(15, 23, 42, 0.4);
+	backdrop-filter: blur(2px);
+}
+
 .ui-dialog .ui-widget-header {
 	border: none;
-	border-bottom: 1px solid #dbdbdb;
+	border-bottom: 1px solid var(--novo-border);
 	background: none;
 	border-radius: unset;
 }
@@ -6205,7 +6227,7 @@ button.ui-button-icon-only.ui-dialog-titlebar-close {
 	padding: 1px;
 	height: 20px;
 	border-radius: 30px;
-	border: 1px solid #ededed;
+	border: 1px solid var(--novo-border);
 }
 
 .ui-dialog-title {
