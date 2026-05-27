@@ -7,12 +7,15 @@ A clean, configurable Dolibarr theme for v21+. Token-driven design system with p
 ## Features
 
 - Modern flat design with system-ui font stack and refined component styling
-- 5 built-in color palettes (default blue, slate, deep blue, green, warm)
+- 8 built-in color palettes (default, slate, blue, green, warm, rose, indigo, teal)
 - Dark mode: auto (OS preference), forced, or instant JS toggle (Auto/Dark/Light)
 - 3 density levels: compact, default, spacious — switch without code changes
 - Design tokens (JSON) drive all palettes and density variants
 - All styling uses `--novo-*` CSS custom properties — rebrand with one file
 - Sticky table headers for large lists (≥ 8 rows)
+- Collapsible sidebar (icon rail with hover flyout)
+- Per-user theme preferences (palette, density, color overrides)
+- French and English translations included
 - Companion module `novoux` for admin-level configuration
 - Zero changes to Dolibarr core — pure theme + external module
 
@@ -21,7 +24,7 @@ A clean, configurable Dolibarr theme for v21+. Token-driven design system with p
 ### From DoliStore (recommended)
 
 1. Go to **Setup > Modules > Deploy an external module**
-2. Upload `module_novoux-2.0.0.zip`
+2. Upload `module_novoux-VERSION.zip` (see [releases](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/releases))
 3. Enable the module under **Setup > Modules**
 4. Go to **Setup > Display** and select `novo` as the skin
 
@@ -29,7 +32,7 @@ A clean, configurable Dolibarr theme for v21+. Token-driven design system with p
 
 ```bash
 # Download the latest release zip
-unzip module_novoux-2.0.0.zip -d /path/to/dolibarr/htdocs/custom/
+unzip module_novoux-VERSION.zip -d /path/to/dolibarr/htdocs/custom/
 ```
 
 ### From source
@@ -65,6 +68,9 @@ See [docs/docker.md](docs/docker.md) for full Docker integration docs.
 | `blue` | `#1d4ed8` | Deeper blue, high contrast |
 | `green` | `#059669` | Fresh, eco/finance feel |
 | `warm` | `#d97706` | Warm, creative/agency feel |
+| `rose` | `#e11d48` | Bold, energetic |
+| `indigo` | `#4f46e5` | Modern SaaS feel |
+| `teal` | `#0d9488` | Fresh, health/wellness |
 
 ## Per-Client Branding
 
