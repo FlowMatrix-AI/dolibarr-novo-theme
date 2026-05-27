@@ -10,6 +10,8 @@ This is **not** a Dolibarr fork. Zero core files touched. Everything lives in st
 
 ## Phases
 
+### Shipped (v1.0.0)
+
 | Phase | Name | Scope |
 |-------|------|-------|
 | 1 | [Foundation & Boot](phase-1-foundation.md) | Docker dev env, Eldy copy → novo, `--novo-*` var layer, verify it renders |
@@ -17,6 +19,18 @@ This is **not** a Dolibarr fork. Zero core files touched. Everything lives in st
 | 3 | [Palette System](phase-3-palette-system.md) | Token JSON → generated palette CSS, 5 palettes, CI check, client override mechanism |
 | 4 | [Companion Module](phase-4-companion-module.md) | novoux module: admin setup page, palette picker, CSS injection, config precedence |
 | 5 | [Preview, Package & Ship](phase-5-preview-package-ship.md) | GitHub Pages preview site, zip packaging, Docker docs, v1.0 release |
+
+### Planned (v1.1+)
+
+| Phase | Name | Scope | Target |
+|-------|------|-------|--------|
+| 6 | [Deep Restyle](phase-6-deep-restyle.md) | Full CSS rewrite of tables, tabs, menus, forms, login, cards, modals | v1.1 |
+| 7 | [Token System & Density](phase-7-token-system-density.md) | Expand tokens to spacing/typography/layout, density variants (compact/spacious) | v1.2 |
+| 8 | [Theme JavaScript](phase-8-theme-javascript.md) | `novo.js` — dark toggle, sticky headers, sidebar collapse, density switch | v1.2 |
+| 9 | [Advanced NovouX](phase-9-advanced-novoux.md) | Full settings panel: all tokens configurable, live preview, export/import | v1.3 |
+| 10 | [Ecosystem & Distribution](phase-10-ecosystem-distribution.md) | Repo rename, `theme_descriptor.php`, CI/CD, Dolistore, docs site | v1.1–1.3 (parallel) |
+| 11 | [Style Variants](phase-11-style-variants.md) | Visual personality variants: flat, elevated, glass, brutalist, soft | v1.4 |
+| 12 | [User Prefs & Multi-Tenant](phase-12-user-prefs-multitenant.md) | Per-user display preferences, multi-entity branding, white-label mode | v1.5 |
 
 ---
 
@@ -117,7 +131,7 @@ dolibarr-ui-skin/
 
 | # | Decision | Resolution |
 |---|----------|------------|
-| 1 | Repo name | `dolibarr-ui-skin` — generic, not brand-locked. May rename later. |
+| 1 | Repo name | `dolibarr-ui-skin` → rename to `dolibarr-novo` in Phase 10 |
 | 2 | Theme folder name | `novo` — Latin for "new", short, distinctive |
 | 3 | Module internal name | `novoux` — UX/config companion to the theme |
 | 4 | CSS variable prefix | `--novo-*` |
@@ -132,8 +146,8 @@ dolibarr-ui-skin/
 | 8 | Default palette | `#3b82f6` primary, slate neutral system |
 | 9 | Border radius | Cards 8px, buttons 6px, badges 4px, modals 12px |
 | 10 | Density | Balanced (14px/38px rows/16px padding/24px spacing) |
-| 11 | Sidebar | Restyle only. Collapsible deferred post-M5. |
-| 12 | Dark mode | `prefers-color-scheme` auto in M2. Manual toggle post-M5. |
+| 11 | Sidebar | Restyle in Phase 6. Collapsible in Phase 8 (JS). |
+| 12 | Dark mode | `prefers-color-scheme` auto in M2. Manual JS toggle in Phase 8. |
 
 ### Default Palette
 
