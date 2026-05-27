@@ -42,7 +42,7 @@ class modNovoux extends DolibarrModules
 		$this->descriptionlong = "NovouzDescriptionLong";
 		$this->editor_name = 'FlowMatrix-AI';
 		$this->editor_url = '';
-		$this->version = '0.3.0';
+		$this->version = '1.1.0';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		$this->picto = 'fa-palette';
 

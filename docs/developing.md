@@ -98,6 +98,20 @@ To test changes:
 2. Go to http://localhost:8080/custom/novoux/admin/setup.php
 3. If module isn't activated: Setup > Modules > search "Novo" > Enable
 
+## Version Locations
+
+When cutting a release, update the version string in **all** of these files:
+
+| File | Field/Line | Purpose |
+|------|-----------|---------|
+| `package.json` | `"version"` | npm/scripts, used by `scripts/package.sh` for zip filename |
+| `dolibarr/theme/novo/theme_descriptor.php` | `$theme_version` | Dolibarr theme metadata |
+| `dolibarr/custom/novoux/core/modules/modNovoux.class.php` | `$this->version` | Module version shown in Dolibarr admin |
+| `CHANGELOG.md` | `## [X.Y.Z]` section header + footer links | Release notes |
+| `README.md` | zip filename in install example | User-facing docs |
+
+The CI does **not** enforce version consistency — this is a manual step during release (see `planning/phase-10-ship-v1.1.md § Version Alignment`).
+
 Admin settings stored in `llx_const`:
 - `NOVOUX_PALETTE` — active palette name (matches filename in `palettes/`)
 - `NOVOUX_PRIMARY_COLOR` — hex colour override

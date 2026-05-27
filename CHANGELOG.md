@@ -7,8 +7,17 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-06-07
+
 ### Added
 
+- **Phase 9 — NovouX Admin Polish**
+  - Accent color picker (hex + visual) with `--novo-accent` override
+  - Danger color picker (hex + visual) with `--novo-danger` override
+  - Radius preset selector (sharp/default/rounded/pill) — overrides `--novo-radius-*` tokens
+  - Dark mode behavior dropdown (disabled/auto/toggle/forced) — replaces ALLOW_THEME_JS checkbox
+  - Custom CSS textarea (sanitized, truncated at 2000 chars) for admin-defined overrides
+  - `theme_descriptor.php` for theme metadata discovery
 - **Phase 8 — Theme JavaScript** (`novo.js`, 3.5 KB)
   - Dark mode toggle button injected into the top-right user menu, cycles Auto → Dark → Light
   - User preference persisted in `localStorage` under key `novo-color-scheme`
@@ -113,7 +122,8 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `--novo-*` CSS custom property abstraction layer (initially mapped 1:1 to Eldy values)
 - Theme identity: `$theme = 'novo'`, updated AUTHOR, file path comments
 
-[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/FlowMatrix-AI/dolibarr-ui-skin/compare/v0.1.0...v0.2.0

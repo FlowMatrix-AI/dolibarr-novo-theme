@@ -7,13 +7,26 @@ on:
     branches: [main]
 
 jobs:
-  palette-freshness:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node scripts/build-palettes.js
-      - name: Check generated palettes are up to date
-        run: git diff --exit-code dolibarr/theme/novo/palettes/
+
+      # PHP lint — all theme and module PHP files
+      - name: PHP lint
+        run: find dolibarr/ -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      # JS syntax check
+      - name: JS check
+        run: node --check dolibarr/theme/novo/novo.js
+
+      # Palette & variant freshness
+      - name: Build palettes
+        run: node scripts/build-palettes.js
+      - name: Check generated files are up to date
+        run: |
+          git diff --exit-code dolibarr/theme/novo/palettes/
+          git diff --exit-code dolibarr/theme/novo/variants/

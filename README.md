@@ -22,7 +22,7 @@ A clean, configurable Dolibarr theme for v21+. Token-driven design system with p
 
 ```bash
 # Download the latest release zip
-unzip novo-1.0.0.zip -d /path/to/dolibarr/htdocs/
+unzip novo-1.1.0.zip -d /path/to/dolibarr/htdocs/
 ```
 
 ### From source
@@ -48,7 +48,7 @@ See [docs/docker.md](docs/docker.md) for full Docker integration docs.
 1. Go to **Setup > Display** and select `novo` as the skin
 2. (Optional) Enable the `novoux` module under **Setup > Modules** for admin GUI
 3. (Optional) Set palette, density, and colors via the novoux admin page
-4. (Optional) Enable the dark mode toggle: check "Enable Theme JavaScript" in novoux settings
+4. (Optional) Set dark mode to "Toggle" in novoux settings for the instant dark/light switcher
 
 ## Palettes
 

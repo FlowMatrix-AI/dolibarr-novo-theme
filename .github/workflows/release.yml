@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Ensure palettes are fresh
+      - run: node scripts/build-palettes.js
+
+      # Build zip
+      - name: Package
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          zip -r "novo-${VERSION}.zip" \
+            dolibarr/theme/novo/ \
+            dolibarr/custom/novoux/ \
+            -x '*.DS_Store' -x '*/.git*' -x '__MACOSX*'
+          echo "ZIPFILE=novo-${VERSION}.zip" >> "$GITHUB_ENV"
+
+      # Create GitHub Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIPFILE }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false

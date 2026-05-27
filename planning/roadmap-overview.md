@@ -26,17 +26,7 @@ This is **not** a Dolibarr fork. Zero core files touched. Everything lives in st
 |-------|------|-------|
 | 6 | [Deep Restyle](phase-6-deep-restyle.md) | Full CSS rewrite of tables, tabs, menus, forms, login, cards, modals |
 | 7 | [Token System & Density](phase-7-token-system-density.md) | Expand tokens to spacing/typography/layout, density variants (compact/spacious) |
-
-### In Progress (v1.1)
-
-| Phase | Name | Scope |
-|-------|------|-------|
 | 8 | [Theme JavaScript](phase-8-theme-javascript.md) | `novo.js` — dark mode toggle + sticky table headers. Gated by `ALLOW_THEME_JS`. |
-
-### Next (v1.1 release)
-
-| Phase | Name | Scope |
-|-------|------|-------|
 | 9 | [NovouX Polish](phase-9-novoux-polish.md) | Accent/danger color pickers, radius presets, dark mode behavior selector, custom CSS textarea, theme_descriptor.php. |
 | 10 | [Ship v1.1](phase-10-ship-v1.1.md) | CI workflows (lint + release), version alignment, package script audit, QA pass, tag v1.1.0. |
 
