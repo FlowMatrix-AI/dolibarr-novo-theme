@@ -37,18 +37,18 @@ This is **not** a Dolibarr fork. Zero core files touched. Everything lives in st
 
 | Phase | Name | Scope |
 |-------|------|-------|
-| 9 | NovouX Settings Expansion | Add color pickers (accent, danger), dark mode selector, radius presets. Practical admin controls. |
-| 10 | Ship & Stabilize | `theme_descriptor.php`, versioning, package script, README with screenshots, GH Actions lint, tag v1.1.0. |
+| 9 | [NovouX Polish](phase-9-novoux-polish.md) | Accent/danger color pickers, radius presets, dark mode behavior selector, custom CSS textarea, theme_descriptor.php. |
+| 10 | [Ship v1.1](phase-10-ship-v1.1.md) | CI workflows (lint + release), version alignment, package script audit, QA pass, tag v1.1.0. |
 
-### Deferred (v1.2+ — after real-world feedback)
+### Future (v1.2+ — after real-world feedback)
 
-| Phase | Name | Scope | Prerequisite |
-|-------|------|-------|--------------|
-| 8b | Sidebar Collapse | JS-driven sidebar collapse/expand with CSS transition support | Phase 8 stable |
-| 11 | [Style Variants](phase-11-style-variants.md) | Visual personality variants (flat, elevated, soft) | Density validated in production |
-| 12 | [User Prefs & Multi-Tenant](phase-12-user-prefs-multitenant.md) | Per-user display preferences, multi-entity branding | Phase 8+9 stable |
-| — | Live Preview & Export | Iframe preview in settings, config export/import | Phase 9 stable |
-| — | Dolistore & CI/CD | Full CI pipeline, Dolistore listing, automated releases | v1.1 shipped |
+| Idea | Scope | Prerequisite |
+|------|-------|--------------|
+| Sidebar collapse | JS-driven sidebar collapse/expand with CSS transitions | v1.1 stable |
+| Style variants | Visual personality variants (flat, elevated, soft) — separate token layer | User demand |
+| Per-user preferences | Server-side per-user density/dark pref (beyond localStorage) | NovouX stable in production |
+| Dolistore listing | Package for Dolistore marketplace | v1.1 released + feedback |
+| Repo rename | `dolibarr-ui-skin` → `dolibarr-novo` | Whenever it makes sense |
 
 ---
 
