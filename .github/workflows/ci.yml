@@ -30,3 +30,52 @@ jobs:
         run: |
           git diff --exit-code dolibarr/theme/novo/palettes/
           git diff --exit-code dolibarr/theme/novo/variants/
+
+  phpunit:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: dolibarr
+          MYSQL_DATABASE: dolibarr
+        ports: ['3306:3306']
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=3s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli, gd, intl, zip, calendar
+          tools: phpunit:10
+
+      - name: Install Dolibarr
+        run: |
+          git clone --depth=1 --branch=develop https://github.com/Dolibarr/dolibarr.git /tmp/dolibarr
+          mkdir -p /tmp/dolibarr/documents
+          cat > /tmp/dolibarr/htdocs/conf/conf.php << 'CONF'
+          <?php
+          $dolibarr_main_url_root='http://localhost';
+          $dolibarr_main_document_root='/tmp/dolibarr/htdocs';
+          $dolibarr_main_data_root='/tmp/dolibarr/documents';
+          $dolibarr_main_db_host='127.0.0.1';
+          $dolibarr_main_db_port='3306';
+          $dolibarr_main_db_name='dolibarr';
+          $dolibarr_main_db_prefix='llx_';
+          $dolibarr_main_db_user='root';
+          $dolibarr_main_db_pass='dolibarr';
+          $dolibarr_main_db_type='mysqli';
+          $dolibarr_main_authentication='dolibarr';
+          CONF
+          cd /tmp/dolibarr/htdocs/install
+          php step1.php set
+          php step2.php set
+          php step5.php set admin admin123
+
+      - name: Link module and theme
+        run: |
+          ln -s $GITHUB_WORKSPACE/dolibarr/custom/novoux /tmp/dolibarr/htdocs/custom/novoux
+          ln -s $GITHUB_WORKSPACE/dolibarr/theme/novo /tmp/dolibarr/htdocs/theme/novo
+
+      - name: Run PHPUnit
+        run: phpunit --testdox /tmp/dolibarr/htdocs/custom/novoux/test/phpunit/
