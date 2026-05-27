@@ -90,10 +90,11 @@ jobs:
           php step2.php set
           php step5.php 0.0.0 0.0.0
 
-      - name: Link module and theme
+      - name: Copy module and theme into Dolibarr
         run: |
-          ln -s $GITHUB_WORKSPACE/dolibarr/custom/novoux /tmp/dolibarr/htdocs/custom/novoux
-          ln -s $GITHUB_WORKSPACE/dolibarr/theme/novo /tmp/dolibarr/htdocs/theme/novo
+          cp -r $GITHUB_WORKSPACE/dolibarr/custom/novoux /tmp/dolibarr/htdocs/custom/novoux
+          cp -r $GITHUB_WORKSPACE/dolibarr/theme/novo /tmp/dolibarr/htdocs/theme/novo
 
       - name: Run PHPUnit
-        run: phpunit --testdox /tmp/dolibarr/htdocs/custom/novoux/test/phpunit/
+        working-directory: /tmp/dolibarr/htdocs
+        run: phpunit --testdox custom/novoux/test/phpunit/
