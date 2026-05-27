@@ -187,6 +187,9 @@ print load_fiche_titre($langs->trans($page_name), $linkback, 'title_setup');
 $head = novoux_admin_prepare_head();
 print dol_get_fiche_head($head, 'settings', $langs->trans($page_name), -1, 'fa-palette');
 
+// Info: per-user overrides
+print info_admin($langs->trans("NovouzUserPrefsInfo"));
+
 // Form
 print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 print '<input type="hidden" name="token" value="'.newToken().'">';

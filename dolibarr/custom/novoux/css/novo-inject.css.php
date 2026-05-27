@@ -41,8 +41,14 @@ if (!defined('ISLOADEDBYSTEELSHEET')) {
 	header('Content-Type: text/css');
 }
 
-// Load selected palette
-$palette = getDolGlobalString('NOVOUX_PALETTE', 'default');
+// Per-user preference overrides (user param > admin const > default)
+$palette = '';
+if (!empty($user->conf->NOVOUX_USER_PALETTE)) {
+	$palette = $user->conf->NOVOUX_USER_PALETTE;
+}
+if (empty($palette)) {
+	$palette = getDolGlobalString('NOVOUX_PALETTE', 'default');
+}
 // Sanitize to prevent path traversal
 $palette = preg_replace('/[^a-z0-9_-]/', '', $palette);
 $paletteFile = DOL_DOCUMENT_ROOT.'/theme/novo/palettes/'.$palette.'.css';
@@ -50,8 +56,14 @@ if (file_exists($paletteFile)) {
 	readfile($paletteFile);
 }
 
-// Load density variant
-$density = getDolGlobalString('NOVOUX_DENSITY', 'default');
+// Load density variant (user param > admin const > default)
+$density = '';
+if (!empty($user->conf->NOVOUX_USER_DENSITY)) {
+	$density = $user->conf->NOVOUX_USER_DENSITY;
+}
+if (empty($density)) {
+	$density = getDolGlobalString('NOVOUX_DENSITY', 'default');
+}
 $density = preg_replace('/[^a-z0-9_-]/', '', $density);
 if ($density !== 'default') {
 	$variantFile = DOL_DOCUMENT_ROOT.'/theme/novo/variants/density-'.$density.'.css';

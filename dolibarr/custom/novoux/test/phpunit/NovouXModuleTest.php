@@ -235,4 +235,78 @@ class NovouXModuleTest extends TestCase
 		$output = preg_replace('/behavior\s*:/i', 'blocked:', $output);
 		$this->assertEquals($input, $output, 'Valid CSS should pass through sanitization unchanged');
 	}
+
+	// --- Per-User Preferences ---
+
+	public function testUserPrefOverridesGlobalPalette()
+	{
+		global $conf, $db, $user;
+
+		// Set admin global palette
+		dolibarr_set_const($db, 'NOVOUX_PALETTE', 'slate', 'chaine', 0, '', $conf->entity);
+		$conf->setValues($db);
+
+		// Set user preference
+		dol_set_user_param($db, $conf, $user, array('NOVOUX_USER_PALETTE' => 'warm'));
+		$user->loadPersonalConf();
+
+		// Simulate precedence logic from novo-inject.css.php
+		$palette = '';
+		if (!empty($user->conf->NOVOUX_USER_PALETTE)) {
+			$palette = $user->conf->NOVOUX_USER_PALETTE;
+		}
+		if (empty($palette)) {
+			$palette = getDolGlobalString('NOVOUX_PALETTE', 'default');
+		}
+
+		$this->assertEquals('warm', $palette, 'User param should override global const');
+	}
+
+	public function testUserPrefFallsBackToGlobal()
+	{
+		global $conf, $db, $user;
+
+		// Set admin global palette
+		dolibarr_set_const($db, 'NOVOUX_PALETTE', 'green', 'chaine', 0, '', $conf->entity);
+		$conf->setValues($db);
+
+		// Clear user preference
+		dol_set_user_param($db, $conf, $user, array('NOVOUX_USER_PALETTE' => ''));
+		$user->loadPersonalConf();
+
+		// Simulate precedence logic
+		$palette = '';
+		if (!empty($user->conf->NOVOUX_USER_PALETTE)) {
+			$palette = $user->conf->NOVOUX_USER_PALETTE;
+		}
+		if (empty($palette)) {
+			$palette = getDolGlobalString('NOVOUX_PALETTE', 'default');
+		}
+
+		$this->assertEquals('green', $palette, 'Should fall back to global const when user pref is empty');
+	}
+
+	public function testUserPrefDensityOverride()
+	{
+		global $conf, $db, $user;
+
+		// Set admin global density
+		dolibarr_set_const($db, 'NOVOUX_DENSITY', 'default', 'chaine', 0, '', $conf->entity);
+		$conf->setValues($db);
+
+		// Set user preference to compact
+		dol_set_user_param($db, $conf, $user, array('NOVOUX_USER_DENSITY' => 'compact'));
+		$user->loadPersonalConf();
+
+		// Simulate precedence logic
+		$density = '';
+		if (!empty($user->conf->NOVOUX_USER_DENSITY)) {
+			$density = $user->conf->NOVOUX_USER_DENSITY;
+		}
+		if (empty($density)) {
+			$density = getDolGlobalString('NOVOUX_DENSITY', 'default');
+		}
+
+		$this->assertEquals('compact', $density, 'User density pref should override global');
+	}
 }

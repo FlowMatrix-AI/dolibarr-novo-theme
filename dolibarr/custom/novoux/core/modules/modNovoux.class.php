@@ -82,6 +82,11 @@ class modNovoux extends DolibarrModules
 		$this->warnings_activation = array();
 		$this->warnings_activation_ext = array();
 
+		// Tabs added to existing objects
+		$this->tabs = array(
+			'user:+novoux_prefs:NovouzThemePrefs:novoux@novoux:/novoux/user_prefs.php?id=__ID__',
+		);
+
 		// Constants set on module activation
 		$this->const = array(
 			0 => array('NOVOUX_PALETTE', 'chaine', 'default', 'Active palette name for Novo theme', 1, 'current', 0),
@@ -92,7 +97,6 @@ class modNovoux extends DolibarrModules
 		// No permissions, menus, or boxes needed
 		$this->rights = array();
 		$this->menu = array();
-		$this->tabs = array();
 	}
 
 	/**
