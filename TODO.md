@@ -38,7 +38,7 @@ The Dolibarr wiki signup captcha is currently broken. Once resolved:
 **Compatibility:** Dolibarr ≥ 21.0, PHP ≥ 7.4  
 
 **Description:**
-> A clean, token-driven theme for Dolibarr with 5 color palettes, dark mode toggle,
+> A clean, token-driven theme for Dolibarr with 8 color palettes, dark mode toggle,
 > 3 density levels, collapsible sidebar, and per-user preferences. Zero core edits.
 > Install via one zip — theme and companion module bundled together.
 

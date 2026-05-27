@@ -7,6 +7,12 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.3.0] - 2025-05-27
+
+### Added
+
+- **About tab** in admin panel — shows version, author, license, compatibility, and feature list
+
 ## [2.2.0] - 2025-05-27
 
 ### Added
