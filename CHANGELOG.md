@@ -7,6 +7,53 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- **Phase 8 — Theme JavaScript** (`novo.js`, 3.5 KB)
+  - Dark mode toggle button injected into the top-right user menu, cycles Auto → Dark → Light
+  - User preference persisted in `localStorage` under key `novo-color-scheme`
+  - CSS attribute selectors `html[data-novo-scheme="dark"|"light"]` override all colour variables
+    instantly — works independently of `THEME_DARKMODEENABLED`
+  - `html[data-novo-scheme="light"]` forces light even if OS prefers dark
+  - Sticky table headers: `table.liste` with ≥ 8 rows gets position-sticky `<thead>` offset by header height
+  - Graceful degradation: if JS disabled, dark mode still follows OS preference via existing `@media`
+  - Gated behind `ALLOW_THEME_JS` constant (checkbox in NovouX admin)
+- **Phase 7 — Extended Token System & Density Variants**
+  - Token schema expanded: `spacing`, `typography`, `density`, `layout` categories added to `tokens/default.json`
+  - Density variants: `tokens/variants/density-compact.json` and `density-spacious.json`
+  - Build script generates `dolibarr/theme/novo/variants/density-{compact,spacious}.css`
+  - `--novo-spacing-*`, `--novo-typography-*`, `--novo-density-*`, `--novo-layout-*` CSS custom properties declared in `:root`
+  - NovouX admin page has density radio group (Compact / Default / Spacious)
+  - `novo-inject.css.php` dynamically loads selected density variant CSS
+- **Phase 6 — Deep Restyle** (full CSS rewrite of major UI surfaces)
+  - Tables: removed legacy 2px colored top-border, added subtle header background, smooth row hover
+    transitions, reduced alternating-row contrast, rounded first/last cell corners, checked-row left accent
+  - Tabs: replaced background-highlight model with bottom-border underline indicator, transparent inactive
+    background, single separator border between tabs and content
+  - Top menu: cleaner header bar with shadow instead of border-bottom, tighter spacing
+  - Left sidebar: active-item highlight with primary-colour left border, reduced padding
+  - Forms & inputs: consistent focus rings, unified border radius, aligned field-label spacing
+  - Login page: modernised gradient, centered card with shadow and novo radius, refined spacing
+  - Record cards: surface background, subtle border, hover shadow lift
+  - Buttons: refined padding/height to match density tokens
+  - Modals / dialog boxes: surface background, radius, shadow-lg
+  - Status badges: updated spacing and font-weight
+
+### Changed
+
+- Palette CSS now overrides both `--novo-*` and legacy `--color*` Dolibarr variables (full coverage)
+- `novo-inject.css.php` applies palette early (prevents flash) and again late (overrides inline PHP colours)
+- Dark mode variable block duplicated into JS-driven `html[data-novo-scheme]` selectors for instant switching
+
+### Fixed
+
+- Login page gradient override: `!important` on `.login_center` background to beat inline style from `login.tpl.php`
+- Palette not applied inline: moved inline override injection above late-palette load
+- Contrast issues on dark backgrounds in several palette combos
+- `novo-inject.css.php` now correctly loads selected palette at runtime (was missing)
+- PHP pass-by-reference error on NovouX admin page
+- Dev environment language defaulting to French after fresh init
+
 ## [1.0.0] - 2026-05-25
 
 ### Added
