@@ -20,17 +20,35 @@ This is **not** a Dolibarr fork. Zero core files touched. Everything lives in st
 | 4 | [Companion Module](phase-4-companion-module.md) | novoux module: admin setup page, palette picker, CSS injection, config precedence |
 | 5 | [Preview, Package & Ship](phase-5-preview-package-ship.md) | GitHub Pages preview site, zip packaging, Docker docs, v1.0 release |
 
-### Planned (v1.1+)
+### Completed (v1.1)
 
-| Phase | Name | Scope | Target |
-|-------|------|-------|--------|
-| 6 | [Deep Restyle](phase-6-deep-restyle.md) | Full CSS rewrite of tables, tabs, menus, forms, login, cards, modals | v1.1 |
-| 7 | [Token System & Density](phase-7-token-system-density.md) | Expand tokens to spacing/typography/layout, density variants (compact/spacious) | v1.2 |
-| 8 | [Theme JavaScript](phase-8-theme-javascript.md) | `novo.js` — dark toggle, sticky headers, sidebar collapse, density switch | v1.2 |
-| 9 | [Advanced NovouX](phase-9-advanced-novoux.md) | Full settings panel: all tokens configurable, live preview, export/import | v1.3 |
-| 10 | [Ecosystem & Distribution](phase-10-ecosystem-distribution.md) | Repo rename, `theme_descriptor.php`, CI/CD, Dolistore, docs site | v1.1–1.3 (parallel) |
-| 11 | [Style Variants](phase-11-style-variants.md) | Visual personality variants: flat, elevated, glass, brutalist, soft | v1.4 |
-| 12 | [User Prefs & Multi-Tenant](phase-12-user-prefs-multitenant.md) | Per-user display preferences, multi-entity branding, white-label mode | v1.5 |
+| Phase | Name | Scope |
+|-------|------|-------|
+| 6 | [Deep Restyle](phase-6-deep-restyle.md) | Full CSS rewrite of tables, tabs, menus, forms, login, cards, modals |
+| 7 | [Token System & Density](phase-7-token-system-density.md) | Expand tokens to spacing/typography/layout, density variants (compact/spacious) |
+
+### In Progress (v1.1)
+
+| Phase | Name | Scope |
+|-------|------|-------|
+| 8 | [Theme JavaScript](phase-8-theme-javascript.md) | `novo.js` — dark mode toggle + sticky table headers. Gated by `ALLOW_THEME_JS`. |
+
+### Next (v1.1 release)
+
+| Phase | Name | Scope |
+|-------|------|-------|
+| 9 | NovouX Settings Expansion | Add color pickers (accent, danger), dark mode selector, radius presets. Practical admin controls. |
+| 10 | Ship & Stabilize | `theme_descriptor.php`, versioning, package script, README with screenshots, GH Actions lint, tag v1.1.0. |
+
+### Deferred (v1.2+ — after real-world feedback)
+
+| Phase | Name | Scope | Prerequisite |
+|-------|------|-------|--------------|
+| 8b | Sidebar Collapse | JS-driven sidebar collapse/expand with CSS transition support | Phase 8 stable |
+| 11 | [Style Variants](phase-11-style-variants.md) | Visual personality variants (flat, elevated, soft) | Density validated in production |
+| 12 | [User Prefs & Multi-Tenant](phase-12-user-prefs-multitenant.md) | Per-user display preferences, multi-entity branding | Phase 8+9 stable |
+| — | Live Preview & Export | Iframe preview in settings, config export/import | Phase 9 stable |
+| — | Dolistore & CI/CD | Full CI pipeline, Dolistore listing, automated releases | v1.1 shipped |
 
 ---
 
