@@ -7,7 +7,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [1.1.0] - 2025-06-07
+## [1.1.0] - 2026-05-27
 
 ### Added
 
@@ -16,7 +16,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Danger color picker (hex + visual) with `--novo-danger` override
   - Radius preset selector (sharp/default/rounded/pill) — overrides `--novo-radius-*` tokens
   - Dark mode behavior dropdown (disabled/auto/toggle/forced) — replaces ALLOW_THEME_JS checkbox
-  - Custom CSS textarea (sanitized, truncated at 2000 chars) for admin-defined overrides
+  - Custom CSS textarea (sanitized, truncated at 4096 chars) for admin-defined overrides
   - `theme_descriptor.php` for theme metadata discovery
 - **Phase 8 — Theme JavaScript** (`novo.js`, 3.5 KB)
   - Dark mode toggle button injected into the top-right user menu, cycles Auto → Dark → Light

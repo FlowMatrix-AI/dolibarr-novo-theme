@@ -147,4 +147,97 @@ Override `--novo-*` vars without forking:
 1. **Module path**: novoux injects via `module_parts['css']`; set `NOVOUX_PRIMARY_COLOR` in admin
 2. **Docker path**: volume-mount a CSS file that overrides `:root` vars
 3. **Multi-tenant**: set different `NOVOUX_*` constants per entity
-3. **Build path**: bake client CSS into image at build time
+4. **Build path**: bake client CSS into image at build time
+
+## NovouX Settings Reference
+
+All settings are stored in `llx_const` and read via `getDolGlobalString()`.
+
+| Constant | Type | Default | Effect |
+|----------|------|---------|--------|
+| `NOVOUX_PALETTE` | string | `default` | Active palette filename (without `.css`) |
+| `NOVOUX_PRIMARY_COLOR` | hex | (none) | Overrides `--novo-primary` |
+| `NOVOUX_ACCENT_COLOR` | hex | (none) | Overrides `--novo-accent` |
+| `NOVOUX_DANGER_COLOR` | hex | (none) | Overrides `--novo-danger` |
+| `NOVOUX_DENSITY` | string | `default` | `compact`, `default`, or `spacious` |
+| `NOVOUX_RADIUS` | string | `default` | Radius preset (see below) |
+| `NOVOUX_DARK_MODE` | string | `disabled` | Dark mode behavior (see below) |
+| `NOVOUX_LOGO_URL` | url | (none) | Replaces `#img_logo` src |
+| `NOVOUX_CUSTOM_CSS` | text | (none) | Raw CSS injected last (max 4096 chars) |
+
+### Radius Presets
+
+| Preset | `--novo-radius-sm` | `--novo-radius-md` | `--novo-radius-lg` | `--novo-radius-xl` |
+|--------|-------|-------|-------|-------|
+| `sharp` | 2px | 3px | 4px | 6px |
+| `default` | 4px | 6px | 8px | 12px |
+| `rounded` | 8px | 12px | 16px | 24px |
+| `pill` | 50px | 50px | 50px | 50px |
+
+### Dark Mode Behavior
+
+| Option | `THEME_DARKMODEENABLED` | `ALLOW_THEME_JS` | Result |
+|--------|------------------------|-------------------|--------|
+| `disabled` | 0 | 0 | Always light |
+| `auto` | 1 | 0 | Follows OS preference via `@media` |
+| `toggle` | 1 | 1 | JS button cycles Auto → Dark → Light |
+| `forced` | 2 | 0 | Always dark |
+
+### Custom CSS Sanitization
+
+Input is sanitized on save:
+- Strips `<script` tags
+- Strips `expression(` (IE CSS expressions)
+- Strips `url(javascript:` (XSS vector)
+- Truncated at 4096 bytes
+
+## Sticky Table Headers
+
+Rules applied by `novo.js` when `ALLOW_THEME_JS` is enabled:
+
+- Only `table.liste` with ≥ 8 `<tbody>` rows
+- Tables inside `.ui-dialog` (modals) are skipped
+- Filter row (second `<tr>` in `<thead>`) also sticks, stacked below header row
+- `top` offset accounts for `#id-top` header height
+- Mobile (no `#id-top` visible): `top: 0px`
+- `@media print`: sticky disabled
+- Class `novo-sticky` added to table for CSS targeting
+
+## Decisions & Constraints
+
+| Decision | Rationale |
+|----------|-----------|
+| Dolibarr v21+ only | Uses CSS custom properties, `module_parts`, v21 theme hooks |
+| Zero core edits | Survivable across Dolibarr upgrades |
+| No external JS frameworks | Keep page weight < 5 KB added |
+| No Composer/npm runtime deps | Theme + module must install from zip |
+| No per-client forks | Override via CSS variables or `llx_const` only |
+| Vanilla ES2020 (no transpile) | All target browsers support it natively |
+| Module ID: 500200 | Needs wiki reservation before Dolistore listing |
+| Module family: `interface` | Appropriate for UI-only modules |
+| Min PHP: matches v21 Docker image | Currently PHP 8.1 |
+
+## CI & Release
+
+### CI (`ci.yml`)
+
+Runs on push/PR to `main`:
+1. PHP lint — all `.php` files under `dolibarr/`
+2. JS syntax — `node --check dolibarr/theme/novo/novo.js`
+3. Palette/variant freshness — rebuild and `git diff --exit-code`
+
+### Release (`release.yml`)
+
+Triggered by tags matching `v*`:
+1. Rebuilds palettes (ensures zip contains fresh output)
+2. Creates zip: `novo-X.Y.Z.zip` containing `dolibarr/theme/novo/` + `dolibarr/custom/novoux/`
+3. Creates GitHub Release with zip attached + auto-generated release notes
+
+## Future Ideas
+
+| Idea | Scope | Prerequisite |
+|------|-------|--------------|
+| Sidebar collapse | JS-driven collapse/expand with CSS transitions | v1.1 stable |
+| Style variants | Visual personality variants (flat, elevated, soft) as separate token layer | User demand |
+| Per-user preferences | Server-side per-user density/dark pref (beyond localStorage) | NovouX stable in production |
+| Dolistore listing | Package for Dolistore marketplace | v1.1 released + real-world feedback |

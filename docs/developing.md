@@ -110,16 +110,48 @@ When cutting a release, update the version string in **all** of these files:
 | `CHANGELOG.md` | `## [X.Y.Z]` section header + footer links | Release notes |
 | `README.md` | zip filename in install example | User-facing docs |
 
-The CI does **not** enforce version consistency — this is a manual step during release (see `planning/phase-10-ship-v1.1.md § Version Alignment`).
+The CI does **not** enforce version consistency — this is a manual step during release.
 
-Admin settings stored in `llx_const`:
-- `NOVOUX_PALETTE` — active palette name (matches filename in `palettes/`)
-- `NOVOUX_PRIMARY_COLOR` — hex colour override
-- `NOVOUX_DENSITY` — `compact`, `default`, or `spacious`
-- `NOVOUX_LOGO_URL` — custom logo URL
-- `ALLOW_THEME_JS` — enables `novo.js` loading
+## QA Testing Checklist
+
+Before tagging a release, verify in the Docker dev environment:
+
+**Theme rendering:**
+- Fresh `docker compose up`, activate novo via Setup > Display
+- Home dashboard, a list page (e.g. Third Parties), a card page (e.g. Third Party detail)
+- Login page renders correctly with novo styling
+
+**Palettes:**
+- Switch to each palette (default, slate, blue, green, warm) — colors change on refresh
+- Dark mode looks correct with each palette
+
+**Density:**
+- Compact: rows visibly shorter, table fits more data
+- Default: baseline
+- Spacious: rows taller, more breathing room
+
+**Dark mode (all 4 options):**
+- Disabled: always light regardless of OS
+- Auto: respects OS preference (test via DevTools > Rendering > Emulate prefers-color-scheme)
+- Toggle: button appears in top-right, cycles Auto/Dark/Light, persists across refresh
+- Forced: always dark
+
+**Admin controls (NovouX setup page):**
+- Accent color: change to e.g. `#ec4899`, verify accent-colored elements update
+- Danger color: change to e.g. `#dc2626`, verify danger buttons update
+- Radius preset: each option visibly changes card/button roundness
+- Custom CSS: add `body { border-top: 3px solid red; }`, verify it appears
+
+**Module lifecycle:**
+- Disable novoux module → theme still renders (just without runtime overrides)
+- Re-enable → settings preserved and applied
+
+**Browser compat:**
+- Chrome (latest)
+- Firefox (latest)
 
 ## CI
 
-- **Palette freshness**: `ci.yml` runs `build-palettes.js` and fails if generated files differ from committed
-- **Pages deploy**: `pages.yml` builds and deploys preview site on push to `main`
+- **`ci.yml`**: PHP lint (all `.php` in `dolibarr/`), JS check (`node --check novo.js`), palette + variant freshness
+- **`pages.yml`**: builds and deploys preview site on push to `main` (when `preview/` or `tokens/` change)
+- **`release.yml`**: tag push → builds zip → creates GitHub Release with auto-generated notes

@@ -1,4 +1,6 @@
-# Research
+# Dolibarr Internals Reference
+
+Research notes on Dolibarr's theme and module systems. Useful context for contributors unfamiliar with how Dolibarr works under the hood.
 
 ## Dolibarr Theme System
 
@@ -166,18 +168,4 @@ Classes commonly used in Dolibarr pages (must be styled by any theme):
 - `.badge` — status badges
 - `.dropdown-menu` — dropdown menus
 
----
-
-## Docker Development
-
-Official Dolibarr Docker image: https://hub.docker.com/r/dolibarr/dolibarr
-Docker repo: https://github.com/Dolibarr/dolibarr-docker
-
-Key env vars for the image:
-- `DOLI_DB_HOST`, `DOLI_DB_NAME`, `DOLI_DB_USER`, `DOLI_DB_PASSWORD`
-- `DOLI_ADMIN_LOGIN`, `DOLI_ADMIN_PASSWORD`
-- `DOLI_URL_ROOT`
-- `DOLI_INIT_DEMO` — populate with demo data
-
-Theme files live at `/var/www/html/theme/` in the container.
-Custom modules at `/var/www/html/custom/`.
+For Docker setup, see [docker.md](docker.md).
