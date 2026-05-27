@@ -33,3 +33,5 @@ NovouzUserPrefs=Theme Preferences
 NovouzUserPrefsInfo=Users can override the admin defaults from their User card → Theme tab.
 ResetToDefault=Reset to Default
 ErrorBadUrl=Invalid URL format
+NovouzSidebarCollapse=Collapsible Sidebar
+NovouzSidebarCollapseHelp=Allow users to collapse the left menu to a narrow icon rail. Requires theme JS enabled.

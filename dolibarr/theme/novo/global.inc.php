@@ -9916,6 +9916,100 @@ div.flot-text .flot-tick-label .tickLabel, .fa-color-unset {
 	user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+/* --- Sidebar Collapse (gated by NOVOUX_SIDEBAR_COLLAPSE) --- */
+
+.side-nav, #id-right {
+	transition: width 0.2s ease, margin-left 0.2s ease;
+}
+
+.novo-sidebar-collapsed .side-nav {
+	width: 48px;
+	overflow: hidden;
+}
+
+.novo-sidebar-collapsed #id-left {
+	width: 48px;
+	overflow: hidden;
+}
+
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_titre a span,
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_titre span.mainmenutext,
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_contenu a span {
+	display: none;
+}
+
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_titre a .fa,
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_contenu a .fa,
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_titre a .fas,
+.novo-sidebar-collapsed .vmenu .blockvmenu .menu_contenu a .fas {
+	font-size: 1.2em;
+	display: block;
+	text-align: center;
+	padding: 6px 0;
+}
+
+.novo-sidebar-collapsed #id-right {
+	margin-left: 48px;
+	width: calc(100% - 48px);
+}
+
+/* Hover flyout */
+.novo-sidebar-collapsed .side-nav:hover {
+	width: 240px;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1100;
+	overflow-y: auto;
+	box-shadow: 4px 0 16px rgba(0,0,0,.15);
+	background: var(--novo-surface, #fff);
+}
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_titre a span,
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_titre span.mainmenutext,
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_contenu a span {
+	display: inline;
+}
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_titre a .fa,
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_contenu a .fa,
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_titre a .fas,
+.novo-sidebar-collapsed .side-nav:hover .vmenu .blockvmenu .menu_contenu a .fas {
+	display: inline;
+	font-size: inherit;
+	text-align: inherit;
+	padding: 0;
+}
+
+/* Toggle button */
+.novo-sidebar-toggle {
+	position: absolute;
+	bottom: 12px;
+	left: 0;
+	width: 100%;
+	padding: 8px 0;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	color: var(--novo-text-muted, #6b7280);
+	font-size: 1rem;
+	text-align: center;
+	opacity: 0.7;
+	transition: opacity 0.15s;
+}
+.novo-sidebar-toggle:hover {
+	opacity: 1;
+}
+.novo-sidebar-toggle:focus-visible {
+	outline: 2px solid var(--novo-primary, #3b82f6);
+	outline-offset: -2px;
+	border-radius: 4px;
+}
+
+/* Hide collapse toggle on mobile (sidebar already hidden) */
+@media (max-width: 767px) {
+	.novo-sidebar-toggle { display: none; }
+}
+
 <?php
 // === Novo Palette Override ===
 // Load selected palette CSS at the end so it overrides all PHP-set :root variables.

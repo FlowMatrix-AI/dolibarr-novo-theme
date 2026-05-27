@@ -5,11 +5,13 @@
  * Features:
  * - Dark mode toggle (Auto/Dark/Light) with localStorage persistence
  * - Sticky table headers for large lists
+ * - Sidebar collapse to icon rail (when enabled)
  */
 (function () {
 	'use strict';
 
 	var SCHEME_KEY = 'novo-color-scheme';
+	var SIDEBAR_KEY = 'novo-sidebar-collapsed';
 	var MODES = ['auto', 'dark', 'light'];
 	var ICONS = {
 		auto: 'fa-circle-half-stroke',
@@ -113,15 +115,88 @@
 		}
 	}
 
+	// --- Sidebar Collapse ---
+
+	function isSidebarCollapseEnabled() {
+		return document.body && document.body.dataset.novoSidebarCollapse === '1';
+	}
+
+	function getSidebarState() {
+		try { return localStorage.getItem(SIDEBAR_KEY) === '1'; } catch (e) { return false; }
+	}
+
+	function setSidebarState(collapsed) {
+		try {
+			if (collapsed) {
+				localStorage.setItem(SIDEBAR_KEY, '1');
+			} else {
+				localStorage.removeItem(SIDEBAR_KEY);
+			}
+		} catch (e) { /* storage unavailable */ }
+	}
+
+	function applySidebarState(collapsed) {
+		if (collapsed) {
+			document.body.classList.add('novo-sidebar-collapsed');
+		} else {
+			document.body.classList.remove('novo-sidebar-collapsed');
+		}
+	}
+
+	function initSidebarCollapse() {
+		if (!isSidebarCollapseEnabled()) return;
+
+		// Apply stored state
+		var collapsed = getSidebarState();
+		applySidebarState(collapsed);
+
+		// Find sidebar container
+		var sidebar = document.getElementById('id-left');
+		if (!sidebar) return;
+
+		// Don't show on mobile
+		if (window.innerWidth < 768) return;
+
+		// Create toggle button
+		var btn = document.createElement('button');
+		btn.className = 'novo-sidebar-toggle';
+		btn.setAttribute('aria-label', 'Toggle sidebar');
+		btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+		btn.title = 'Toggle sidebar';
+		btn.innerHTML = '<i class="fas ' + (collapsed ? 'fa-chevron-right' : 'fa-chevron-left') + '"></i>';
+
+		btn.addEventListener('click', function (e) {
+			e.preventDefault();
+			collapsed = !collapsed;
+			applySidebarState(collapsed);
+			setSidebarState(collapsed);
+			btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+			var icon = btn.querySelector('i');
+			if (icon) {
+				icon.className = 'fas ' + (collapsed ? 'fa-chevron-right' : 'fa-chevron-left');
+			}
+		});
+
+		// Position sidebar relatively for the absolute-positioned button
+		sidebar.style.position = 'relative';
+		sidebar.appendChild(btn);
+	}
+
 	// --- Init ---
 
 	function novoInit() {
 		initDarkToggle();
 		initStickyHeaders();
+		initSidebarCollapse();
 	}
 
 	// Apply scheme early to prevent flash
 	applyScheme(getCurrentMode());
+
+	// Apply sidebar state early to prevent layout shift
+	if (getSidebarState() && document.body) {
+		document.body.classList.add('novo-sidebar-collapsed');
+	}
 
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', novoInit);

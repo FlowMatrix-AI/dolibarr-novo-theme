@@ -61,7 +61,9 @@ class modNovoux extends DolibarrModules
 				'/novoux/css/novo-inject.css.php',
 			),
 			'js' => array(),
-			'hooks' => array(),
+			'hooks' => array(
+				array('entity' => '0', 'module' => 'novoux', 'class' => 'ActionsNovoux', 'method' => '', 'hookcontext' => 'main'),
+			),
 			'moduleforexternal' => 0,
 			'websitetemplates' => 0,
 		);

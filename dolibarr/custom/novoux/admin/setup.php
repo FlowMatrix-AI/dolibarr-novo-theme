@@ -152,6 +152,14 @@ if ($action == 'update') {
 		dolibarr_set_const($db, 'NOVOUX_LOGO_URL', $logoUrl, 'chaine', 0, '', $conf->entity);
 	}
 
+	// Sidebar collapse
+	$sidebarCollapse = GETPOST('NOVOUX_SIDEBAR_COLLAPSE', 'alpha');
+	dolibarr_set_const($db, 'NOVOUX_SIDEBAR_COLLAPSE', ($sidebarCollapse ? '1' : '0'), 'chaine', 0, '', $conf->entity);
+	// Sidebar collapse requires theme JS
+	if ($sidebarCollapse) {
+		dolibarr_set_const($db, 'ALLOW_THEME_JS', '1', 'chaine', 0, '', $conf->entity);
+	}
+
 	// Custom CSS
 	$customCss = GETPOST('NOVOUX_CUSTOM_CSS', 'restricthtml');
 	$customCss = preg_replace('/<\/?script[^>]*>/i', '', $customCss);
@@ -297,6 +305,17 @@ foreach ($darkOptions as $dval => $dlabel) {
 }
 print '</select>';
 print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDarkModeHelp").'</span>';
+print '</td>';
+print '</tr>';
+
+// Sidebar collapse
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzSidebarCollapse").'</td>';
+print '<td>';
+$currentSidebar = getDolGlobalString('NOVOUX_SIDEBAR_COLLAPSE', '0');
+$checked = ($currentSidebar == '1') ? ' checked' : '';
+print '<input type="checkbox" name="NOVOUX_SIDEBAR_COLLAPSE" value="1"'.$checked.'>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzSidebarCollapseHelp").'</span>';
 print '</td>';
 print '</tr>';
 
