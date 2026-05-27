@@ -100,6 +100,10 @@ if ($action == 'update') {
 		dolibarr_set_const($db, 'NOVOUX_LOGO_URL', $logoUrl, 'chaine', 0, '', $conf->entity);
 	}
 
+	// Allow Theme JS
+	$allowThemeJs = GETPOST('ALLOW_THEME_JS', 'int') ? '1' : '0';
+	dolibarr_set_const($db, 'ALLOW_THEME_JS', $allowThemeJs, 'chaine', 0, '', $conf->entity);
+
 	if (!$error) {
 		setEventMessages($langs->trans("SetupSaved"), null, 'mesgs');
 	}
@@ -178,6 +182,17 @@ print '<td>';
 $currentLogo = getDolGlobalString('NOVOUX_LOGO_URL', '');
 print '<input type="url" name="NOVOUX_LOGO_URL" value="'.dol_escape_htmltag($currentLogo).'" class="flat minwidth400" placeholder="https://example.com/logo.png">';
 print '<br><span class="opacitymedium small">'.$langs->trans("NovouzLogoUrlHelp").'</span>';
+print '</td>';
+print '</tr>';
+
+// Allow Theme JS (dark mode toggle, sticky headers)
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzAllowThemeJs").'</td>';
+print '<td>';
+$currentAllowJs = getDolGlobalString('ALLOW_THEME_JS', '0');
+$checked = ($currentAllowJs) ? ' checked' : '';
+print '<input type="checkbox" name="ALLOW_THEME_JS" value="1"'.$checked.'>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzAllowThemeJsHelp").'</span>';
 print '</td>';
 print '</tr>';
 

@@ -14,3 +14,5 @@ NovouzDensity=Display Density
 NovouzDensityHelp=Controls spacing, row height, and font size. Compact shows more data, Spacious is easier to scan.
 ErrorBadColor=Invalid color format. Use hex format like #3b82f6
 ErrorBadUrl=Invalid URL format
+NovouzAllowThemeJs=Enable Theme JavaScript
+NovouzAllowThemeJsHelp=Enables the dark-mode toggle button and sticky table headers. Requires the Novo theme.

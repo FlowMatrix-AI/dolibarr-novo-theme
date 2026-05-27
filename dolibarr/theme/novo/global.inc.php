@@ -379,6 +379,105 @@ if (getDolGlobalInt('THEME_DARKMODEENABLED')) {
 }
 ?>
 
+<?php /* JS-driven dark mode override (novo.js sets data-novo-scheme attribute) */ ?>
+html[data-novo-scheme="dark"] {
+	--colorbackhmenu1: #1e293b;
+	--colorbackvmenu1: #0f172a;
+	--colorbacktitle1: #1e293b;
+	--colorbacktabcard1: #0f172a;
+	--colorbacktabactive: #334155;
+	--colorbacklineimpair1: #1e293b;
+	--colorbacklineimpair2: #1e293b;
+	--colorbacklinepair1: #0f172a;
+	--colorbacklinepair2: #0f172a;
+	--colorbacklinepairhover: #334155;
+	--colorbacklinepairchecked: #1e3a5f;
+	--colorbackbody: #0f172a;
+	--colorbackmobilemenu: #020617;
+	--colorbackgrey: #020617;
+	--tooltipbgcolor: #1e293b;
+	--colortexttitlenotab: #93c5fd;
+	--colortexttitlenotab2: #c4b5fd;
+	--colortexttitle: #e2e8f0;
+	--colortext: #e2e8f0;
+	--colortextlink: #60a5fa;
+	--colortexttitlelink: #60a5fa;
+	--colortextbackhmenu: #e2e8f0;
+	--colortextbackvmenu: #e2e8f0;
+	--tooltipfontcolor: #e2e8f0;
+	--listetotal: #f472b6;
+	--inputbackgroundcolor: #1e293b;
+	--inputbackgroundcolordisabled: #334155;
+	--inputcolordisabled: #94a3b8;
+	--inputbordercolor: #475569;
+	--oddevencolor: #e2e8f0;
+	--colorboxstatsborder: #475569;
+	--dolgraphbg: #0f172a;
+	--fieldrequiredcolor: #f1f5f9;
+	--colortextbacktab: #e2e8f0;
+	--colorboxiconbg: #1e293b;
+	--refidnocolor: #e2e8f0;
+	--tableforfieldcolor: #e2e8f0;
+	--amountremaintopaycolor: #fca5a5;
+	--amountpaymentcomplete: #6ee7b7;
+	--amountremaintopaybackcolor: none;
+	--infoboxmoduleenabledbgcolor: linear-gradient(0.4turn, #0f172a, #0f172a, #0f172a, #064e3b);
+	--tablevalidbgcolor: #422006;
+	--colorblack: #f1f5f9;
+	--colorwhite: #0f172a;
+	--novo-primary: #60a5fa;
+	--novo-primary-hover: #3b82f6;
+	--novo-bg: #0f172a;
+	--novo-surface: #1e293b;
+	--novo-text: #f1f5f9;
+	--novo-text-muted: #94a3b8;
+	--novo-border: #334155;
+	--novo-accent: #a78bfa;
+	--novo-shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
+	--novo-shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+	--novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.4);
+}
+html[data-novo-scheme="dark"] body,
+html[data-novo-scheme="dark"] button {
+	color: #e2e8f0;
+}
+html[data-novo-scheme="light"] {
+	--colorbackhmenu1: rgb(<?php print $colorbackhmenu1; ?>);
+	--colorbackvmenu1: rgb(<?php print $colorbackvmenu1; ?>);
+	--colorbackbody: rgb(<?php print $colorbackbody; ?>);
+	--colortext: rgb(<?php print $colortext; ?>);
+	--colortextlink: rgb(<?php print $colortextlink; ?>);
+	--novo-bg: #f8fafc;
+	--novo-surface: #ffffff;
+	--novo-text: #0f172a;
+	--novo-text-muted: #64748b;
+	--novo-border: #e2e8f0;
+}
+
+/* Sticky table headers (applied by novo.js) */
+table.novo-sticky thead tr {
+	position: sticky;
+	top: var(--novo-layout-header-height);
+	z-index: 10;
+	background: var(--colorbacktitle1);
+}
+table.novo-sticky thead tr + tr {
+	position: sticky;
+	top: calc(var(--novo-layout-header-height) + var(--novo-density-row-height));
+	z-index: 9;
+	background: var(--colorbacktitle1);
+}
+table.novo-sticky thead tr.liste_titre_filter {
+	position: sticky;
+	top: calc(var(--novo-layout-header-height) + var(--novo-density-row-height));
+	z-index: 9;
+}
+@media print {
+	table.novo-sticky thead tr {
+		position: static;
+	}
+}
+
 body {
 <?php if (GETPOST('optioncss', 'aZ09') == 'print') {  ?>
 	background-color: #FFFFFF;
