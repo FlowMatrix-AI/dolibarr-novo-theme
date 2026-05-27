@@ -50,6 +50,16 @@ if (file_exists($paletteFile)) {
 	readfile($paletteFile);
 }
 
+// Load density variant
+$density = getDolGlobalString('NOVOUX_DENSITY', 'default');
+$density = preg_replace('/[^a-z0-9_-]/', '', $density);
+if ($density !== 'default') {
+	$variantFile = DOL_DOCUMENT_ROOT.'/theme/novo/variants/density-'.$density.'.css';
+	if (file_exists($variantFile)) {
+		readfile($variantFile);
+	}
+}
+
 // Primary color override
 $primaryOverride = getDolGlobalString('NOVOUX_PRIMARY_COLOR', '');
 if (!empty($primaryOverride) && preg_match('/^#[0-9a-fA-F]{6}$/', $primaryOverride)) {

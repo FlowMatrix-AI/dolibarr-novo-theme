@@ -241,6 +241,43 @@ $borderradius = getDolGlobalString('THEME_ELDY_USEBORDERONTABLE') ? getDolGlobal
 	--novo-shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
 	--novo-font: <?php print $fontlist; ?>;
 	--novo-transition: 120ms ease-out;
+
+	/* Spacing tokens */
+	--novo-spacing-unit: 4px;
+	--novo-spacing-xs: 4px;
+	--novo-spacing-sm: 8px;
+	--novo-spacing-md: 12px;
+	--novo-spacing-lg: 16px;
+	--novo-spacing-xl: 24px;
+	--novo-spacing-2xl: 32px;
+
+	/* Typography tokens */
+	--novo-typography-font-size-xs: 11px;
+	--novo-typography-font-size-sm: 12px;
+	--novo-typography-font-size-base: 13px;
+	--novo-typography-font-size-lg: 15px;
+	--novo-typography-font-size-xl: 18px;
+	--novo-typography-font-size-2xl: 22px;
+	--novo-typography-line-height-tight: 1.25;
+	--novo-typography-line-height-base: 1.5;
+	--novo-typography-line-height-relaxed: 1.75;
+
+	/* Density tokens */
+	--novo-density-row-height: 38px;
+	--novo-density-input-height: 34px;
+	--novo-density-button-padding-y: 8px;
+	--novo-density-button-padding-x: 16px;
+	--novo-density-cell-padding-y: 8px;
+	--novo-density-cell-padding-x: 12px;
+	--novo-density-card-padding: 16px;
+	--novo-density-section-gap: 24px;
+
+	/* Layout tokens */
+	--novo-layout-sidebar-width: 240px;
+	--novo-layout-sidebar-collapsed-width: 60px;
+	--novo-layout-header-height: 50px;
+	--novo-layout-content-max-width: 1400px;
+	--novo-layout-content-padding: 24px;
 }
 
 <?php
@@ -253,6 +290,18 @@ if ($novopalette !== 'default') {
 	$palettefile = __DIR__.'/palettes/'.basename($novopalette).'.css';
 	if (file_exists($palettefile)) {
 		include $palettefile;
+	}
+}
+
+// Load density variant (compact, spacious, or default)
+$novoDensity = getDolGlobalString('NOVOUX_DENSITY', 'default');
+if (!empty($_SERVER['NOVOUX_DENSITY'])) {
+	$novoDensity = preg_replace('/[^a-z0-9_-]/', '', $_SERVER['NOVOUX_DENSITY']);
+}
+if ($novoDensity !== 'default') {
+	$variantFile = __DIR__.'/variants/density-'.basename($novoDensity).'.css';
+	if (file_exists($variantFile)) {
+		include $variantFile;
 	}
 }
 ?>
@@ -334,8 +383,8 @@ body {
 <?php if (GETPOST('optioncss', 'aZ09') == 'print') {  ?>
 	background-color: #FFFFFF;
 <?php } ?>
-	font-size: <?php print is_numeric($fontsize) ? $fontsize.'px' : $fontsize; ?>;
-	line-height: 1.5;
+	font-size: var(--novo-typography-font-size-base);
+	line-height: var(--novo-typography-line-height-base);
 	font-family: <?php print $fontlist ?>;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -983,7 +1032,7 @@ table.tableforfield .buttonDelete:not(.bordertransp):not(.buttonpayment) {
 	margin-right: 5px;
 	font-family: <?php print $fontlist ?>;
 	display: inline-block;
-	padding: 8px 16px;
+	padding: var(--novo-density-button-padding-y) var(--novo-density-button-padding-x);
 	min-width: 90px;
 	text-align: center;
 	cursor: pointer;
@@ -4010,7 +4059,7 @@ div.vmenu, td.vmenu {
 }
 
 .vmenu {
-	width: <?php echo $leftmenuwidth; ?>px;
+	width: var(--novo-layout-sidebar-width);
 	margin-left: 8px;
 	/* text-transform: capitalize; */
 	<?php if (GETPOST('optioncss', 'aZ09') == 'print') { ?>
@@ -4027,11 +4076,11 @@ input.vmenusearchselectcombo[type=text] {
 }
 .vmenusearchselectcombo {
 	width: <?php echo $leftmenuwidth - 2; ?>px;
-	height: 38px !important;
+	height: var(--novo-density-input-height) !important;
 }
 .vmenusearchselectcombo > .select2-selection__rendered, .vmenusearchselectcombo > .select2-selection__arrow {
-	line-height: 38px !important;
-	height: 38px !important;
+	line-height: var(--novo-density-input-height) !important;
+	height: var(--novo-density-input-height) !important;
 }
 
 .menu_contenu {
@@ -4317,10 +4366,10 @@ div.tabsElem a.tabactive::before, div.tabsElem a.tabunactive::before {
 */
 div.tabBar {
 	color: var(--colortextbacktab);
-	padding-top: 20px;
+	padding-top: var(--novo-density-card-padding);
 	padding-left: 0px; padding-right: 0px;
 	padding-bottom: 2px;
-	margin: 0px 0px 24px 0px;
+	margin: 0px 0px var(--novo-density-section-gap) 0px;
 	border-top: 1px solid var(--novo-border);
 	width: auto;
 	background: var(--novo-surface);
@@ -4391,7 +4440,7 @@ div.popuptab {
 /* ============================================================================== */
 
 div.tabsAction {
-	margin: 20px 0em 40px 0em;
+	margin: 20px 0em var(--novo-density-section-gap) 0em;
 	padding: 12px 0em;
 	text-align: right;
 	border-top: 1px solid var(--novo-border);
@@ -4882,7 +4931,7 @@ table.liste tr, table.noborder tr, div.noborder form {
 	min-height: 20px;
 }
 table.liste th, table.noborder th, table.noborder tr.liste_titre td, table.noborder tr.box_titre td {
-	padding: 6px 10px 6px 12px;			/* t r b l */
+	padding: var(--novo-density-cell-padding-y) 10px var(--novo-density-cell-padding-y) var(--novo-density-cell-padding-x);			/* t r b l */
 }
 td.linecoldescription {
 	padding: 6px 10px 6px 12px !important;			/* t r b l */
@@ -4894,9 +4943,9 @@ table.liste td, table.noborder > tr > td,
 table.noborder > tbody > tr > td,
 table.noborder > tfoot > tr > td,
 div.noborder form div, table.tableforservicepart1 td, table.tableforservicepart2 td {
-	padding: 8px 10px 8px 12px;			/* t r b l */
+	padding: var(--novo-density-cell-padding-y) 10px var(--novo-density-cell-padding-y) var(--novo-density-cell-padding-x);			/* t r b l */
 	/* line-height: 22px; This create trouble on cell login on list of last events of a contract */
-	height: 32px;
+	height: var(--novo-density-row-height);
 }
 table.liste tr.trkanban td {
 	padding: 12px 15px 12px 15px;			/* t r b l */
@@ -9777,6 +9826,15 @@ $novoPalette = preg_replace('/[^a-z0-9_-]/', '', $novoPalette);
 $novoPaletteFile = __DIR__.'/palettes/'.$novoPalette.'.css';
 if ($novoPalette !== 'default' && file_exists($novoPaletteFile)) {
 	readfile($novoPaletteFile);
+}
+// Density variant override
+$novoDensityEnd = getDolGlobalString('NOVOUX_DENSITY', 'default');
+$novoDensityEnd = preg_replace('/[^a-z0-9_-]/', '', $novoDensityEnd);
+if ($novoDensityEnd !== 'default') {
+	$novoDensityFile = __DIR__.'/variants/density-'.$novoDensityEnd.'.css';
+	if (file_exists($novoDensityFile)) {
+		readfile($novoDensityFile);
+	}
 }
 // Primary color override (from companion module setting)
 $novoPrimaryColor = getDolGlobalString('NOVOUX_PRIMARY_COLOR', '');

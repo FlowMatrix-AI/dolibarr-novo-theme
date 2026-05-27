@@ -82,6 +82,13 @@ if ($action == 'update') {
 		dolibarr_set_const($db, 'NOVOUX_PRIMARY_COLOR', $primaryColor, 'chaine', 0, '', $conf->entity);
 	}
 
+	// Density
+	$density = GETPOST('NOVOUX_DENSITY', 'alpha');
+	if (!in_array($density, array('default', 'compact', 'spacious'))) {
+		$density = 'default';
+	}
+	dolibarr_set_const($db, 'NOVOUX_DENSITY', $density, 'chaine', 0, '', $conf->entity);
+
 	// Logo URL
 	$logoUrl = GETPOST('NOVOUX_LOGO_URL', 'alpha');
 	$logoUrl = trim($logoUrl);
@@ -147,6 +154,20 @@ $currentColor = getDolGlobalString('NOVOUX_PRIMARY_COLOR', '');
 print '<input type="color" name="NOVOUX_PRIMARY_COLOR" value="'.dol_escape_htmltag($currentColor ? $currentColor : '#3b82f6').'" class="flat">';
 print ' <input type="text" name="NOVOUX_PRIMARY_COLOR" value="'.dol_escape_htmltag($currentColor).'" class="flat minwidth150" placeholder="#3b82f6">';
 print '<br><span class="opacitymedium small">'.$langs->trans("NovouzPrimaryColorHelp").'</span>';
+print '</td>';
+print '</tr>';
+
+// Density
+print '<tr class="oddeven">';
+print '<td>'.$langs->trans("NovouzDensity").'</td>';
+print '<td>';
+$currentDensity = getDolGlobalString('NOVOUX_DENSITY', 'default');
+$densityOptions = array('compact' => 'Compact', 'default' => 'Default', 'spacious' => 'Spacious');
+foreach ($densityOptions as $dval => $dlabel) {
+	$checked = ($dval == $currentDensity) ? ' checked' : '';
+	print '<label style="margin-right: 16px; cursor: pointer;"><input type="radio" name="NOVOUX_DENSITY" value="'.dol_escape_htmltag($dval).'"'.$checked.'> '.$dlabel.'</label>';
+}
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDensityHelp").'</span>';
 print '</td>';
 print '</tr>';
 

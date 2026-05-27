@@ -10,5 +10,7 @@ NovouzLogoUrl=Client Logo URL
 NovouzPaletteHelp=Select the color palette for the Novo theme. Changes apply to all users immediately.
 NovouzPrimaryColorHelp=Override the primary brand color (hex format, e.g. #3b82f6). Leave empty to use palette default.
 NovouzLogoUrlHelp=URL to a client logo image. Leave empty to use the Dolibarr default logo.
+NovouzDensity=Display Density
+NovouzDensityHelp=Controls spacing, row height, and font size. Compact shows more data, Spacious is easier to scan.
 ErrorBadColor=Invalid color format. Use hex format like #3b82f6
 ErrorBadUrl=Invalid URL format

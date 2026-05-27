@@ -45,6 +45,43 @@
     "oddevencolor": "#1e293b",
     "listetotal": "#1d4ed8"
   },
+  "spacing": {
+    "unit": "4px",
+    "xs": "4px",
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px",
+    "2xl": "32px"
+  },
+  "typography": {
+    "font-size-xs": "11px",
+    "font-size-sm": "12px",
+    "font-size-base": "13px",
+    "font-size-lg": "15px",
+    "font-size-xl": "18px",
+    "font-size-2xl": "22px",
+    "line-height-tight": "1.25",
+    "line-height-base": "1.5",
+    "line-height-relaxed": "1.75"
+  },
+  "density": {
+    "row-height": "38px",
+    "input-height": "34px",
+    "button-padding-y": "8px",
+    "button-padding-x": "16px",
+    "cell-padding-y": "8px",
+    "cell-padding-x": "12px",
+    "card-padding": "16px",
+    "section-gap": "24px"
+  },
+  "layout": {
+    "sidebar-width": "240px",
+    "sidebar-collapsed-width": "60px",
+    "header-height": "50px",
+    "content-max-width": "1400px",
+    "content-padding": "24px"
+  },
   "dark": {
     "primary": "#60a5fa",
     "primary-hover": "#3b82f6",

@@ -1,0 +1,25 @@
+{
+  "name": "spacious",
+  "label": "Spacious",
+  "type": "density",
+  "overrides": {
+    "typography": {
+      "font-size-base": "14px",
+      "line-height-base": "1.6"
+    },
+    "density": {
+      "row-height": "48px",
+      "input-height": "40px",
+      "button-padding-y": "10px",
+      "button-padding-x": "20px",
+      "cell-padding-y": "12px",
+      "cell-padding-x": "16px",
+      "card-padding": "24px",
+      "section-gap": "32px"
+    },
+    "layout": {
+      "sidebar-width": "260px",
+      "header-height": "56px"
+    }
+  }
+}

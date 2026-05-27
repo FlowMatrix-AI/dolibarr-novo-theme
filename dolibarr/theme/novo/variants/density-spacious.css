@@ -1,0 +1,18 @@
+/* Generated from tokens/variants/density-spacious.json — do not edit */
+:root {
+  /* typography overrides */
+  --novo-typography-font-size-base: 14px;
+  --novo-typography-line-height-base: 1.6;
+  /* density overrides */
+  --novo-density-row-height: 48px;
+  --novo-density-input-height: 40px;
+  --novo-density-button-padding-y: 10px;
+  --novo-density-button-padding-x: 20px;
+  --novo-density-cell-padding-y: 12px;
+  --novo-density-cell-padding-x: 16px;
+  --novo-density-card-padding: 24px;
+  --novo-density-section-gap: 32px;
+  /* layout overrides */
+  --novo-layout-sidebar-width: 260px;
+  --novo-layout-header-height: 56px;
+}

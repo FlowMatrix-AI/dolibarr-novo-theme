@@ -1,0 +1,25 @@
+{
+  "name": "compact",
+  "label": "Compact",
+  "type": "density",
+  "overrides": {
+    "typography": {
+      "font-size-base": "12px",
+      "line-height-base": "1.35"
+    },
+    "density": {
+      "row-height": "30px",
+      "input-height": "28px",
+      "button-padding-y": "4px",
+      "button-padding-x": "10px",
+      "cell-padding-y": "4px",
+      "cell-padding-x": "8px",
+      "card-padding": "12px",
+      "section-gap": "16px"
+    },
+    "layout": {
+      "sidebar-width": "200px",
+      "header-height": "44px"
+    }
+  }
+}

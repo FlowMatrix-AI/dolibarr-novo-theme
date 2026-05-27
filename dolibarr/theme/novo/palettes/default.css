@@ -42,6 +42,43 @@
   --colortexttitlenotab2: #7c3aed;
   --oddevencolor: #1e293b;
   --listetotal: #1d4ed8;
+
+  /* spacing */
+  --novo-spacing-unit: 4px;
+  --novo-spacing-xs: 4px;
+  --novo-spacing-sm: 8px;
+  --novo-spacing-md: 12px;
+  --novo-spacing-lg: 16px;
+  --novo-spacing-xl: 24px;
+  --novo-spacing-2xl: 32px;
+
+  /* typography */
+  --novo-typography-font-size-xs: 11px;
+  --novo-typography-font-size-sm: 12px;
+  --novo-typography-font-size-base: 13px;
+  --novo-typography-font-size-lg: 15px;
+  --novo-typography-font-size-xl: 18px;
+  --novo-typography-font-size-2xl: 22px;
+  --novo-typography-line-height-tight: 1.25;
+  --novo-typography-line-height-base: 1.5;
+  --novo-typography-line-height-relaxed: 1.75;
+
+  /* density */
+  --novo-density-row-height: 38px;
+  --novo-density-input-height: 34px;
+  --novo-density-button-padding-y: 8px;
+  --novo-density-button-padding-x: 16px;
+  --novo-density-cell-padding-y: 8px;
+  --novo-density-cell-padding-x: 12px;
+  --novo-density-card-padding: 16px;
+  --novo-density-section-gap: 24px;
+
+  /* layout */
+  --novo-layout-sidebar-width: 240px;
+  --novo-layout-sidebar-collapsed-width: 60px;
+  --novo-layout-header-height: 50px;
+  --novo-layout-content-max-width: 1400px;
+  --novo-layout-content-padding: 24px;
 }
 
 @media (prefers-color-scheme: dark) {
