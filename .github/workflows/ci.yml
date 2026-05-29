@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mariadb:10.6
+        image: mariadb:10.11
         env:
           MYSQL_ROOT_PASSWORD: dolibarr
           MYSQL_DATABASE: dolibarr
