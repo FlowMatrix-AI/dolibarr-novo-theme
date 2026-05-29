@@ -1,6 +1,29 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":automergeMinor",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "schedule": ["before 8am on monday"],
+  "prConcurrentLimit": 3,
+  "packageRules": [
+    {
+      "description": "Group all dev dependencies (tooling only)",
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "dev tooling",
+      "automerge": true
+    },
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "automerge": true
+    },
+    {
+      "description": "Require manual review for major bumps",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
   ]
 }
