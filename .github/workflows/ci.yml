@@ -40,7 +40,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: dolibarr
           MYSQL_DATABASE: dolibarr
         ports: ['3306:3306']
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=3s --health-retries=10
+        options: --health-cmd="mariadb-admin ping" --health-interval=5s --health-timeout=3s --health-retries=10
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # v2
