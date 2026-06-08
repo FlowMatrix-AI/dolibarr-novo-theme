@@ -10,7 +10,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: '24'
@@ -35,14 +35,14 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mariadb:12.2
+        image: mariadb:12.3
         env:
           MYSQL_ROOT_PASSWORD: dolibarr
           MYSQL_DATABASE: dolibarr
         ports: ['3306:3306']
         options: --health-cmd="mariadb-admin ping" --health-interval=5s --health-timeout=3s --health-retries=10
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # v2
         with:
           php-version: '8.2'
