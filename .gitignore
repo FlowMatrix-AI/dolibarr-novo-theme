@@ -2,3 +2,8 @@ node_modules/
 tests/visual/test-results/
 tests/visual/snapshots/
 *.zip
+
+# Environment files — ignore real env files, keep the example
+.env
+.env.*
+!.env.example
