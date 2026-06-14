@@ -97,3 +97,20 @@ jobs:
       - name: Run PHPUnit
         working-directory: /tmp/dolibarr/htdocs
         run: phpunit --testdox custom/novoux/test/phpunit/
+
+  # Standardized org-wide required check: aggregates all CI jobs into a single
+  # status named `ok`. See FlowMatrix-AI/eng-governance for the convention.
+  ok:
+    name: ok
+    needs: [validate, phpunit]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify all required jobs succeeded
+        run: |
+          results="${{ join(needs.*.result, ',') }}"
+          echo "needs results: $results"
+          case "$results" in
+            *failure*|*cancelled*) echo "::error::a required CI job did not succeed"; exit 1 ;;
+          esac
+          echo "ok"
