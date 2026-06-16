@@ -1,12 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
+    "local>FlowMatrix-AI/renovate-config",
     ":automergeMinor",
     "helpers:pinGitHubActionDigests"
   ],
-  "schedule": ["before 8am on monday"],
-  "prConcurrentLimit": 3,
   "packageRules": [
     {
       "description": "Group all dev dependencies (tooling only)",
