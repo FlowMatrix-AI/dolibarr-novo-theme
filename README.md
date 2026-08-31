@@ -98,6 +98,23 @@ node scripts/build-palettes.js  # Regenerate palette + density CSS from tokens
 
 See [docs/developing.md](docs/developing.md) for full development guide.
 
+## Support
+
+Novo is **community-supported and maintained on a best-effort basis.** There is
+no guaranteed response time and no commercial support offering behind it.
+
+- **Bugs and feature requests:** [open an issue](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/new/choose).
+  The bug template asks for your Dolibarr and PHP versions, install path and
+  server log — with those a report is usually actionable, without them it
+  usually is not.
+- **Questions about Dolibarr itself** rather than this theme belong on the
+  [Dolibarr forum](https://www.dolibarr.org/forum).
+- **Security vulnerabilities:** do not open a public issue. Follow the
+  [security policy](https://github.com/FlowMatrix-AI/.github/blob/main/SECURITY.md),
+  which does carry a response commitment.
+
+Pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## License
 
 GPL-3.0 — see [LICENSE](LICENSE)

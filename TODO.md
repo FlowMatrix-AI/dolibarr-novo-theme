@@ -24,6 +24,9 @@ Predates several features — check it against the current README before using i
 **Price:** Free (GPL-3.0)
 **Compatibility:** Dolibarr 21.0.0 – 24.0.0, PHP ≥ 7.4
 
+**Support line (required in the listing):**
+> Community-supported, best-effort. Issues: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues
+
 **Description:**
 > A clean, token-driven theme for Dolibarr with 8 color palettes, dark mode toggle,
 > 3 density levels, collapsible sidebar, and per-user preferences. Zero core edits.

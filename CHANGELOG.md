@@ -21,6 +21,14 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   The constants an activation writes are derived from the module descriptor and
   guessing them had already been wrong twice.
 
+### Added
+
+- Issue templates tailored to this project — the bug form asks for the Dolibarr
+  and PHP versions, install path and server log, which is what makes a report
+  diagnosable. A support statement in the README says plainly that Novo is
+  community-supported and best-effort, with security reports routed to the
+  org security policy instead.
+
 ### Changed
 
 - **Declared Dolibarr compatibility is now a measured range, 21.0.0 – 24.0.0**

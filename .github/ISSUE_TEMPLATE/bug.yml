@@ -1,0 +1,93 @@
+name: Bug report
+description: Something in the Novo theme or NovouX module is broken.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this.
+
+        Novo is community-supported and maintained on a best-effort basis — there
+        is no guaranteed response time. The details below are what make a report
+        actionable, so please fill in as much as you can.
+
+        For a suspected **security vulnerability**, do not open an issue — follow
+        the [security policy](https://github.com/FlowMatrix-AI/.github/blob/main/SECURITY.md)
+        instead.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Enable the NovouX module
+        2. Setup → Display → select the novo skin
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: dolibarr-version
+    attributes:
+      label: Dolibarr version
+      description: Exact version, e.g. 23.0.2. Novo supports 21.0.0 – 24.0.0.
+      placeholder: "23.0.2"
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version
+      placeholder: "8.3.31"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install-path
+    attributes:
+      label: Where is the module installed?
+      description: Both are supported, but they resolve paths differently and it matters for diagnosis.
+      options:
+        - htdocs/custom/novoux/
+        - htdocs/novoux/
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: input
+    id: server
+    attributes:
+      label: Web server
+      placeholder: "Nginx 1.24 + php-fpm, Apache 2.4, Docker image, ..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server log output
+      description: |
+        The most useful thing you can include. `display_errors` is normally off,
+        so PHP errors appear only in the server log, not in the browser — check
+        your Nginx/Apache error log around the time of the failure.
+      render: text
+    validations:
+      required: false
+
+  - type: input
+    id: novo-version
+    attributes:
+      label: Novo / NovouX version
+      placeholder: "2.3.0"
+    validations:
+      required: false
