@@ -157,6 +157,23 @@ test.describe('Authenticated pages with the novo theme active', () => {
 		});
 	}
 
+	// Dolibarr renders a missing translation as the raw key. Every key was
+	// misspelled Novouz until #50, which meant ModuleNovouxName and
+	// ModuleNovouxDesc — the keys Dolibarr derives from the module name — never
+	// resolved at all.
+	for (const [name, path] of [
+		['module setup', '/custom/novoux/admin/setup.php'],
+		['module about', '/custom/novoux/admin/about.php'],
+		['user theme tab', '/custom/novoux/user_prefs.php?id=1'],
+	]) {
+		test(`${name} shows translations, not raw lang keys`, async ({ page }) => {
+			await page.goto(path);
+			const text = await page.locator('body').innerText();
+			const raw = [...text.matchAll(/\bNovoux[A-Z][A-Za-z]+/g)].map((m) => m[0]);
+			expect([...new Set(raw)], 'untranslated lang keys visible in the UI').toEqual([]);
+		});
+	}
+
 	// module_parts['hooks'] must be a flat list of contexts; an array of
 	// descriptor arrays encodes to something HookManager cannot match, and the
 	// hook then silently never fires (#44).

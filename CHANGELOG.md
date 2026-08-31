@@ -32,6 +32,12 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- **Translation keys were misspelled `Novouz` throughout**
+  ([#50](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/50)) —
+  mostly cosmetic, since the misspelling was consistent, but
+  `ModuleNovouxName` and `ModuleNovouxDesc` are derived by Dolibarr from the
+  module name and so never resolved: the module list fell back to raw values
+  instead of showing "Novo UX" and its description. All 104 occurrences renamed.
 - **The distribution zip shipped no licence or documentation**
   ([#49](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/49)) —
   Dolibarr's packaging rules expect them at `<module>/docs`, and Novo is a

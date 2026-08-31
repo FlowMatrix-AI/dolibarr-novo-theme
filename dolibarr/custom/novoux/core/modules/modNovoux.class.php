@@ -38,8 +38,8 @@ class modNovoux extends DolibarrModules
 		$this->family = 'interface';
 		$this->module_position = '90';
 		$this->name = preg_replace('/^mod/i', '', get_class($this));
-		$this->description = "NovouzDescription";
-		$this->descriptionlong = "NovouzDescriptionLong";
+		$this->description = "NovouxDescription";
+		$this->descriptionlong = "NovouxDescriptionLong";
 		$this->editor_name = 'FlowMatrix-AI';
 		$this->editor_url = 'https://github.com/FlowMatrix-AI/dolibarr-novo-theme';
 		$this->editor_squarred_logo = 'novoux_512.png@novoux';
@@ -92,7 +92,7 @@ class modNovoux extends DolibarrModules
 
 		// Tabs added to existing objects
 		$this->tabs = array(
-			'user:+novoux_prefs:NovouzThemePrefs:novoux@novoux:/novoux/user_prefs.php?id=__ID__',
+			'user:+novoux_prefs:NovouxThemePrefs:novoux@novoux:/novoux/user_prefs.php?id=__ID__',
 		);
 
 		// Constants set on module activation

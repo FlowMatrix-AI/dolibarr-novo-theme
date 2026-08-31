@@ -58,7 +58,7 @@ if (!$user->admin) {
  * View
  */
 
-$page_name = "NovouzAbout";
+$page_name = "NovouxAbout";
 
 llxHeader('', $langs->trans($page_name));
 
@@ -89,7 +89,7 @@ print '</table>';
 
 print '<br>';
 print '<h3>'.$langs->trans("Description").'</h3>';
-print '<p>'.$langs->trans("NovouzDescriptionLong").'</p>';
+print '<p>'.$langs->trans("NovouxDescriptionLong").'</p>';
 
 print '<h3>'.$langs->trans("Features").'</h3>';
 print '<ul>';
