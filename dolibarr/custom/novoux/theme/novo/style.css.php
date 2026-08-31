@@ -218,9 +218,15 @@ $left = ($langs->trans("DIRECTION") == 'rtl' ? 'right' : 'left');
 
 $path = ''; // This value may be used in future for external module to overwrite theme
 $theme = 'novo'; // Value of theme
+// This theme ships inside the novoux module, so its own files live at
+// <root>/novoux/theme/novo/ rather than under DOL_DOCUMENT_ROOT/theme/. Keep
+// them on a separate prefix: $path stays empty so core resources such as
+// /theme/common/ and other modules' images still resolve.
+$themepath = '/novoux';
 if (getDolGlobalString('MAIN_OVERWRITE_THEME_RES')) {
 	$path = '/' . getDolGlobalString('MAIN_OVERWRITE_THEME_RES');
 	$theme = getDolGlobalString('MAIN_OVERWRITE_THEME_RES');
+	$themepath = $path;
 }
 
 // Define image path files and other constants
@@ -234,7 +240,7 @@ if (getDolGlobalString('THEME_FONT_FAMILY')) {
 }
 
 $img_head = '';
-$img_button = dol_buildpath($path.'/theme/'.$theme.'/img/button_bg.png', 1);
+$img_button = dol_buildpath($themepath.'/theme/'.$theme.'/img/button_bg.png', 1);
 $dol_hide_topmenu = $conf->dol_hide_topmenu;
 $dol_hide_leftmenu = $conf->dol_hide_leftmenu;
 $dol_optimize_smallscreen = $conf->dol_optimize_smallscreen;
