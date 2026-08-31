@@ -16,8 +16,8 @@ Reference material that outlives any single issue:
 
 ## DoliStore listing content (draft)
 
-Starting point for [#52](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/52).
-Predates several features — check it against the current README before using it.
+Final copy for [#52](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/52).
+Screenshots are in `docs/screenshots/`.
 
 **Title:** Novo — Modern Dolibarr Theme
 **Category:** Interface / Skins
@@ -27,10 +27,28 @@ Predates several features — check it against the current README before using i
 **Support line (required in the listing):**
 > Community-supported, best-effort. Issues: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues
 
+**Demo:** https://flowmatrix-ai.github.io/dolibarr-novo-theme/
+
 **Description:**
-> A clean, token-driven theme for Dolibarr with 8 color palettes, dark mode toggle,
-> 3 density levels, collapsible sidebar, and per-user preferences. Zero core edits.
-> Install via one zip — theme and companion module bundled together.
+> Novo is a clean, modern theme for Dolibarr 21 to 24, installed as a single
+> module with no changes to Dolibarr core.
+>
+> - 8 colour palettes — default, slate, blue, green, warm, rose, indigo, teal
+> - Dark mode: follow the OS, force it, or give users an instant toggle
+> - 3 display densities — compact, default, spacious
+> - Collapsible sidebar that drops to an icon rail
+> - Per-user preferences: each user can override the palette, density and
+>   primary colour from their own User card
+> - Rebrand with one CSS file — everything is driven by `--novo-*` custom
+>   properties
+> - Sticky table headers on long lists
+> - English and French translations included
+>
+> Install the one zip through Setup → Modules → Deploy an external module, enable
+> it, then pick `novo` under Setup → Display.
+
+**Screenshots to upload:** `docs/screenshots/` — dashboard (light + dark),
+third-party list, NovouX settings, login.
 
 ## Future work
 

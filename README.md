@@ -19,6 +19,18 @@ A clean, configurable Dolibarr theme for v21+. Token-driven design system with p
 - Companion module `novoux` for admin-level configuration
 - Zero changes to Dolibarr core — pure theme + external module
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Dashboard, light](docs/screenshots/dashboard-light.png) | ![Dashboard, dark](docs/screenshots/dashboard-dark.png) |
+| Dashboard — light | Dashboard — dark |
+| ![Third-party list](docs/screenshots/thirdparty-list-light.png) | ![NovouX settings](docs/screenshots/novoux-settings-light.png) |
+| List view, sticky headers | NovouX settings |
+
+More in [docs/screenshots/](docs/screenshots/). Regenerate them with
+`node scripts/capture-screenshots.js` — see [docs/developing.md](docs/developing.md).
+
 ## Install
 
 ### From DoliStore (recommended)
