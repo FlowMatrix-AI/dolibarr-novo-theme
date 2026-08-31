@@ -17,13 +17,17 @@ VALUES
 --           cannot resolve and Dolibarr silently falls back to eldy
 --   _CSS    injects novo-inject.css.php, the palette/density/logo override
 --           layer — without it that stylesheet is dead on every page
---   _HOOKS  registers ActionsNovoux (sidebar-collapse body attribute)
+--
+-- MAIN_MODULE_NOVOUX_HOOKS is deliberately not seeded: module_parts['hooks'] in
+-- modNovoux.class.php uses the array-of-arrays form, which HookManager cannot
+-- read, so ActionsNovoux does not fire on a real activation either. Seeding a
+-- working value here would make the test environment diverge from production
+-- and hide that bug rather than surface it.
 INSERT IGNORE INTO llx_const (name, value, type, entity, visible)
 VALUES
   ('MAIN_MODULE_NOVOUX', '1', 'chaine', 1, 0),
   ('MAIN_MODULE_NOVOUX_THEME', '1', 'chaine', 1, 0),
   ('MAIN_MODULE_NOVOUX_CSS', '/novoux/css/novo-inject.css.php', 'chaine', 1, 0),
-  ('MAIN_MODULE_NOVOUX_HOOKS', 'a:1:{i:0;s:4:"main";}', 'chaine', 1, 0),
   ('NOVOUX_PALETTE', 'default', 'chaine', 1, 0);
 
 -- Set Novo as the active theme
