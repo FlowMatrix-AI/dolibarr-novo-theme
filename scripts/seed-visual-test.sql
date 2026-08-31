@@ -11,24 +11,9 @@ VALUES
   ('MAIN_MODULE_AGENDA', '1', 'chaine', 1, 0),
   ('MAIN_MODULE_HRM', '1', 'chaine', 1, 0);
 
--- Activate the novoux module. These mirror the module_parts and const entries
--- that modNovoux::init() writes on a real activation:
---   _THEME  Dolibarr discovers the bundled theme; without it MAIN_THEME=novo
---           cannot resolve and Dolibarr silently falls back to eldy
---   _CSS    injects novo-inject.css.php, the palette/density/logo override
---           layer — without it that stylesheet is dead on every page
---
--- MAIN_MODULE_NOVOUX_HOOKS is deliberately not seeded: module_parts['hooks'] in
--- modNovoux.class.php uses the array-of-arrays form, which HookManager cannot
--- read, so ActionsNovoux does not fire on a real activation either. Seeding a
--- working value here would make the test environment diverge from production
--- and hide that bug rather than surface it.
-INSERT IGNORE INTO llx_const (name, value, type, entity, visible)
-VALUES
-  ('MAIN_MODULE_NOVOUX', '1', 'chaine', 1, 0),
-  ('MAIN_MODULE_NOVOUX_THEME', '1', 'chaine', 1, 0),
-  ('MAIN_MODULE_NOVOUX_CSS', '/novoux/css/novo-inject.css.php', 'chaine', 1, 0),
-  ('NOVOUX_PALETTE', 'default', 'chaine', 1, 0);
+-- The novoux module itself is NOT activated here. Its constants are derived
+-- from the module descriptor and are easy to get wrong by hand, so activation
+-- runs through modNovoux::init() in scripts/activate-module.php instead.
 
 -- Set Novo as the active theme
 UPDATE llx_const SET value = 'novo' WHERE name = 'MAIN_THEME' AND entity = 1;
@@ -39,3 +24,9 @@ VALUES ('MAIN_THEME', 'novo', 'chaine', 1, 0);
 -- data ships an explicit MAIN_THEME=eldy for the admin user. Drop the override
 -- so the theme under test is the one actually rendered.
 DELETE FROM llx_user_param WHERE param = 'MAIN_THEME';
+
+-- Exercise the sidebar-collapse hook (ActionsNovoux::printMainArea only emits
+-- when this is set), so the smoke suite can assert the hook actually fires.
+INSERT IGNORE INTO llx_const (name, value, type, entity, visible)
+VALUES ('NOVOUX_SIDEBAR_COLLAPSE', '1', 'chaine', 1, 0);
+UPDATE llx_const SET value = '1' WHERE name = 'NOVOUX_SIDEBAR_COLLAPSE' AND entity = 1;

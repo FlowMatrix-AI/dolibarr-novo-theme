@@ -16,9 +16,18 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   that fails on any PHP warning or error in the server log. `display_errors` is
   off in the Dolibarr image, so diagnostics never reach the response body — the
   log is the only place a fault like #43 is visible.
+- `scripts/seed-dev.sh` and `scripts/activate-module.php`, which activate the
+  module through `modNovoux::init()` instead of hand-written `llx_const` rows.
+  The constants an activation writes are derived from the module descriptor and
+  guessing them had already been wrong twice.
 
 ### Fixed
 
+- **The `ActionsNovoux` hook never fired** ([#44](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/44))
+  — `module_parts['hooks']` declared an array of descriptor arrays, which
+  `HookManager::initHooks()` cannot match against a context name, so the hook
+  was never registered and `NOVOUX_SIDEBAR_COLLAPSE` had no effect. Declared as
+  the documented flat list of contexts, `array('main')`.
 - **Theme served without most of its own CSS and images** ([#43](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/43))
   — every reference to the theme's own resources resolved to
   `DOL_DOCUMENT_ROOT/theme/novo/` instead of the module directory, so 12

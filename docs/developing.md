@@ -42,6 +42,7 @@ planning/            ← build plans (phases)
 | Package release zip | `./scripts/package.sh` |
 | Install to local Dolibarr | `./scripts/install-local.sh /path/to/htdocs` |
 | Reset dev DB language to English | `./scripts/init-dev-lang.sh` |
+| Seed dev DB and activate the module | `./scripts/seed-dev.sh` |
 | Run smoke tests | `npm run test:smoke` |
 | Run visual tests | `npm run test:visual` |
 | Update visual baselines | `npm run test:visual:update` |
@@ -59,7 +60,7 @@ npx playwright install chromium
 docker compose -f docker-compose.dev.yml up -d
 # Wait for the first boot to finish installing before seeding (~60s)
 until [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/)" = "200" ]; do sleep 5; done
-docker exec -i dolibarr-novo-theme-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+bash scripts/seed-dev.sh
 npm run test:smoke
 ```
 
@@ -96,11 +97,17 @@ Automated screenshot comparison against 10 key Dolibarr pages in both light and 
 npm install
 npx playwright install chromium          # downloads ~290 MB browser binary
 docker compose -f docker-compose.dev.yml up -d
-# Wait for Dolibarr to finish initializing (~30s on first boot)
-docker exec -i dolibarr-novo-theme-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+# Wait for Dolibarr to finish initializing (~60s on first boot)
+until [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/)" = "200" ]; do sleep 5; done
+bash scripts/seed-dev.sh
 ```
 
 > **Note:** The DB container does not expose port 3306 to the host. Use `docker exec` to run SQL, not `mysql -h127.0.0.1`.
+
+> **Note:** `seed-dev.sh` activates the module through `modNovoux::init()` rather
+> than writing `llx_const` rows by hand. The constants an activation produces are
+> derived from the module descriptor and guessing them has been wrong twice
+> already — see [#44](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/44).
 
 ### Generate Baselines
 

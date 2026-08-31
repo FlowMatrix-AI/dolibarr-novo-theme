@@ -61,9 +61,12 @@ class modNovoux extends DolibarrModules
 				'/novoux/css/novo-inject.css.php',
 			),
 			'js' => array(),
-			'hooks' => array(
-				array('entity' => '0', 'module' => 'novoux', 'class' => 'ActionsNovoux', 'method' => '', 'hookcontext' => 'main'),
-			),
+			// A flat list of hook contexts, per DolibarrModules::$module_parts.
+			// HookManager::initHooks() does in_array($context, $arrayhooks) on the
+			// decoded value, so an array of descriptor arrays never matches and the
+			// hook silently never fires. The class is discovered from the module
+			// name, so it does not belong here.
+			'hooks' => array('main'),
 			'moduleforexternal' => 0,
 			'websitetemplates' => 0,
 		);
