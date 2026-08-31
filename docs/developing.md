@@ -101,6 +101,25 @@ CI runs the smoke suite against every version in the declared compatibility
 range (21.0.0, 22, 23, 24 — see the README table), so that range stays measured
 rather than assumed.
 
+## Listing and README screenshots
+
+`docs/screenshots/` holds the images used by the README and the DoliStore
+listing. They are committed so the listing can be refreshed without rebuilding
+an environment.
+
+```bash
+docker compose -f docker-compose.dev.yml up -d
+until [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/)" = "200" ]; do sleep 5; done
+bash scripts/seed-dev.sh
+docker exec -i dolibarr-novo-theme-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-screenshots.sql
+node scripts/capture-screenshots.js
+```
+
+`seed-screenshots.sql` is presentation only and is deliberately **not** part of
+`seed-dev.sh`: it renames the demo data's `aaa`/`bbb` placeholder companies and
+disables the modules that overflow the top menu into truncated labels. The smoke
+suite should keep running against the stock demo data.
+
 ## Visual Testing (Playwright)
 
 Automated screenshot comparison against 10 key Dolibarr pages in both light and dark modes (21 test cases total).

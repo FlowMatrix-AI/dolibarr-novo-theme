@@ -23,6 +23,8 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Screenshot set in `docs/screenshots/` for the README and the DoliStore listing,
+  regenerable with `scripts/capture-screenshots.js` and `scripts/seed-screenshots.sql`.
 - Issue templates tailored to this project — the bug form asks for the Dolibarr
   and PHP versions, install path and server log, which is what makes a report
   diagnosable. A support statement in the README says plainly that Novo is
