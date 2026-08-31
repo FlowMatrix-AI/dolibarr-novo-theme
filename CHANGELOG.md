@@ -7,6 +7,16 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- **Theme fatalled on every request when installed under `htdocs/custom/`** ([#12](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/12))
+  — `style.css.php` and `manifest.json.php` still used the two-level
+  `__DIR__.'/../../main.inc.php'` inherited from eldy, which does not resolve
+  once the theme is bundled at `novoux/theme/novo/`. Both now use the same
+  `CONTEXT_DOCUMENT_ROOT` fallback chain as the rest of the module, so the
+  module works from both `htdocs/custom/novoux/` and `htdocs/novoux/` as
+  Dolibarr's packaging rules require.
+
 ## [2.3.0] - 2026-05-27
 
 ### Added
