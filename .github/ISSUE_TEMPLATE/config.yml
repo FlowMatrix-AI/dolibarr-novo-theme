@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Dolibarr help (not Novo-specific)
+    url: https://www.dolibarr.org/forum
+    about: Questions about Dolibarr itself belong on the Dolibarr forum, not here.
+  - name: Report a security vulnerability
+    url: https://github.com/FlowMatrix-AI/.github/blob/main/SECURITY.md
+    about: Do not open a public issue for vulnerabilities — follow the security policy.
