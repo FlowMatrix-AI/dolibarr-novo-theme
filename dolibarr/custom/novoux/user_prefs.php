@@ -133,7 +133,7 @@ if ($action == 'reset') {
  * View
  */
 
-$title = $langs->trans("NovouzUserPrefs");
+$title = $langs->trans("NovouxUserPrefs");
 llxHeader('', $title);
 
 // User tabs
@@ -158,10 +158,10 @@ print '<input type="hidden" name="action" value="update">';
 print '<input type="hidden" name="id" value="'.$id.'">';
 
 print '<table class="noborder centpercent">';
-print '<tr class="liste_titre"><td colspan="2">'.$langs->trans("NovouzUserPrefs").'</td></tr>';
+print '<tr class="liste_titre"><td colspan="2">'.$langs->trans("NovouxUserPrefs").'</td></tr>';
 
 // Palette
-print '<tr class="oddeven"><td class="titlefield">'.$langs->trans("NovouzPalette").'</td><td>';
+print '<tr class="oddeven"><td class="titlefield">'.$langs->trans("NovouxPalette").'</td><td>';
 print '<select name="NOVOUX_USER_PALETTE" class="flat minwidth200">';
 print '<option value="">'.$langs->trans("Default").' ('.$adminPalette.')</option>';
 foreach ($availablePalettes as $p) {
@@ -172,7 +172,7 @@ print '</select>';
 print '</td></tr>';
 
 // Density
-print '<tr class="oddeven"><td>'.$langs->trans("NovouzDensity").'</td><td>';
+print '<tr class="oddeven"><td>'.$langs->trans("NovouxDensity").'</td><td>';
 print '<select name="NOVOUX_USER_DENSITY" class="flat minwidth200">';
 print '<option value="">'.$langs->trans("Default").' ('.$adminDensity.')</option>';
 foreach ($availableDensities as $d) {

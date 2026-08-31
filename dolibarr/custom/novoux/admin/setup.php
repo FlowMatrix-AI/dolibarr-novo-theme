@@ -188,7 +188,7 @@ if ($action == 'update') {
 	$customCss = preg_replace('/behavior\s*:/i', 'blocked:', $customCss);
 	if (strlen($customCss) > 4096) {
 		$customCss = substr($customCss, 0, 4096);
-		setEventMessages($langs->trans("NovouzCustomCssTruncated"), null, 'warnings');
+		setEventMessages($langs->trans("NovouxCustomCssTruncated"), null, 'warnings');
 	}
 	dolibarr_set_const($db, 'NOVOUX_CUSTOM_CSS', $customCss, 'chaine', 0, '', $conf->entity);
 
@@ -201,7 +201,7 @@ if ($action == 'update') {
  * View
  */
 
-$page_name = "NovouzSetup";
+$page_name = "NovouxSetup";
 llxHeader('', $langs->trans($page_name), '', '', 0, 0, '', '', '', 'mod-novoux page-admin-setup');
 
 // Subheader
@@ -213,7 +213,7 @@ $head = novoux_admin_prepare_head();
 print dol_get_fiche_head($head, 'settings', $langs->trans($page_name), -1, 'fa-palette');
 
 // Info: per-user overrides
-print info_admin($langs->trans("NovouzUserPrefsInfo"));
+print info_admin($langs->trans("NovouxUserPrefsInfo"));
 
 // Form
 print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
@@ -228,7 +228,7 @@ print '</tr>';
 
 // Palette selection
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzPalette").'</td>';
+print '<td>'.$langs->trans("NovouxPalette").'</td>';
 print '<td>';
 print '<select name="NOVOUX_PALETTE" class="flat minwidth200">';
 $currentPalette = getDolGlobalString('NOVOUX_PALETTE', 'default');
@@ -237,46 +237,46 @@ foreach ($availablePalettes as $p) {
 	print '<option value="'.dol_escape_htmltag($p).'"'.$selected.'>'.ucfirst(dol_escape_htmltag($p)).'</option>';
 }
 print '</select>';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzPaletteHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxPaletteHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Primary color override
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzPrimaryColor").'</td>';
+print '<td>'.$langs->trans("NovouxPrimaryColor").'</td>';
 print '<td>';
 $currentColor = getDolGlobalString('NOVOUX_PRIMARY_COLOR', '');
 print '<input type="color" name="NOVOUX_PRIMARY_COLOR" value="'.dol_escape_htmltag($currentColor ? $currentColor : '#3b82f6').'" class="flat">';
 print ' <input type="text" name="NOVOUX_PRIMARY_COLOR" value="'.dol_escape_htmltag($currentColor).'" class="flat minwidth150" placeholder="#3b82f6">';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzPrimaryColorHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxPrimaryColorHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Accent color override
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzAccentColor").'</td>';
+print '<td>'.$langs->trans("NovouxAccentColor").'</td>';
 print '<td>';
 $currentAccent = getDolGlobalString('NOVOUX_ACCENT_COLOR', '');
 print '<input type="color" name="NOVOUX_ACCENT_COLOR" value="'.dol_escape_htmltag($currentAccent ? $currentAccent : '#8b5cf6').'" class="flat">';
 print ' <input type="text" name="NOVOUX_ACCENT_COLOR" value="'.dol_escape_htmltag($currentAccent).'" class="flat minwidth150" placeholder="#8b5cf6">';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzAccentColorHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxAccentColorHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Danger color override
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzDangerColor").'</td>';
+print '<td>'.$langs->trans("NovouxDangerColor").'</td>';
 print '<td>';
 $currentDanger = getDolGlobalString('NOVOUX_DANGER_COLOR', '');
 print '<input type="color" name="NOVOUX_DANGER_COLOR" value="'.dol_escape_htmltag($currentDanger ? $currentDanger : '#ef4444').'" class="flat">';
 print ' <input type="text" name="NOVOUX_DANGER_COLOR" value="'.dol_escape_htmltag($currentDanger).'" class="flat minwidth150" placeholder="#ef4444">';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDangerColorHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxDangerColorHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Density
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzDensity").'</td>';
+print '<td>'.$langs->trans("NovouxDensity").'</td>';
 print '<td>';
 $currentDensity = getDolGlobalString('NOVOUX_DENSITY', 'default');
 $densityOptions = array('compact' => 'Compact', 'default' => 'Default', 'spacious' => 'Spacious');
@@ -284,13 +284,13 @@ foreach ($densityOptions as $dval => $dlabel) {
 	$checked = ($dval == $currentDensity) ? ' checked' : '';
 	print '<label style="margin-right: 16px; cursor: pointer;"><input type="radio" name="NOVOUX_DENSITY" value="'.dol_escape_htmltag($dval).'"'.$checked.'> '.$dlabel.'</label>';
 }
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDensityHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxDensityHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Radius preset
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzRadius").'</td>';
+print '<td>'.$langs->trans("NovouxRadius").'</td>';
 print '<td>';
 $currentRadius = getDolGlobalString('NOVOUX_RADIUS', 'default');
 print '<select name="NOVOUX_RADIUS" class="flat minwidth200">';
@@ -300,20 +300,20 @@ foreach ($radiusOptions as $rval => $rlabel) {
 	print '<option value="'.dol_escape_htmltag($rval).'"'.$selected.'>'.$rlabel.'</option>';
 }
 print '</select>';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzRadiusHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxRadiusHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Dark mode behavior
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzDarkMode").'</td>';
+print '<td>'.$langs->trans("NovouxDarkMode").'</td>';
 print '<td>';
 $currentDark = getDolGlobalString('NOVOUX_DARK_MODE', 'disabled');
 $darkOptions = array(
-	'disabled' => $langs->trans("NovouzDarkDisabled"),
-	'auto' => $langs->trans("NovouzDarkAuto"),
-	'toggle' => $langs->trans("NovouzDarkToggle"),
-	'forced' => $langs->trans("NovouzDarkForced"),
+	'disabled' => $langs->trans("NovouxDarkDisabled"),
+	'auto' => $langs->trans("NovouxDarkAuto"),
+	'toggle' => $langs->trans("NovouxDarkToggle"),
+	'forced' => $langs->trans("NovouxDarkForced"),
 );
 print '<select name="NOVOUX_DARK_MODE" class="flat minwidth200">';
 foreach ($darkOptions as $dval => $dlabel) {
@@ -321,38 +321,38 @@ foreach ($darkOptions as $dval => $dlabel) {
 	print '<option value="'.dol_escape_htmltag($dval).'"'.$selected.'>'.dol_escape_htmltag($dlabel).'</option>';
 }
 print '</select>';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzDarkModeHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxDarkModeHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Sidebar collapse
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzSidebarCollapse").'</td>';
+print '<td>'.$langs->trans("NovouxSidebarCollapse").'</td>';
 print '<td>';
 $currentSidebar = getDolGlobalString('NOVOUX_SIDEBAR_COLLAPSE', '0');
 $checked = ($currentSidebar == '1') ? ' checked' : '';
 print '<input type="checkbox" name="NOVOUX_SIDEBAR_COLLAPSE" value="1"'.$checked.'>';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzSidebarCollapseHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxSidebarCollapseHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Logo URL
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzLogoUrl").'</td>';
+print '<td>'.$langs->trans("NovouxLogoUrl").'</td>';
 print '<td>';
 $currentLogo = getDolGlobalString('NOVOUX_LOGO_URL', '');
 print '<input type="url" name="NOVOUX_LOGO_URL" value="'.dol_escape_htmltag($currentLogo).'" class="flat minwidth400" placeholder="https://example.com/logo.png">';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzLogoUrlHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxLogoUrlHelp").'</span>';
 print '</td>';
 print '</tr>';
 
 // Custom CSS
 print '<tr class="oddeven">';
-print '<td>'.$langs->trans("NovouzCustomCss").'</td>';
+print '<td>'.$langs->trans("NovouxCustomCss").'</td>';
 print '<td>';
 $currentCss = getDolGlobalString('NOVOUX_CUSTOM_CSS', '');
 print '<textarea name="NOVOUX_CUSTOM_CSS" rows="8" class="flat" style="width:100%;max-width:600px;font-family:monospace;font-size:12px;">'.dol_escape_htmltag($currentCss).'</textarea>';
-print '<br><span class="opacitymedium small">'.$langs->trans("NovouzCustomCssHelp").'</span>';
+print '<br><span class="opacitymedium small">'.$langs->trans("NovouxCustomCssHelp").'</span>';
 print '</td>';
 print '</tr>';
 
