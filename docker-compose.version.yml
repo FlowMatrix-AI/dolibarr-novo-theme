@@ -1,0 +1,10 @@
+# Override for testing against a specific Dolibarr release.
+#
+#   DOLI_IMAGE=dolibarr/dolibarr:22 \
+#     docker compose -f docker-compose.dev.yml -f docker-compose.version.yml up -d
+#
+# docker-compose.dev.yml keeps a pinned tag so Renovate can track it; this file
+# is only used by the CI compatibility matrix and by ad-hoc local checks.
+services:
+  web:
+    image: ${DOLI_IMAGE:-dolibarr/dolibarr:23}

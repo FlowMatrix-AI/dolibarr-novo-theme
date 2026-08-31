@@ -22,8 +22,7 @@ Predates several features — check it against the current README before using i
 **Title:** Novo — Modern Dolibarr Theme
 **Category:** Interface / Skins
 **Price:** Free (GPL-3.0)
-**Compatibility:** to be set from [#47](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/47)
-(DoliStore wants a minimum *and* a maximum, both as `x.y.z`)
+**Compatibility:** Dolibarr 21.0.0 – 24.0.0, PHP ≥ 7.4
 
 **Description:**
 > A clean, token-driven theme for Dolibarr with 8 color palettes, dark mode toggle,

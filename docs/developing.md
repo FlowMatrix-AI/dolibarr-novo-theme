@@ -87,6 +87,20 @@ Note that under Apache `CONTEXT_DOCUMENT_ROOT` is set, so both roots resolve via
 the same first branch of the fallback chain; the relative-path branches are not
 exercised by this run.
 
+### Testing another Dolibarr version
+
+`docker-compose.dev.yml` pins a tag so Renovate can track it. To run against a
+different release, layer the override:
+
+```bash
+DOLI_IMAGE=dolibarr/dolibarr:22 \
+  docker compose -f docker-compose.dev.yml -f docker-compose.version.yml up -d
+```
+
+CI runs the smoke suite against every version in the declared compatibility
+range (21.0.0, 22, 23, 24 — see the README table), so that range stays measured
+rather than assumed.
+
 ## Visual Testing (Playwright)
 
 Automated screenshot comparison against 10 key Dolibarr pages in both light and dark modes (21 test cases total).

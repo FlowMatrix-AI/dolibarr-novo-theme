@@ -21,6 +21,15 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   The constants an activation writes are derived from the module descriptor and
   guessing them had already been wrong twice.
 
+### Changed
+
+- **Declared Dolibarr compatibility is now a measured range, 21.0.0 – 24.0.0**
+  ([#47](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/47)) — the
+  module previously declared a minimum of 21.0 and had never been tested above
+  it; the one external bug report we had came from 23.0.2. `max_dolibarr_version`
+  is now set, which DoliStore requires alongside the minimum. A CI matrix runs
+  the smoke suite against 21.0.0, 22, 23 and 24 on every push and pull request.
+
 ### Fixed
 
 - **The distribution zip shipped no licence or documentation**
