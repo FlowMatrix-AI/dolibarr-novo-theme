@@ -121,7 +121,7 @@ $palette = getDolGlobalString('NOVOUX_PALETTE', 'default');
 ### Module descriptor key fields
 
 ```php
-$this->numero = XXXXXX;                    // unique module ID (reserve at wiki)
+$this->numero = XXXXXX;                    // unique module ID (see "Module ID ranges" below)
 $this->rights_class = 'novoux';
 $this->family = 'interface';               // or 'other'
 $this->module_position = '90';
@@ -131,6 +131,40 @@ $this->version = '0.1.0';
 $this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 $this->config_page_url = array("setup.php@novoux");
 ```
+
+---
+
+## Module ID ranges
+
+The two wiki pages disagree, so this is the resolved answer — do not re-derive it.
+
+| Range | Purpose |
+|-------|---------|
+| 0 – 94999 | Dolibarr core modules in the standard distribution |
+| 95000 – 99999 | Community modules **with sources hosted in Dolibarr's own GitHub org** |
+| 100000 – 499999 | "Reserved area for editors in need for an ID range" |
+| > 500000 | No reservation needed — explicitly **not intended for distribution** |
+
+[Modules - Packaging rules and Dolistore validation rules](https://wiki.dolibarr.org/index.php/Modules_-_Packaging_rules_and_Dolistore_validation_rules)
+says to pick from 95000–99999. That is misleading for us. On
+[List of modules id](https://wiki.dolibarr.org/index.php?title=List_of_modules_id)
+the 95000–99999 block has no entries at all, while 100000–499999 holds roughly
+200 allocations — including individual GitHub developers, not just companies
+(for example `491300-491349: luigifab`). The distinguishing factor is where the
+source lives: ours is in a FlowMatrix repository, not Dolibarr's.
+
+**FlowMatrix reserves in 100000–499999.**
+
+Two further rules from that page:
+
+- *"DO NOT ADD RECORD HERE, PLEASE FILL HOLES FIRST!!!!"* — claim a gap between
+  existing allocations rather than appending after the highest entry.
+- Reserve a small block, not a single ID. The page gives conflicting advice in
+  two places ("take a range of 20 numbers only the first time" versus "take
+  ranges of 10 only please at once", warning that reservations over 10 may be
+  reassigned without notice). **Take 10.**
+
+Verify the gap is still free at the moment of editing — it is a wiki.
 
 ---
 

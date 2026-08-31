@@ -1,50 +1,38 @@
 # TODO — Novo Theme / NovouX Module
 
-## DoliStore Publishing (blocked on wiki account)
+## DoliStore publishing
 
-The Dolibarr wiki signup captcha is currently broken. Once resolved:
+Tracked in **[epic #46](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/46)**
+and its sub-issues. The plan used to live here; it is in the tracker now so there
+is one source of truth. This file kept a stale module-ID range for months, which
+is exactly the failure that split brings.
 
-1. **Create wiki account** at https://wiki.dolibarr.org
-2. **Reserve a module ID** (range 95000–99999) on https://wiki.dolibarr.org/index.php?title=List_of_modules_id
-3. **Update `$this->numero`** in `dolibarr/custom/novoux/core/modules/modNovoux.class.php` (currently `500200`)
-4. **Create DoliStore seller account** at https://www.dolistore.com
-5. **Build release zip**: `bash scripts/package.sh` → produces `module_novoux-2.1.0.zip`
-6. **Test deploy locally**: Dolibarr admin → Setup → Modules → Deploy external module → upload zip
-7. **Submit to DoliStore**: Upload zip, fill product page (English required), set status "Request approval"
-8. **Wait for validation** (~10 days per wiki docs)
+Reference material that outlives any single issue:
 
-## Pre-Submission Checklist
+- Module ID ranges and why we reserve in 100000–499999 —
+  `docs/research.md` → *Module ID ranges*.
+- Packaging and validation rules —
+  [wiki](https://wiki.dolibarr.org/index.php/Modules_-_Packaging_rules_and_Dolistore_validation_rules).
 
-- [x] Zip name: `module_novoux-VERSION.zip`
-- [x] Module root `novoux/` at zip root
-- [x] `module_parts['theme'] = 1` declared
-- [x] Theme at `novoux/theme/novo/` (auto-discovered by Dolibarr)
-- [x] Full `main.inc.php` include pattern (CONTEXT_DOCUMENT_ROOT + SCRIPT_FILENAME)
-- [x] Works from `htdocs/custom/novoux/` (standard deploy path)
-- [x] No core file modifications — hooks only
-- [x] `en_US` language file present and complete
-- [x] GPL-3.0 license
-- [x] `$this->editor_url` set
-- [ ] Module ID reserved (95000–99999) — **BLOCKED**
-- [ ] Tested via "Deploy external module" in live Dolibarr instance
-- [ ] DoliStore product page created with English description
-- [ ] Screenshots/demo GIF for store listing
+## DoliStore listing content (draft)
 
-## DoliStore Listing Content (draft)
+Starting point for [#52](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/52).
+Predates several features — check it against the current README before using it.
 
-**Title:** Novo — Modern Dolibarr Theme  
-**Category:** Interface / Skins  
-**Price:** Free (GPL-3.0)  
-**Compatibility:** Dolibarr ≥ 21.0, PHP ≥ 7.4  
+**Title:** Novo — Modern Dolibarr Theme
+**Category:** Interface / Skins
+**Price:** Free (GPL-3.0)
+**Compatibility:** to be set from [#47](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/47)
+(DoliStore wants a minimum *and* a maximum, both as `x.y.z`)
 
 **Description:**
 > A clean, token-driven theme for Dolibarr with 8 color palettes, dark mode toggle,
 > 3 density levels, collapsible sidebar, and per-user preferences. Zero core edits.
 > Install via one zip — theme and companion module bundled together.
 
-## Future Work
+## Future work
+
+Not scoped into #46.
 
 - [ ] RTL support
-- [ ] Dolibarr 22 compatibility testing
-- [ ] Store listing screenshots (login, dashboard, list view, dark mode)
-- [ ] Demo instance URL for store page
+- [ ] Demo instance URL for the store page, if the Pages preview proves too thin
