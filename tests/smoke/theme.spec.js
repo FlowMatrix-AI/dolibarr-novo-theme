@@ -4,8 +4,15 @@ const { test, expect } = require('@playwright/test');
 const ADMIN_USER = process.env.DOLI_ADMIN_LOGIN || 'admin';
 const ADMIN_PASS = process.env.DOLI_ADMIN_PASSWORD || 'admin123';
 
-/** Markers that indicate PHP blew up rather than rendering. */
-const PHP_ERROR = /(Fatal error|Parse error|Uncaught Error|Failed opening required|Include of main fails)/;
+/**
+ * Markers that indicate PHP blew up rather than rendering. Note that
+ * display_errors is off in the dolibarr image, so a fatal usually surfaces as a
+ * 500 with an empty body — the status and content-type assertions are the
+ * primary guard and this regex is a secondary net for when output does leak.
+ * Diagnostics are matched in their PHP-prefixed form; bare "Warning:" and
+ * friends occur in legitimate theme comments and Dolibarr UI copy.
+ */
+const PHP_ERROR = /(Fatal error|Parse error|Uncaught Error|Recoverable fatal error|Failed opening required|Include of main fails|PHP Warning|PHP Notice|PHP Deprecated)/;
 
 /**
  * The module must work from both supported install roots (Dolibarr packaging
@@ -53,7 +60,7 @@ test.describe('Theme entrypoints', () => {
 	}
 });
 
-test.describe('Pages render with the novo theme active', () => {
+test.describe('Authenticated pages with the novo theme active', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
 		if (await page.locator('#username').isVisible().catch(() => false)) {
@@ -62,6 +69,10 @@ test.describe('Pages render with the novo theme active', () => {
 			await page.click('input[type="submit"], button[type="submit"]');
 			await page.waitForURL('**/index.php**');
 		}
+		// Dolibarr redirects a failed login back to a 200 login page, and every
+		// protected page then 302s to it — so without this the page assertions
+		// below would all pass while logged out.
+		await expect(page.locator('#username')).toHaveCount(0);
 	});
 
 	for (const path of PAGES) {
@@ -100,6 +111,9 @@ test.describe('Pages render with the novo theme active', () => {
 			(els) => els.map((e) => e.getAttribute('href') || '')
 		);
 		expect(hrefs.some((h) => h.includes('novoux') && h.includes('style.css.php'))).toBe(true);
+		// module_parts['css'] must be registered too, otherwise the palette /
+		// density / logo override layer is dead on every real page.
+		expect(hrefs.some((h) => h.includes('novo-inject.css.php'))).toBe(true);
 
 		// The --novo-* custom properties must resolve in the browser, which only
 		// happens if style.css.php returned real CSS.

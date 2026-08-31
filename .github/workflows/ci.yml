@@ -103,6 +103,7 @@ jobs:
   # is how the broken main.inc.php include in #12 shipped.
   smoke:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
@@ -135,8 +136,10 @@ jobs:
       # htdocs/<mod>. The compose file only provides the former.
       - name: Deploy module to the second supported install root
         run: |
-          docker cp dolibarr/custom/novoux \
-            "$(docker compose -f docker-compose.dev.yml ps -q web):/var/www/html/novoux"
+          WEB="$(docker compose -f docker-compose.dev.yml ps -q web)"
+          docker exec "$WEB" rm -rf /var/www/html/novoux
+          docker exec "$WEB" mkdir -p /var/www/html/novoux
+          docker cp dolibarr/custom/novoux/. "$WEB:/var/www/html/novoux"
 
       - name: Seed test data and activate the theme
         run: |

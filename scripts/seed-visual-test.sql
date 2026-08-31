@@ -11,13 +11,20 @@ VALUES
   ('MAIN_MODULE_AGENDA', '1', 'chaine', 1, 0),
   ('MAIN_MODULE_HRM', '1', 'chaine', 1, 0);
 
--- The novoux module must be active for Dolibarr to discover the bundled theme
--- via module_parts['theme']. Without this, MAIN_THEME=novo cannot resolve and
--- Dolibarr silently falls back to eldy.
+-- Activate the novoux module. These mirror the module_parts and const entries
+-- that modNovoux::init() writes on a real activation:
+--   _THEME  Dolibarr discovers the bundled theme; without it MAIN_THEME=novo
+--           cannot resolve and Dolibarr silently falls back to eldy
+--   _CSS    injects novo-inject.css.php, the palette/density/logo override
+--           layer — without it that stylesheet is dead on every page
+--   _HOOKS  registers ActionsNovoux (sidebar-collapse body attribute)
 INSERT IGNORE INTO llx_const (name, value, type, entity, visible)
 VALUES
   ('MAIN_MODULE_NOVOUX', '1', 'chaine', 1, 0),
-  ('MAIN_MODULE_NOVOUX_THEME', '1', 'chaine', 1, 0);
+  ('MAIN_MODULE_NOVOUX_THEME', '1', 'chaine', 1, 0),
+  ('MAIN_MODULE_NOVOUX_CSS', '/novoux/css/novo-inject.css.php', 'chaine', 1, 0),
+  ('MAIN_MODULE_NOVOUX_HOOKS', 'a:1:{i:0;s:4:"main";}', 'chaine', 1, 0),
+  ('NOVOUX_PALETTE', 'default', 'chaine', 1, 0);
 
 -- Set Novo as the active theme
 UPDATE llx_const SET value = 'novo' WHERE name = 'MAIN_THEME' AND entity = 1;

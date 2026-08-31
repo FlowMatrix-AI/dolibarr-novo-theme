@@ -7,6 +7,12 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Playwright smoke suite (`npm run test:smoke`) that boots Dolibarr, activates
+  the theme, and asserts the theme entrypoints and pages load without PHP
+  errors. Runs in CI on pushes to `main` and on pull requests.
+
 ### Fixed
 
 - **Theme fatalled on every request when installed under `htdocs/custom/`** ([#12](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/12))
@@ -16,15 +22,11 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `CONTEXT_DOCUMENT_ROOT` fallback chain as the rest of the module, so the
   module works from both `htdocs/custom/novoux/` and `htdocs/novoux/` as
   Dolibarr's packaging rules require.
-- `seed-visual-test.sql` did not enable the `novoux` module or clear the demo
+- `seed-visual-test.sql` did not activate the `novoux` module or clear the demo
   data's per-user `MAIN_THEME` override, so Dolibarr silently fell back to eldy
-  and the visual tests were never exercising the Novo theme.
-
-### Added
-
-- Playwright smoke suite (`npm run test:smoke`) that boots Dolibarr, activates
-  the theme, and asserts the theme entrypoints and pages load without PHP
-  errors. Runs in CI on every push and PR.
+  and the visual tests were never exercising the Novo theme. It now also
+  registers `module_parts['css']`, without which `novo-inject.css.php` — the
+  palette, density and logo override layer — was never loaded on any page.
 
 ## [2.3.0] - 2026-05-27
 
