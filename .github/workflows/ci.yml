@@ -98,11 +98,72 @@ jobs:
         working-directory: /tmp/dolibarr/htdocs
         run: phpunit --testdox custom/novoux/test/phpunit/
 
+  # Boots a real Dolibarr with the theme active and asserts it actually loads.
+  # `php -l` and the PHPUnit descriptor test never execute style.css.php, which
+  # is how the broken main.inc.php include in #12 shipped.
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start Dolibarr
+        run: docker compose -f docker-compose.dev.yml up -d
+
+      - name: Wait for Dolibarr to install
+        run: |
+          for i in $(seq 1 60); do
+            if [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/)" = "200" ]; then
+              echo "Dolibarr up after ${i} attempts"; exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Dolibarr did not come up in time"
+          docker compose -f docker-compose.dev.yml logs web | tail -50
+          exit 1
+
+      # Packaging rule: the module must work from htdocs/custom/<mod> AND
+      # htdocs/<mod>. The compose file only provides the former.
+      - name: Deploy module to the second supported install root
+        run: |
+          docker cp dolibarr/custom/novoux \
+            "$(docker compose -f docker-compose.dev.yml ps -q web):/var/www/html/novoux"
+
+      - name: Seed test data and activate the theme
+        run: |
+          docker exec -i "$(docker compose -f docker-compose.dev.yml ps -q db)" \
+            mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+
+      - name: Run smoke tests
+        env:
+          TEST_SECOND_ROOT: '1'
+        run: npm run test:smoke
+
+      - name: Dump Dolibarr logs on failure
+        if: failure()
+        run: docker compose -f docker-compose.dev.yml logs web | tail -100
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: failure()
+        with:
+          name: smoke-test-results
+          path: tests/smoke/test-results/
+          retention-days: 7
+
   # Standardized org-wide required check: aggregates all CI jobs into a single
   # status named `ok`. See FlowMatrix-AI/eng-governance for the convention.
   ok:
     name: ok
-    needs: [validate, phpunit]
+    needs: [validate, phpunit, smoke]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:

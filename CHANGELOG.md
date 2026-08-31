@@ -16,6 +16,15 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `CONTEXT_DOCUMENT_ROOT` fallback chain as the rest of the module, so the
   module works from both `htdocs/custom/novoux/` and `htdocs/novoux/` as
   Dolibarr's packaging rules require.
+- `seed-visual-test.sql` did not enable the `novoux` module or clear the demo
+  data's per-user `MAIN_THEME` override, so Dolibarr silently fell back to eldy
+  and the visual tests were never exercising the Novo theme.
+
+### Added
+
+- Playwright smoke suite (`npm run test:smoke`) that boots Dolibarr, activates
+  the theme, and asserts the theme entrypoints and pages load without PHP
+  errors. Runs in CI on every push and PR.
 
 ## [2.3.0] - 2026-05-27
 

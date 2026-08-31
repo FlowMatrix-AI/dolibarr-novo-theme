@@ -7,3 +7,5 @@ tests/visual/snapshots/
 .env
 .env.*
 !.env.example
+
+tests/smoke/test-results/
