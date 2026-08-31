@@ -6,7 +6,8 @@
     "build": "node scripts/build-palettes.js",
     "build:palettes": "node scripts/build-palettes.js",
     "test:visual": "npx playwright test --config=tests/visual/playwright.config.js",
-    "test:visual:update": "npx playwright test --config=tests/visual/playwright.config.js --update-snapshots"
+    "test:visual:update": "npx playwright test --config=tests/visual/playwright.config.js --update-snapshots",
+    "test:smoke": "npx playwright test --config=tests/smoke/playwright.config.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.45.0"

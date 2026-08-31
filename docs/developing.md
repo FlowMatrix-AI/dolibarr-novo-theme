@@ -42,8 +42,49 @@ planning/            ← build plans (phases)
 | Package release zip | `./scripts/package.sh` |
 | Install to local Dolibarr | `./scripts/install-local.sh /path/to/htdocs` |
 | Reset dev DB language to English | `./scripts/init-dev-lang.sh` |
+| Run smoke tests | `npm run test:smoke` |
 | Run visual tests | `npm run test:visual` |
 | Update visual baselines | `npm run test:visual:update` |
+
+## Smoke Testing (Playwright, runs in CI)
+
+Asserts the theme actually loads: `style.css.php`, `manifest.json.php`, and
+`novo-inject.css.php` return the right status and content type, key pages render
+with no PHP error output, and the `--novo-*` custom properties resolve in the
+browser.
+
+```bash
+npm ci
+npx playwright install chromium
+docker compose -f docker-compose.dev.yml up -d
+# Wait for the first boot to finish installing before seeding (~60s)
+until [ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/)" = "200" ]; do sleep 5; done
+docker exec -i dolibarr-novo-theme-db-1 mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+npm run test:smoke
+```
+
+No baselines, so unlike the visual suite this runs in CI on pushes to `main`
+and on pull requests.
+It exists because `php -l` only checks syntax and never executes `style.css.php`
+— which is how [#12](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/12)
+(a fatal on every theme request) shipped.
+
+To also exercise the second supported install root (`htdocs/novoux/` alongside
+`htdocs/custom/novoux/`, both required by Dolibarr's packaging rules), deploy the
+module there and set `TEST_SECOND_ROOT=1`:
+
+```bash
+# The trailing /. copies the contents; without it a re-run nests the module
+# at /var/www/html/novoux/novoux and leaves a stale copy behind.
+docker exec dolibarr-novo-theme-web-1 rm -rf /var/www/html/novoux
+docker exec dolibarr-novo-theme-web-1 mkdir -p /var/www/html/novoux
+docker cp dolibarr/custom/novoux/. dolibarr-novo-theme-web-1:/var/www/html/novoux
+TEST_SECOND_ROOT=1 npm run test:smoke
+```
+
+Note that under Apache `CONTEXT_DOCUMENT_ROOT` is set, so both roots resolve via
+the same first branch of the fallback chain; the relative-path branches are not
+exercised by this run.
 
 ## Visual Testing (Playwright)
 

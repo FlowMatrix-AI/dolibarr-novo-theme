@@ -15,7 +15,10 @@ dolibarr/custom/novoux/  ← config module (admin GUI + CSS injection)
 Browser → /theme/novo/style.css.php
   ├─ defines ISLOADEDBYSTEELSHEET, NOLOGIN
   ├─ require theme_vars.inc.php       (PHP color vars as RGB strings)
-  ├─ require ../../main.inc.php       (Dolibarr bootstrap, $conf, $db)
+  ├─ require main.inc.php             (Dolibarr bootstrap, $conf, $db —
+  │                                    resolved via CONTEXT_DOCUMENT_ROOT with
+  │                                    fallbacks, so the module works from both
+  │                                    htdocs/custom/novoux/ and htdocs/novoux/)
   ├─ require global.inc.php           (:root vars + all component CSS)
   │     ├─ :root block (tokens: colors, spacing, typography, density, layout)
   │     ├─ @media prefers-color-scheme: dark block (if THEME_DARKMODEENABLED)

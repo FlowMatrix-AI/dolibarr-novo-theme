@@ -54,7 +54,41 @@ if (!defined('NOSESSION')) {
 	define('NOSESSION', '1');
 }
 
-require_once __DIR__.'/../../main.inc.php';
+// Load Dolibarr environment. This file lives at <module>/theme/novo/, so it must
+// resolve main.inc.php for both supported install roots: htdocs/custom/novoux/
+// and htdocs/novoux/ (Dolibarr packaging rule). Mirrors css/novo-inject.css.php.
+//
+// include_once, not include: this file is also meant to be included by a derived
+// theme that has already bootstrapped Dolibarr, and loading main.inc.php twice
+// is fatal (Cannot redeclare top_httphead()). Every branch resolves to the same
+// realpath, so _once is enough and it returns true when already loaded.
+$res = 0;
+if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
+	$res = @include_once $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
+}
+$tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME'];
+$tmp2 = realpath(__FILE__);
+$i = strlen($tmp) - 1;
+$j = strlen($tmp2) - 1;
+while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) {
+	$i--;
+	$j--;
+}
+if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) {
+	$res = @include_once substr($tmp, 0, ($i + 1))."/main.inc.php";
+}
+if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) {
+	$res = @include_once dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
+}
+if (!$res && file_exists("../../../main.inc.php")) {
+	$res = @include_once "../../../main.inc.php";
+}
+if (!$res && file_exists("../../../../main.inc.php")) {
+	$res = @include_once "../../../../main.inc.php";
+}
+if (!$res) {
+	die("Include of main fails");
+}
 
 /**
  * @var Conf $conf
