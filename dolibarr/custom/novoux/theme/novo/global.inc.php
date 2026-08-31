@@ -1703,8 +1703,8 @@ span.fa.fa-plus-circle.paddingleft {
 
 /* Themes for badges */
 
-<?php include dol_buildpath($path.'/theme/'.$theme.'/badges.inc.php', 0); ?>
-<?php include dol_buildpath($path.'/theme/'.$theme.'/flags-sprite.inc.php', 0); ?>
+<?php include dol_buildpath($themepath.'/theme/'.$theme.'/badges.inc.php', 0); ?>
+<?php include dol_buildpath($themepath.'/theme/'.$theme.'/flags-sprite.inc.php', 0); ?>
 
 .borderrightlight
 {
@@ -3682,7 +3682,7 @@ li.tmenu:hover .tmenuimage:not(.menuhider), li.tmenu:hover .tmenuimage:not(.menu
 /* Do not load menu img for other if hidden to save bandwidth */
 
 <?php if (empty($dol_hide_topmenu)) { ?>
-	<?php include dol_buildpath($path.'/theme/'.$theme.'/main_menu_fa_icons.inc.php', 0); ?>
+	<?php include dol_buildpath($themepath.'/theme/'.$theme.'/main_menu_fa_icons.inc.php', 0); ?>
 
 	<?php
 		// Add here more div for other menu entries. moduletomainmenu=array('module name'=>'name of class for div')
@@ -4120,11 +4120,11 @@ form[name="addtime"] img.userphoto, form[name="addtime"] img.userphotosmall {
 	border: 1px solid #444;
 }
 .span-icon-user {
-	background-image: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/object_user.png', 1); ?>);
+	background-image: url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/object_user.png', 1); ?>);
 	background-repeat: no-repeat;
 }
 .span-icon-password {
-	background-image: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/lock.png', 1); ?>);
+	background-image: url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/lock.png', 1); ?>);
 	background-repeat: no-repeat;
 }
 
@@ -4637,7 +4637,7 @@ span.tabspan {
 /* ============================================================================== */
 /* Buttons for actions                                                            */
 /* ============================================================================== */
-<?php include dol_buildpath($path.'/theme/'.$theme.'/btn.inc.php', 0); ?>
+<?php include dol_buildpath($themepath.'/theme/'.$theme.'/btn.inc.php', 0); ?>
 
 
 /* ============================================================================== */
@@ -6141,13 +6141,13 @@ div.divphotoref > div > .photowithmargin, div.divphotoref > img.photowithmargin,
 
 .logo_setup
 {
-	content:url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/logo_setup.svg', 1) ?>);	/* content is used to best fit the container */
+	content:url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/logo_setup.svg', 1) ?>);	/* content is used to best fit the container */
 	display: inline-block;
 	opacity: 0.2;
 }
 .nographyet
 {
-	content:url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/nographyet.svg', 1) ?>);
+	content:url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/nographyet.svg', 1) ?>);
 	display: inline-block;
 	opacity: 0.1;
 	background-repeat: no-repeat;
@@ -6932,7 +6932,7 @@ td.peruser_holiday_imp {
 /* ============================================================================== */
 
 .ui-autocomplete-loading {
-	background: white url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/working.gif', 1) ?>) right center no-repeat;
+	background: white url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/working.gif', 1) ?>) right center no-repeat;
 }
 .ui-autocomplete {
 		   position:absolute;
@@ -6967,14 +6967,14 @@ td.peruser_holiday_imp {
 /* ============================================================================== */
 
 .editkey_textarea, .editkey_ckeditor, .editkey_string, .editkey_email, .editkey_numeric, .editkey_select, .editkey_autocomplete {
-	background: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/edit.png', 1) ?>) right top no-repeat;
+	background: url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/edit.png', 1) ?>) right top no-repeat;
 	cursor: pointer;
 	margin-right: 3px;
 	margin-top: 3px;
 }
 
 .editkey_datepicker {
-	background: url(<?php echo dol_buildpath($path.'/theme/'.$theme.'/img/calendar.png', 1) ?>) right center no-repeat;
+	background: url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/calendar.png', 1) ?>) right center no-repeat;
 	margin-right: 3px;
 	cursor: pointer;
 	margin-right: 3px;
@@ -7644,7 +7644,7 @@ div#ecm-layout-center {
 
 .ecmjqft LI.directory { font-weight:normal; background: url(<?php echo dol_buildpath($path.'/theme/common/treemenu/folder2.png', 1); ?>) left top no-repeat; background-position-y: 8px; }
 .ecmjqft LI.expanded { font-weight:normal; background: url(<?php echo dol_buildpath($path.'/theme/common/treemenu/folder2-expanded.png', 1); ?>) left top no-repeat; background-position-y: 8px; }
-.ecmjqft LI.wait { font-weight:normal; background: url(<?php echo dol_buildpath('/theme/'.$theme.'/img/working.gif', 1); ?>) left top no-repeat; }
+.ecmjqft LI.wait { font-weight:normal; background: url(<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/working.gif', 1); ?>) left top no-repeat; }
 
 
 /* ============================================================================== */
@@ -7747,10 +7747,10 @@ div.dolEventError h1, div.dolEventError h2 {
 table.dataTable tr.odd td.sorting_1, table.dataTable tr.even td.sorting_1 {
   background: none !important;
 }
-.sorting_asc  { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_asc.png', 1); ?>') no-repeat center right !important; }
-.sorting_desc { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_desc.png', 1); ?>') no-repeat center right !important; }
-.sorting_asc_disabled  { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_asc_disabled.png', 1); ?>') no-repeat center right !important; }
-.sorting_desc_disabled { background: url('<?php echo dol_buildpath('/theme/'.$theme.'/img/sort_desc_disabled.png', 1); ?>') no-repeat center right !important; }
+.sorting_asc  { background: url('<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/sort_asc.png', 1); ?>') no-repeat center right !important; }
+.sorting_desc { background: url('<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/sort_desc.png', 1); ?>') no-repeat center right !important; }
+.sorting_asc_disabled  { background: url('<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/sort_asc_disabled.png', 1); ?>') no-repeat center right !important; }
+.sorting_desc_disabled { background: url('<?php echo dol_buildpath($themepath.'/theme/'.$theme.'/img/sort_desc_disabled.png', 1); ?>') no-repeat center right !important; }
 .dataTables_paginate {
 	margin-top: 8px;
 }
@@ -9872,14 +9872,14 @@ if (getDolUserString('MAIN_OPTIMIZEFORTEXTBROWSER')) {
 }
 
 
-include dol_buildpath($path.'/theme/'.$theme.'/dropdown.inc.php', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/emaillayout.inc.php', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/info-box.inc.php', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/progress.inc.php', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/timeline.inc.php', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/search-input.inc.css', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/tooltips.inc.css', 0);
-include dol_buildpath($path.'/theme/'.$theme.'/input-feedback.css', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/dropdown.inc.php', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/emaillayout.inc.php', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/info-box.inc.php', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/progress.inc.php', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/timeline.inc.php', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/search-input.inc.css', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/tooltips.inc.css', 0);
+include dol_buildpath($themepath.'/theme/'.$theme.'/input-feedback.css', 0);
 
 
 // Add custom CSS if defined

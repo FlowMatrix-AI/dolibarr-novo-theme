@@ -12,9 +12,21 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Playwright smoke suite (`npm run test:smoke`) that boots Dolibarr, activates
   the theme, and asserts the theme entrypoints and pages load without PHP
   errors. Runs in CI on pushes to `main` and on pull requests.
+- Smoke coverage for the component partials and theme assets, plus a CI step
+  that fails on any PHP warning or error in the server log. `display_errors` is
+  off in the Dolibarr image, so diagnostics never reach the response body — the
+  log is the only place a fault like #43 is visible.
 
 ### Fixed
 
+- **Theme served without most of its own CSS and images** ([#43](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/43))
+  — every reference to the theme's own resources resolved to
+  `DOL_DOCUMENT_ROOT/theme/novo/` instead of the module directory, so 12
+  component partials (buttons, badges, dropdowns, info boxes, progress bars,
+  timelines, tooltips and others) failed to include and all 8 theme images
+  404'd, on every request, silently. The served stylesheet grows from 243 KB to
+  338 KB. Theme-owned resources now resolve through a `$themepath` prefix, while
+  `$path` continues to point at core resources such as `/theme/common/`.
 - **Theme fatalled on every request when installed under `htdocs/custom/`** ([#12](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/12))
   — `style.css.php` and `manifest.json.php` still used the two-level
   `__DIR__.'/../../main.inc.php'` inherited from eldy, which does not resolve

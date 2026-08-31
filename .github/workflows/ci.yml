@@ -151,6 +151,21 @@ jobs:
           TEST_SECOND_ROOT: '1'
         run: npm run test:smoke
 
+      # display_errors is off in the dolibarr image, so PHP diagnostics never
+      # reach the response body and no assertion on it can see them. The server
+      # log is the only place they surface. #43 (12 partials silently failing to
+      # include on every request) was invisible to the suite for exactly this
+      # reason.
+      - name: Fail on PHP warnings or errors in the server log
+        run: |
+          if docker compose -f docker-compose.dev.yml logs web 2>&1 \
+               | grep -E 'php:(warn|error)' > /tmp/php-diagnostics.log; then
+            echo "::error::PHP emitted warnings or errors while serving the test run"
+            sort -u /tmp/php-diagnostics.log | head -40
+            exit 1
+          fi
+          echo "no PHP warnings or errors logged"
+
       - name: Dump Dolibarr logs on failure
         if: failure()
         run: docker compose -f docker-compose.dev.yml logs web | tail -100

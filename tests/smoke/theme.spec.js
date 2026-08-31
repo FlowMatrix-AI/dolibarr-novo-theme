@@ -25,6 +25,27 @@ if (process.env.TEST_SECOND_ROOT === '1') {
 	INSTALL_ROOTS.push('/novoux');
 }
 
+/**
+ * One distinctive selector from each partial global.inc.php pulls in. These are
+ * included via dol_buildpath, which resolved to DOL_DOCUMENT_ROOT/theme/novo/
+ * rather than the module until #43 — so all of them silently vanished from the
+ * served stylesheet while the request still returned 200.
+ */
+const PARTIAL_MARKERS = [
+	['badges.inc.php', '.badge'],
+	['btn.inc.php', '.divButAction'],
+	['dropdown.inc.php', '.bookmark-footer'],
+	['emaillayout.inc.php', '.template-container'],
+	['info-box.inc.php', '.info-box-module'],
+	['progress.inc.php', '.progress'],
+	['timeline.inc.php', '.timeline'],
+	['main_menu_fa_icons.inc.php', '.mainmenu'],
+	['flags-sprite.inc.php', '.flag-sprite'],
+	['search-input.inc.css', '.search-tool-container'],
+	['tooltips.inc.css', '.classfortooltiponclick'],
+	['input-feedback.css', '.processing-feedback'],
+];
+
 /** Pages that must render with the theme active. */
 const PAGES = [
 	'/index.php',
@@ -46,6 +67,37 @@ test.describe('Theme entrypoints', () => {
 			expect(body).not.toMatch(PHP_ERROR);
 			// Proves the token layer actually rendered, not just that PHP exited 0.
 			expect(body).toContain('--novo-primary');
+		});
+
+		test(`stylesheet includes every component partial from ${root}`, async ({ request }) => {
+			const res = await request.get(`${root}/theme/novo/style.css.php?theme=novo&entity=1`);
+			expect(res.status()).toBe(200);
+			const body = await res.text();
+
+			const missing = PARTIAL_MARKERS
+				.filter(([, selector]) => !body.includes(selector))
+				.map(([file, selector]) => `${file} (${selector})`);
+			expect(missing, 'component CSS missing from the served stylesheet').toEqual([]);
+		});
+
+		test(`every theme asset the stylesheet references resolves from ${root}`, async ({ request }) => {
+			const res = await request.get(`${root}/theme/novo/style.css.php?theme=novo&entity=1`);
+			const body = await res.text();
+
+			const urls = [...body.matchAll(/url\(['"]?([^)'"]+)['"]?\)/g)]
+				.map((m) => m[1])
+				.filter((u) => !u.startsWith('data:') && u.startsWith('/'));
+			// Only this theme's own assets; core /theme/common/ is Dolibarr's problem.
+			const own = [...new Set(urls.filter((u) => /novoux|\/theme\/novo\//.test(u)))];
+			expect(own.length, 'expected the stylesheet to reference theme images').toBeGreaterThan(0);
+
+			/** @type {string[]} */
+			const broken = [];
+			for (const u of own) {
+				const r = await request.get(u);
+				if (r.status() !== 200) broken.push(`${r.status()} ${u}`);
+			}
+			expect(broken, 'theme assets must not 404').toEqual([]);
 		});
 
 		test(`manifest.json.php serves JSON from ${root}`, async ({ request }) => {
