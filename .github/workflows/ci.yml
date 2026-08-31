@@ -132,8 +132,19 @@ jobs:
   # `php -l` and the PHPUnit descriptor test never execute style.css.php, which
   # is how the broken main.inc.php include in #12 shipped.
   smoke:
+    name: smoke (Dolibarr ${{ matrix.dolibarr }})
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        # The compatibility range the module declares in modNovoux.class.php and
+        # advertises on DoliStore. Both ends are exercised, so the claim cannot
+        # quietly become false.
+        dolibarr: ['21.0.0', '22', '23', '24']
+    env:
+      DOLI_IMAGE: dolibarr/dolibarr:${{ matrix.dolibarr }}
+      COMPOSE: docker compose -f docker-compose.dev.yml -f docker-compose.version.yml
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
@@ -148,7 +159,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Start Dolibarr
-        run: docker compose -f docker-compose.dev.yml up -d
+        run: $COMPOSE up -d
 
       - name: Wait for Dolibarr to install
         run: |
@@ -159,14 +170,14 @@ jobs:
             sleep 5
           done
           echo "::error::Dolibarr did not come up in time"
-          docker compose -f docker-compose.dev.yml logs web | tail -50
+          $COMPOSE logs web | tail -50
           exit 1
 
       # Packaging rule: the module must work from htdocs/custom/<mod> AND
       # htdocs/<mod>. The compose file only provides the former.
       - name: Deploy module to the second supported install root
         run: |
-          WEB="$(docker compose -f docker-compose.dev.yml ps -q web)"
+          WEB="$($COMPOSE ps -q web)"
           docker exec "$WEB" rm -rf /var/www/html/novoux
           docker exec "$WEB" mkdir -p /var/www/html/novoux
           docker cp dolibarr/custom/novoux/. "$WEB:/var/www/html/novoux"
@@ -186,7 +197,7 @@ jobs:
       # reason.
       - name: Fail on PHP warnings or errors in the server log
         run: |
-          if docker compose -f docker-compose.dev.yml logs web 2>&1 \
+          if $COMPOSE logs web 2>&1 \
                | grep -E 'php:(warn|error)' > /tmp/php-diagnostics.log; then
             echo "::error::PHP emitted warnings or errors while serving the test run"
             sort -u /tmp/php-diagnostics.log | head -40
@@ -196,12 +207,12 @@ jobs:
 
       - name: Dump Dolibarr logs on failure
         if: failure()
-        run: docker compose -f docker-compose.dev.yml logs web | tail -100
+        run: $COMPOSE logs web | tail -100
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: failure()
         with:
-          name: smoke-test-results
+          name: smoke-test-results-${{ matrix.dolibarr }}
           path: tests/smoke/test-results/
           retention-days: 7
 

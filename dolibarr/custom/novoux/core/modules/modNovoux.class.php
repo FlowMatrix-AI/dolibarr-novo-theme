@@ -81,7 +81,10 @@ class modNovoux extends DolibarrModules
 		$this->langfiles = array("novoux@novoux");
 
 		$this->phpmin = array(7, 4);
-		$this->need_dolibarr_version = array(21, 0);
+		// Both bounds are verified by the CI compatibility matrix, and DoliStore
+		// requires a minimum and a maximum, each as x.y.z.
+		$this->need_dolibarr_version = array(21, 0, 0);
+		$this->max_dolibarr_version = array(24, 0, 0);
 		$this->need_javascript_ajax = 0;
 
 		$this->warnings_activation = array();

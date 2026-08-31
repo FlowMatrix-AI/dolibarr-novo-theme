@@ -104,8 +104,12 @@ GPL-3.0 — see [LICENSE](LICENSE)
 
 ## Compatibility
 
-| Requirement | Minimum |
-|-------------|---------|
-| Dolibarr | ≥ 21.0 |
+| Requirement | Supported |
+|-------------|-----------|
+| Dolibarr | 21.0.0 – 24.0.0 |
 | PHP | ≥ 7.4 |
 | Browser | Any modern (Chrome, Firefox, Safari, Edge) |
+
+Both ends of the Dolibarr range are exercised on every push and pull request by
+the CI compatibility matrix (21.0.0, 22, 23, 24), so the range is measured
+rather than assumed.
