@@ -141,10 +141,8 @@ jobs:
           docker exec "$WEB" mkdir -p /var/www/html/novoux
           docker cp dolibarr/custom/novoux/. "$WEB:/var/www/html/novoux"
 
-      - name: Seed test data and activate the theme
-        run: |
-          docker exec -i "$(docker compose -f docker-compose.dev.yml ps -q db)" \
-            mariadb -udolibarr -pdolibarr dolibarr < scripts/seed-visual-test.sql
+      - name: Seed test data and activate the module
+        run: bash scripts/seed-dev.sh
 
       - name: Run smoke tests
         env:

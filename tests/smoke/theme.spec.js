@@ -157,6 +157,14 @@ test.describe('Authenticated pages with the novo theme active', () => {
 		});
 	}
 
+	// module_parts['hooks'] must be a flat list of contexts; an array of
+	// descriptor arrays encodes to something HookManager cannot match, and the
+	// hook then silently never fires (#44).
+	test('ActionsNovoux hook fires and marks the body', async ({ page }) => {
+		await page.goto('/index.php');
+		await expect(page.locator('body')).toHaveAttribute('data-novo-sidebar-collapse', '1');
+	});
+
 	test('novo stylesheet is the one actually applied', async ({ page }) => {
 		await page.goto('/index.php');
 		const hrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(
