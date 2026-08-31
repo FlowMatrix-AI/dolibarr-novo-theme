@@ -16,6 +16,17 @@ cp -r dolibarr/custom/novoux "$STAGING/novoux"
 rm -rf "$STAGING/novoux/test"
 rm -f "$STAGING/novoux/.gitkeep"
 
+# Dolibarr's packaging rules expect documentation and licence files at
+# <module>/docs. Novo is a GPL-3.0 derivative work of the eldy theme and we
+# distribute binaries of it, so the licence text has to travel with the zip.
+mkdir -p "$STAGING/novoux/docs"
+cp LICENSE "$STAGING/novoux/docs/LICENSE"
+cp README.md INSTALL.md CHANGELOG.md "$STAGING/novoux/docs/"
+cp docs/architecture.md docs/docker.md "$STAGING/novoux/docs/"
+
+# developing.md and research.md are contributor-facing and describe a repo the
+# recipient of the zip does not have; they stay out.
+
 # Build the zip with novoux/ at root
 cd "$STAGING"
 zip -r "$OLDPWD/$OUTFILE" novoux/ \

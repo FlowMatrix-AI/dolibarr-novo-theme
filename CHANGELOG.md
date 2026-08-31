@@ -23,6 +23,13 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- **The distribution zip shipped no licence or documentation**
+  ([#49](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/49)) —
+  Dolibarr's packaging rules expect them at `<module>/docs`, and Novo is a
+  GPL-3.0 derivative work distributed in binary form, so omitting the licence
+  text was a compliance gap as well as a validation failure. The zip now carries
+  `docs/` with the GPL-3.0 text, README, INSTALL, CHANGELOG, architecture and
+  Docker notes.
 - **The `ActionsNovoux` hook never fired** ([#44](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/44))
   — `module_parts['hooks']` declared an array of descriptor arrays, which
   `HookManager::initHooks()` cannot match against a context name, so the hook

@@ -23,6 +23,36 @@ jobs:
       - name: JS check
         run: node --check dolibarr/custom/novoux/theme/novo/novo.js
 
+      # The distribution zip is what users and DoliStore actually receive, so
+      # assert its shape rather than trusting the packaging script.
+      - name: Package and verify the distribution zip
+        run: |
+          bash scripts/package.sh
+          zip=$(ls module_novoux-*.zip)
+          fail=0
+          for required in \
+            novoux/core/modules/modNovoux.class.php \
+            novoux/theme/novo/style.css.php \
+            novoux/langs/en_US/novoux.lang \
+            novoux/docs/LICENSE \
+            novoux/docs/INSTALL.md; do
+            if ! unzip -l "$zip" | grep -q " $required$"; then
+              echo "::error::$zip is missing $required"; fail=1
+            fi
+          done
+          # Dev-only files must not ship.
+          for forbidden in novoux/test/ novoux/.gitkeep; do
+            if unzip -l "$zip" | grep -q " $forbidden"; then
+              echo "::error::$zip contains $forbidden"; fail=1
+            fi
+          done
+          # The licence must be the real text, not an empty placeholder.
+          if [ "$(unzip -p "$zip" novoux/docs/LICENSE | wc -l)" -lt 100 ]; then
+            echo "::error::novoux/docs/LICENSE looks truncated"; fail=1
+          fi
+          rm -f "$zip"
+          exit $fail
+
       # Palette & variant freshness
       - name: Build palettes
         run: node scripts/build-palettes.js
