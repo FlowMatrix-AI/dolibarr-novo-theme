@@ -6,6 +6,14 @@ on:
   pull_request:
     branches: [main]
 
+# No job here needs more than read access to the repo: every step is checkout,
+# a language setup action, or upload-artifact (which uses the Actions runtime
+# token, not GITHUB_TOKEN). Without this block each job inherits the repository
+# default, which may be read/write -- four `actions/missing-workflow-permissions`
+# findings, one per job.
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
