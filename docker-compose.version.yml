@@ -7,4 +7,4 @@
 # is only used by the CI compatibility matrix and by ad-hoc local checks.
 services:
   web:
-    image: ${DOLI_IMAGE:-dolibarr/dolibarr:23}
+    image: ${DOLI_IMAGE:-dolibarr/dolibarr:24}
