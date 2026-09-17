@@ -33,6 +33,10 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- **Module ID is now 194081**, the first of FlowMatrix's block reserved on the
+  Dolibarr wiki. The previous `500200` sat in the range the wiki reserves for
+  modules not intended for distribution. Module state is keyed by name, not ID,
+  so existing installs keep working after upgrading.
 - **Declared Dolibarr compatibility is now a measured range, 21.0.0 – 24.0.0**
   ([#47](https://github.com/FlowMatrix-AI/dolibarr-novo-theme/issues/47)) — the
   module previously declared a minimum of 21.0 and had never been tested above

@@ -33,7 +33,8 @@ class modNovoux extends DolibarrModules
 
 		$this->db = $db;
 
-		$this->numero = 500200; // TODO: Replace with reserved DoliStore ID (95000-99999) once wiki account is available
+		// First ID of FlowMatrix's reserved block 194081-194090 (see docs/research.md).
+		$this->numero = 194081;
 		$this->rights_class = 'novoux';
 		$this->family = 'interface';
 		$this->module_position = '90';

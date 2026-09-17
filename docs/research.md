@@ -173,6 +173,18 @@ Two further rules from that page:
 The pool is consumed every few days, so read the current `Free` line at the
 moment of editing rather than trusting any number written down earlier.
 
+### FlowMatrix's block
+
+**194081 – 194090**, reserved on the wiki on 2026-09-17 by `CamBrooksFMAI`
+(revision 67324).
+
+| ID | Module |
+|----|--------|
+| 194081 | `novoux` |
+| 194082 – 194090 | unassigned — use these for future FlowMatrix Dolibarr modules |
+
+Assign the next unused ID here in the same change that sets `$this->numero`.
+
 ---
 
 ## Reference Theme Comparison
