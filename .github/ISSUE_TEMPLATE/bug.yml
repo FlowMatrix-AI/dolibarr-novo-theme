@@ -88,6 +88,6 @@ body:
     id: novo-version
     attributes:
       label: Novo / NovouX version
-      placeholder: "2.3.0"
+      placeholder: "2.4.0"
     validations:
       required: false
