@@ -7,6 +7,8 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-09-16
+
 ### Added
 
 - Playwright smoke suite (`npm run test:smoke`) that boots Dolibarr, activates
@@ -20,9 +22,6 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   module through `modNovoux::init()` instead of hand-written `llx_const` rows.
   The constants an activation writes are derived from the module descriptor and
   guessing them had already been wrong twice.
-
-### Added
-
 - Screenshot set in `docs/screenshots/` for the README and the DoliStore listing,
   regenerable with `scripts/capture-screenshots.js` and `scripts/seed-screenshots.sql`.
 - Issue templates tailored to this project — the bug form asks for the Dolibarr
@@ -79,11 +78,10 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `CONTEXT_DOCUMENT_ROOT` fallback chain as the rest of the module, so the
   module works from both `htdocs/custom/novoux/` and `htdocs/novoux/` as
   Dolibarr's packaging rules require.
-- `seed-visual-test.sql` did not activate the `novoux` module or clear the demo
-  data's per-user `MAIN_THEME` override, so Dolibarr silently fell back to eldy
-  and the visual tests were never exercising the Novo theme. It now also
-  registers `module_parts['css']`, without which `novo-inject.css.php` — the
-  palette, density and logo override layer — was never loaded on any page.
+- **The visual tests were never exercising the Novo theme.** The seed did not
+  activate the `novoux` module and left the demo data's per-user `MAIN_THEME`
+  override in place, so Dolibarr silently fell back to eldy. The seed now clears
+  that override, and activation goes through `scripts/activate-module.php`.
 
 ## [2.3.0] - 2026-05-27
 
@@ -269,7 +267,10 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `--novo-*` CSS custom property abstraction layer (initially mapped 1:1 to Eldy values)
 - Theme identity: `$theme = 'novo'`, updated AUTHOR, file path comments
 
-[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.3.0...v2.4.0
+[2.3.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.2.0...v2.3.0
+[2.2.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/FlowMatrix-AI/dolibarr-novo-theme/compare/v1.0.0...v1.1.0
