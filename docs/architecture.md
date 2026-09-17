@@ -216,7 +216,7 @@ Rules applied by `novo.js` when `ALLOW_THEME_JS` is enabled:
 | No Composer/npm runtime deps | Theme + module must install from zip |
 | No per-client forks | Override via CSS variables or `llx_const` only |
 | Vanilla ES2020 (no transpile) | All target browsers support it natively |
-| Module ID: 500200 | Needs wiki reservation before Dolistore listing |
+| Module ID: 194081 | Reserved on the Dolibarr wiki — see research.md |
 | Module family: `interface` | Appropriate for UI-only modules |
 | Min PHP: matches v21 Docker image | Currently PHP 8.1 |
 
