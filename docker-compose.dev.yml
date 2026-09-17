@@ -1,6 +1,6 @@
 services:
   web:
-    image: dolibarr/dolibarr:23
+    image: dolibarr/dolibarr:24
     ports:
       - "8080:80"
     environment:
