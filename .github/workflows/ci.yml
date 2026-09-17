@@ -23,6 +23,12 @@ jobs:
         with:
           node-version: '24'
 
+      # A release zip is named from package.json while Dolibarr shows the
+      # descriptor's version; they drifted before (theme_descriptor sat at 1.1.0
+      # through three releases).
+      - name: Version strings agree
+        run: bash scripts/check-version.sh
+
       # PHP lint — all theme and module PHP files
       - name: PHP lint
         run: find dolibarr/ -name '*.php' -print0 | xargs -0 -n1 php -l
