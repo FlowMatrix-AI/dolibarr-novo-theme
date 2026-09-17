@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: '24'
 
+      # package.sh names the zip from package.json while the upload step looks
+      # for the tag's name, so a mismatch would publish a release with no zip.
+      - name: Tag matches the version strings
+        run: bash scripts/check-version.sh "$GITHUB_REF_NAME"
+
       # Ensure palettes are fresh
       - run: node scripts/build-palettes.js
 
