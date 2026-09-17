@@ -157,14 +157,21 @@ source lives: ours is in a FlowMatrix repository, not Dolibarr's.
 
 Two further rules from that page:
 
-- *"DO NOT ADD RECORD HERE, PLEASE FILL HOLES FIRST!!!!"* — claim a gap between
-  existing allocations rather than appending after the highest entry.
+- **Take from a line marked `Free`.** The list contains explicit pool lines such
+  as `*ID <start> - <end>: Free (take ranges of 10 only please at once, ask us
+  for more)`, and that is where new editors actually reserve — the page history
+  shows successive editors taking the next ten from the start of one such line
+  and shrinking it. Do the same: add your ten as a new line, and move the `Free`
+  line's start up by ten. Do not take an arbitrary unlisted gap between two
+  allocations, and do not append after the highest entry (*"DO NOT ADD RECORD
+  HERE, PLEASE FILL HOLES FIRST!!!!"*).
 - Reserve a small block, not a single ID. The page gives conflicting advice in
   two places ("take a range of 20 numbers only the first time" versus "take
   ranges of 10 only please at once", warning that reservations over 10 may be
   reassigned without notice). **Take 10.**
 
-Verify the gap is still free at the moment of editing — it is a wiki.
+The pool is consumed every few days, so read the current `Free` line at the
+moment of editing rather than trusting any number written down earlier.
 
 ---
 
