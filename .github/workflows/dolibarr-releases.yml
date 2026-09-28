@@ -1,0 +1,25 @@
+name: Dolibarr releases
+
+# Opens one tracking issue per Dolibarr release newer than
+# max_dolibarr_version and escalates majors against the DoliStore 8-month
+# update rule (#70). See scripts/check-dolibarr-releases.sh.
+on:
+  schedule:
+    - cron: '17 13 * * 1' # Mondays, off the hour
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Track Dolibarr releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/check-dolibarr-releases.sh

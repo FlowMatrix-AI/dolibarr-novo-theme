@@ -29,6 +29,9 @@ jobs:
       - name: Version strings agree
         run: bash scripts/check-version.sh
 
+      - name: Dolibarr release tracker fixtures
+        run: bash scripts/test-check-dolibarr-releases.sh
+
       # PHP lint — all theme and module PHP files
       - name: PHP lint
         run: find dolibarr/ -name '*.php' -print0 | xargs -0 -n1 php -l
