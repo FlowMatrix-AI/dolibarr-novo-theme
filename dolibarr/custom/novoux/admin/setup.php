@@ -279,7 +279,7 @@ print '<tr class="oddeven">';
 print '<td>'.$langs->trans("NovouxDensity").'</td>';
 print '<td>';
 $currentDensity = getDolGlobalString('NOVOUX_DENSITY', 'default');
-$densityOptions = array('compact' => 'Compact', 'default' => 'Default', 'spacious' => 'Spacious');
+$densityOptions = array('compact' => $langs->trans('NovouxDensityCompact'), 'default' => $langs->trans('NovouxDensityDefault'), 'spacious' => $langs->trans('NovouxDensitySpacious'));
 foreach ($densityOptions as $dval => $dlabel) {
 	$checked = ($dval == $currentDensity) ? ' checked' : '';
 	print '<label style="margin-right: 16px; cursor: pointer;"><input type="radio" name="NOVOUX_DENSITY" value="'.dol_escape_htmltag($dval).'"'.$checked.'> '.$dlabel.'</label>';
