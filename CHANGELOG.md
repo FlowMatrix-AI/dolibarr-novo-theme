@@ -7,6 +7,13 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- A weekly `Dolibarr releases` workflow that opens one tracking issue per
+  Dolibarr release newer than `max_dolibarr_version`, and escalates majors at
+  4, 6 and 7 months (overdue at 8) against the DoliStore 8-month update rule
+  (#70).
+
 ### Fixed
 
 - The display density options on the settings page (Compact / Default /
