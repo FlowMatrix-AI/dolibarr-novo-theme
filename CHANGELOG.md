@@ -7,6 +7,12 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- The display density options on the settings page (Compact / Default /
+  Spacious) were hard-coded in English. They are now translated, with the
+  keys added to both `en_US` and `fr_FR` (#72).
+
 ## [2.4.0] - 2026-09-16
 
 ### Added
